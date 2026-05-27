@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DSC | EPP Logistik GmbH — Corporate Website
 
-## Getting Started
+Apple-style Landing Page für die neue Firma DSC | EPP Logistik GmbH.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16.2** (App Router, Turbopack)
+- **React 19**
+- **Tailwind CSS v4**
+- **Framer Motion** (`motion@12`) – Scroll-Animationen, Hero-Parallax, Counter
+- **Plus Jakarta Sans** als Hausschrift
+- **UI UX Pro Max Skill** (Design Intelligence) – in `.claude/skills/ui-ux-pro-max/`
+- **21st.dev Magic MCP** (Komponenten on demand) – konfiguriert in `.mcp.json`
+
+## Standorte (aktueller Datenstand)
+
+| Standort | Rolle | Status |
+|---|---|---|
+| **Bakum** (Essener Str. 39, 49456 Bakum) | Hauptsitz | ✅ Adresse + Email · ⏳ Telefon/WhatsApp Platzhalter |
+| **Hamburg** | Hafen-Hub | ✅ vollständig |
+| **Ostwestfalen-Lippe** | Inland-Hub | ✅ vollständig |
+
+Bakum-Kontaktdaten in [`src/components/Locations.tsx`](src/components/Locations.tsx): Telefon `+49 4446 000000` und WhatsApp `+49 000 0000000` müssen noch ersetzt werden.
+
+## Lokal weiterarbeiten
 
 ```bash
+# Node via nvm laden (nur falls "node" im Terminal nicht gefunden wird)
+export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
+
+cd "/Users/artur/Claude Code/website-stack"
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Dann **http://localhost:3000** öffnen.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Öffentlich teilbarer Link (Cloudflare Tunnel)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Solange der Mac läuft, lässt sich ein temporärer öffentlicher Link erzeugen:
 
-## Learn More
+```bash
+~/.local/bin/cloudflared tunnel --url http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+In der Ausgabe steht eine URL der Form `https://xxx-xxx-xxx.trycloudflare.com`. Der Link bleibt aktiv solange der Befehl läuft.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Erlaubte Origins für den Dev-Server sind in [`next.config.ts`](next.config.ts) konfiguriert (`*.trycloudflare.com`, `*.ngrok.io`, WLAN-IP).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Produktions-Build
 
-## Deploy on Vercel
+```bash
+npm run build
+npm run start    # läuft auf Port 3000
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Projektstruktur
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/
+│   ├── layout.tsx        # Plus Jakarta Sans + Metadata
+│   ├── globals.css       # Design Tokens (slate-950 ink, sky-700 accent)
+│   ├── page.tsx          # Section-Komposition
+│   └── icon.png          # Favicon
+└── components/
+    ├── Nav.tsx           # Sticky floating Nav mit Blur-Backdrop
+    ├── Hero.tsx          # Parallax-Hero mit Scroll-Indikator
+    ├── Stats.tsx         # Animierte Zahlen-Counter
+    ├── Services.tsx      # 6-Karten Bento-Grid
+    ├── Containers.tsx    # Horizontal-Scroll Container-Equipment (dark)
+    ├── Fleet.tsx         # Truck-Illustration mit Logo + Tech-Features
+    ├── Locations.tsx     # 3 Hub-Cards (Bakum als Featured/Dark)
+    ├── About.tsx         # Merger-Story + 4 Werte
+    ├── Contact.tsx       # Anfrage-Formular (Stub – kein Email-Backend)
+    └── Footer.tsx        # Sitemap + Hauptsitz-Adresse
+```
+
+## Logo-Versionen
+
+- `public/logo.jpg` – Schwarzer Hintergrund (Footer + Truck-SVG)
+- `public/logo-light.webp` – Weißer Hintergrund (Nav)
+- `src/app/icon.png` – Favicon (Wave-Crop)
+- `public/apple-icon.png` – iOS Home-Screen Icon
+
+## Offene Punkte
+
+- [ ] Echtes Telefon + WhatsApp für Bakum in `src/components/Locations.tsx`
+- [ ] Kontaktformular an SMTP / Resend / Service anbinden (aktuell Stub)
+- [ ] 21st.dev API-Key in `.mcp.json` eintragen (von https://21st.dev/magic/console)
+- [ ] Impressum, Datenschutz, AGB als eigene Routen (`/impressum`, `/datenschutz`, `/agb`)
+- [ ] Karriere-Seite mit Job-Listings
+- [ ] Deploy auf Vercel + eigene Domain

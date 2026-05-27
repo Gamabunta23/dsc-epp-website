@@ -1,26 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette — Apple-style minimalism with DSC's deep navy heritage */
+  --color-ink: #020617;       /* slate-950 — primary text */
+  --color-graphite: #0F172A;  /* slate-900 — surfaces dark */
+  --color-steel: #334155;     /* slate-700 — muted */
+  --color-fog: #F8FAFC;       /* slate-50  — surface light */
+  --color-line: #E2E8F0;      /* slate-200 — hairlines */
+  --color-accent: #0369A1;    /* sky-700   — CTA / brand accent */
+  --color-accent-soft: #38BDF8; /* sky-400 — highlights */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #ffffff;
+  --color-foreground: var(--color-ink);
+  --font-sans: var(--font-jakarta), "SF Pro Display", system-ui, -apple-system, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-family: var(--font-jakarta), "SF Pro Display", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  letter-spacing: -0.011em;
+}
+
+/* Apple-grade headline tightness */
+.headline {
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  font-weight: 600;
+}
+
+/* Honor user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Scroll snap helper for container showcase */
+.snap-x-mandatory {
+  scroll-snap-type: x mandatory;
+}
+.snap-start-x {
+  scroll-snap-align: start;
+}
+
+/* Subtle grid backdrop used in hero */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
