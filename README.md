@@ -69,6 +69,7 @@ src/
     ├── Services.tsx      # 6-Karten Bento-Grid
     ├── Containers.tsx    # Horizontal-Scroll Container-Equipment (dark)
     ├── Fleet.tsx         # Truck-Illustration mit Logo + Tech-Features
+    ├── Fahrzeitrechner.tsx  # Live-Tour-Kalkulator (EU 561, SZM 40t etc.)
     ├── Locations.tsx     # 3 Hub-Cards (Bakum als Featured/Dark)
     ├── About.tsx         # Merger-Story + 4 Werte
     ├── Contact.tsx       # Anfrage-Formular (Stub – kein Email-Backend)

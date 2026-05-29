@@ -39,6 +39,17 @@ generous whitespace, scroll-driven Framer Motion. Single accent color
   design-related actions. Run `python3 .claude/skills/ui-ux-pro-max/scripts/search.py`
   before adding new sections to get palette/typography recommendations.
 
+**Fahrzeitrechner (`src/components/Fahrzeitrechner.tsx`):**
+
+- 3 Fahrzeuge: Transporter/Sprinter (95 km/h), LKW 7,5 t (75 km/h), SZM 40 t
+  (75 km/h, Default). Wenn ein vierter Fahrzeugtyp dazu kommt: `regulated`-Flag
+  setzen (true ab > 3,5 t für EU 561).
+- EU-VO 561/2006: 45 min Pause nach 4,5 h Lenkzeit, max 9 h Tageslenkzeit,
+  11 h Tagesruhezeit zwischen mehrtägigen Touren.
+- Stadt-Zuschlag: +15 % Fahrzeit.
+- Startzeit ist datetime-local; Init clientseitig in useEffect (heute 08:00),
+  damit kein Hydration-Mismatch.
+
 **Dev workflow:**
 
 ```bash
