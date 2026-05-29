@@ -13,10 +13,8 @@ type Vehicle = {
 
 const VEHICLES: Vehicle[] = [
   { id: "sprinter", label: "Transporter / Sprinter", payload: "bis 3,5 t", speed: 95, regulated: false },
-  { id: "koffer", label: "Koffer-Transporter", payload: "bis 3,5 t", speed: 85, regulated: false },
   { id: "lkw75", label: "LKW 7,5 t", payload: "7,5 t", speed: 75, regulated: true },
-  { id: "lkw12", label: "LKW 12 t", payload: "12 t", speed: 72, regulated: true },
-  { id: "lkw16", label: "LKW 15 / 16 t", payload: "15–16 t", speed: 70, regulated: true },
+  { id: "szm40", label: "SZM 40 t", payload: "40 t Sattelzug", speed: 65, regulated: true },
 ];
 
 function formatHm(hoursDecimal: number) {
@@ -85,12 +83,12 @@ function calc(km: number, vehicle: Vehicle, eu561: boolean, stadtZuschlag: boole
 
 export default function Fahrzeitrechner() {
   const [km, setKm] = useState<number>(620);
-  const [vehicleId, setVehicleId] = useState<string>("lkw12");
+  const [vehicleId, setVehicleId] = useState<string>("szm40");
   const [eu561, setEu561] = useState<boolean>(true);
   const [stadt, setStadt] = useState<boolean>(false);
 
   const vehicle = useMemo(
-    () => VEHICLES.find((v) => v.id === vehicleId) ?? VEHICLES[2],
+    () => VEHICLES.find((v) => v.id === vehicleId) ?? VEHICLES[VEHICLES.length - 1],
     [vehicleId]
   );
 
@@ -99,18 +97,24 @@ export default function Fahrzeitrechner() {
     [km, vehicle, eu561, stadt]
   );
 
-  // Start-Referenz client-seitig setzen (vermeidet Hydration-Mismatch)
-  const [startRef, setStartRef] = useState<Date | null>(null);
+  // Startzeit als datetime-local string ("YYYY-MM-DDTHH:mm")
+  // client-seitig initialisieren (vermeidet Hydration-Mismatch)
+  const [startTime, setStartTime] = useState<string>("");
   useEffect(() => {
     const ref = new Date();
     ref.setHours(8, 0, 0, 0);
-    setStartRef(ref);
+    // ISO-String ohne Sekunden + ohne Z, an Local-Time angepasst
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const local = `${ref.getFullYear()}-${pad(ref.getMonth() + 1)}-${pad(ref.getDate())}T${pad(ref.getHours())}:${pad(ref.getMinutes())}`;
+    setStartTime(local);
   }, []);
 
   const arrival = useMemo(() => {
-    if (!startRef || result.total <= 0) return null;
-    return addHours(startRef, result.total);
-  }, [startRef, result.total]);
+    if (!startTime || result.total <= 0) return null;
+    const start = new Date(startTime);
+    if (isNaN(start.getTime())) return null;
+    return addHours(start, result.total);
+  }, [startTime, result.total]);
 
   const eu561Applies = vehicle.regulated && eu561;
 
@@ -184,12 +188,26 @@ export default function Fahrzeitrechner() {
               />
             </div>
 
+            {/* Startzeit */}
+            <div className="mt-8">
+              <label htmlFor="startzeit" className="block text-xs uppercase tracking-[0.15em] text-slate-500 mb-3">
+                Startzeit
+              </label>
+              <input
+                id="startzeit"
+                type="datetime-local"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-slate-950 tabular-nums focus:outline-none focus:border-sky-500 focus:bg-white transition-colors"
+              />
+            </div>
+
             {/* Fahrzeugtyp */}
             <div className="mt-10">
               <p className="text-xs uppercase tracking-[0.15em] text-slate-500 mb-3">
                 Fahrzeug
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {VEHICLES.map((v) => {
                   const active = v.id === vehicleId;
                   return (
@@ -197,26 +215,24 @@ export default function Fahrzeitrechner() {
                       key={v.id}
                       type="button"
                       onClick={() => setVehicleId(v.id)}
-                      className={`text-left rounded-2xl border px-4 py-3 transition-all duration-200 cursor-pointer ${
+                      className={`text-left rounded-2xl border p-4 transition-all duration-200 cursor-pointer ${
                         active
                           ? "border-slate-950 bg-slate-950 text-white"
                           : "border-slate-200 bg-white hover:border-slate-400"
                       }`}
                     >
-                      <div className="flex items-baseline justify-between gap-2">
-                        <span className="font-medium text-sm">{v.label}</span>
-                        <span className={`text-[11px] tabular-nums ${active ? "text-sky-400" : "text-slate-500"}`}>
-                          Ø {v.speed} km/h
-                        </span>
+                      <div className="font-medium text-sm leading-tight">{v.label}</div>
+                      <div className={`mt-2 text-xs tabular-nums ${active ? "text-sky-400" : "text-slate-700"}`}>
+                        Ø {v.speed} km/h
                       </div>
-                      <div className={`mt-0.5 text-[11px] ${active ? "text-slate-400" : "text-slate-500"}`}>
+                      <div className={`mt-1 text-[11px] ${active ? "text-slate-400" : "text-slate-500"}`}>
                         {v.payload}
-                        {v.regulated && (
-                          <span className={`ml-2 ${active ? "text-sky-400" : "text-sky-700"}`}>
-                            · EU 561 anwendbar
-                          </span>
-                        )}
                       </div>
+                      {v.regulated && (
+                        <div className={`mt-1 text-[10px] uppercase tracking-wider ${active ? "text-sky-400" : "text-sky-700"}`}>
+                          EU 561
+                        </div>
+                      )}
                     </button>
                   );
                 })}
@@ -296,7 +312,7 @@ export default function Fahrzeitrechner() {
             {arrival && (
               <div className="relative mt-6 pt-6 border-t border-white/10">
                 <p className="text-xs uppercase tracking-[0.15em] text-slate-400 mb-2">
-                  Beispiel-Ankunft bei Start heute 08:00
+                  Ankunft
                 </p>
                 <p className="text-lg font-medium tabular-nums">{formatDate(arrival)}</p>
               </div>
