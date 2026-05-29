@@ -14,7 +14,7 @@ type Vehicle = {
 const VEHICLES: Vehicle[] = [
   { id: "sprinter", label: "Transporter / Sprinter", payload: "bis 3,5 t", speed: 95, regulated: false },
   { id: "lkw75", label: "LKW 7,5 t", payload: "7,5 t", speed: 75, regulated: true },
-  { id: "szm40", label: "SZM 40 t", payload: "40 t Sattelzug", speed: 65, regulated: true },
+  { id: "szm40", label: "SZM 40 t", payload: "40 t Sattelzug", speed: 75, regulated: true },
 ];
 
 function formatHm(hoursDecimal: number) {
