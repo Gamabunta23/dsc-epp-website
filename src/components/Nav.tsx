@@ -8,6 +8,7 @@ const links = [
   { href: "#leistungen", label: "Leistungen" },
   { href: "#container", label: "Container" },
   { href: "#flotte", label: "Flotte" },
+  { href: "#fahrzeitrechner", label: "Fahrzeitrechner" },
   { href: "#standorte", label: "Standorte" },
   { href: "#unternehmen", label: "Unternehmen" },
   { href: "#kontakt", label: "Kontakt" },
