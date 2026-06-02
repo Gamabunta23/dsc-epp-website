@@ -44,10 +44,31 @@ export default function Containers() {
             <br />
             <span className="text-slate-500">bis zum Spezialmaß.</span>
           </h2>
-          <p className="mt-6 text-slate-400 max-w-xl">
-            Sieben Equipment-Varianten — von 20′ bis 45′, Reefer und Open-Top.
-            Horizontal scrollen für alle Spezifikationen.
-          </p>
+          <div className="mt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 max-w-3xl">
+            <p className="text-slate-400 max-w-xl">
+              Sieben Equipment-Varianten — von 20′ bis 45′, Reefer und Open-Top.
+            </p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 text-xs font-medium shrink-0"
+            >
+              <span className="tracking-wide">Horizontal scrollen</span>
+              <motion.svg
+                viewBox="0 0 16 16"
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+              </motion.svg>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
 
@@ -83,6 +104,25 @@ export default function Containers() {
             </motion.div>
           ))}
           <div className="shrink-0 w-6" />
+        </div>
+
+        {/* Edge-Fade rechts: deutet 'da geht's weiter' an */}
+        <div className="pointer-events-none absolute top-0 right-0 h-full w-20 sm:w-28 bg-gradient-to-l from-slate-950 to-transparent" />
+
+        {/* Mobile-Scroll-Hint */}
+        <div className="sm:hidden flex items-center justify-center gap-2 mt-4 text-xs text-sky-300">
+          <motion.svg
+            viewBox="0 0 16 16"
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            animate={{ x: [-3, 3, -3] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <path d="M3 8h10M9 4l4 4-4 4M7 4l-4 4 4 4" strokeLinecap="round" strokeLinejoin="round" />
+          </motion.svg>
+          <span>Wischen für mehr Container</span>
         </div>
       </div>
 
