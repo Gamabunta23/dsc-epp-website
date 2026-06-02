@@ -98,6 +98,23 @@ const types: ContainerType[] = [
     },
   },
   {
+    id: "tank",
+    size: "20′",
+    name: "Tankcontainer",
+    cbm: "14.500 L",
+    payload: "~26 t",
+    notes: "Flüssigkeits-Tank im 20′ Rahmen",
+    illustration: "tank",
+    description:
+      "Tank-Container im 20′ Rahmen für Flüssigkeiten, Chemikalien und Lebensmittel. Bauseitig druck- und temperaturfest, mit Manhole oben und Auslassventil unten.",
+    specs: {
+      interior: { l: "5,89", b: "2,35", h: "2,39" },
+      maxGross: "30.480 kg",
+      tare: "4.190 kg",
+      maxPayload: "14.500 Liter",
+    },
+  },
+  {
     id: "2x20",
     size: "2 × 20′",
     name: "DC kombiniert",
@@ -329,7 +346,7 @@ export default function Containers() {
           </h2>
           <div className="mt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 max-w-3xl">
             <p className="text-slate-400 max-w-xl">
-              Vierzehn Equipment-Varianten — von 20′ bis 45′, Reefer, Open Top und Flat Rack.
+              Fünfzehn Equipment-Varianten — von 20′ bis 45′, Reefer, Open Top, Flat Rack und Tank.
               Klick auf eine Karte für alle Spezifikationen.
             </p>
             <motion.div

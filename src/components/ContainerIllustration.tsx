@@ -13,7 +13,8 @@ type Variant =
   | "40-opentop"
   | "40-opentop-hc"
   | "20-flatrack"
-  | "40-flatrack";
+  | "40-flatrack"
+  | "tank";
 
 type Props = {
   variant?: Variant;
@@ -50,6 +51,7 @@ export default function ContainerIllustration({
     "40-opentop-hc":  { frontH: 168, depth: 320 },
     "20-flatrack":    { frontH: 150, depth: 200 },
     "40-flatrack":    { frontH: 150, depth: 320 },
+    "tank":           { frontH: 150, depth: 200 },
   }[variant];
 
   const frontW = 120;
@@ -98,6 +100,155 @@ export default function ContainerIllustration({
     variant === "40-opentop-hc";
   // Flat Rack: offene Konstruktion, nur Boden + zwei Stirnwände
   const isFlatRack = variant === "20-flatrack" || variant === "40-flatrack";
+  // Tankcontainer: Rahmen außen, Zylinder innen
+  const isTank = variant === "tank";
+
+  // ─── TANK: Rahmen-Wireframe + Zylinder innen ───
+  if (isTank) {
+    // Tank-Geometrie innerhalb des Frame
+    const tankRx = 38;  // horizontale halb-Achse der Front-Ellipse
+    const tankRy = 50;  // vertikale halb-Achse
+    const tankCx = fx + frontW / 2;            // Mittelpunkt-Front-X
+    const tankCy = fyBottom - cfg.frontH / 2;  // Mittelpunkt-Front-Y
+    const tankBackOffsetX = depthDx * 0.82;
+    const tankBackOffsetY = depthDy * 0.82;
+    const tankFrontShift = depthDx * 0.06;     // Tank etwas zurück versetzt
+    const tankFrontShiftY = depthDy * 0.06;
+    const front = { cx: tankCx + tankFrontShift, cy: tankCy + tankFrontShiftY };
+    const back = { cx: front.cx + tankBackOffsetX, cy: front.cy + tankBackOffsetY };
+
+    return (
+      <svg viewBox="0 0 480 280" className={className} role="img" aria-label="Tankcontainer">
+        <defs>
+          <linearGradient id={`shadow-${variant}`} x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor={dark ? "#0ea5e9" : "#0284c7"} stopOpacity="0.18" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id={`tank-${variant}`} x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor={palette.top} stopOpacity="1" />
+            <stop offset="55%" stopColor={palette.front} stopOpacity="1" />
+            <stop offset="100%" stopColor={palette.side} stopOpacity="1" />
+          </linearGradient>
+        </defs>
+
+        {/* Boden-Schatten */}
+        <ellipse
+          cx={fx + frontW / 2 + depthDx / 2}
+          cy={fyBottom + 12}
+          rx={(frontW + depthDx) / 2 + 12}
+          ry={6}
+          fill={`url(#shadow-${variant})`}
+        />
+
+        {/* Rahmen — Hintere Kanten (zuerst, damit sie hinter dem Tank sind) */}
+        <g stroke={palette.edge} strokeWidth="1.1" fill="none" strokeLinejoin="round">
+          {/* Hintere Stirn (Rahmen-Rechteck) */}
+          <polyline points={`${BLT.join(",")} ${BRT.join(",")} ${BRB.join(",")} ${[BLT[0], BRB[1]].join(",")} ${BLT.join(",")}`} opacity="0.7" />
+          {/* Hintere Diagonalen oben */}
+          <line x1={BLT[0]} y1={BLT[1]} x2={BRT[0]} y2={BRT[1]} opacity="0.6" />
+        </g>
+
+        {/* Tank — Hintere Ellipse (nur Außenkante, gedimmt) */}
+        <ellipse
+          cx={back.cx}
+          cy={back.cy}
+          rx={tankRx}
+          ry={tankRy}
+          fill="none"
+          stroke={palette.edge}
+          strokeWidth="0.8"
+          opacity="0.5"
+          strokeDasharray="2 3"
+        />
+
+        {/* Tank — Zylinder-Seitenfläche (Polygon zwischen Front- und Back-Ellipse) */}
+        <path
+          d={`
+            M ${front.cx} ${front.cy - tankRy}
+            L ${back.cx} ${back.cy - tankRy}
+            A ${tankRx} ${tankRy} 0 0 0 ${back.cx} ${back.cy + tankRy}
+            L ${front.cx} ${front.cy + tankRy}
+            A ${tankRx} ${tankRy} 0 0 1 ${front.cx} ${front.cy - tankRy}
+            Z
+          `}
+          fill={`url(#tank-${variant})`}
+          stroke={palette.edge}
+          strokeWidth="1"
+          strokeLinejoin="round"
+        />
+
+        {/* Tank — Front-Ellipse (Stirnseite mit Auslassventil-Andeutung) */}
+        <ellipse
+          cx={front.cx}
+          cy={front.cy}
+          rx={tankRx}
+          ry={tankRy}
+          fill={palette.front}
+          stroke={palette.edge}
+          strokeWidth="1"
+        />
+        {/* Tank-Front-Ring (Manhole / Inspection) */}
+        <ellipse
+          cx={front.cx}
+          cy={front.cy}
+          rx={tankRx * 0.5}
+          ry={tankRy * 0.5}
+          fill="none"
+          stroke={palette.line}
+          strokeWidth="0.6"
+          opacity="0.65"
+        />
+        {/* Auslassventil unten an der Front */}
+        <rect
+          x={front.cx - 8}
+          y={front.cy + tankRy - 4}
+          width="16"
+          height="10"
+          fill={palette.side}
+          stroke={palette.edge}
+          strokeWidth="0.7"
+          rx="1"
+        />
+
+        {/* Manhole oben mittig auf dem Tank */}
+        <ellipse
+          cx={front.cx + tankBackOffsetX * 0.35}
+          cy={front.cy - tankRy + tankBackOffsetY * 0.35 - 2}
+          rx="7"
+          ry="3"
+          fill={palette.side}
+          stroke={palette.edge}
+          strokeWidth="0.7"
+        />
+
+        {/* Rahmen — Vordere Kanten (zuletzt = vorne) */}
+        <g stroke={palette.line} strokeWidth="1.2" fill="none" strokeLinejoin="round">
+          {/* Vordere Stirn-Rahmen */}
+          <polyline points={`${FLT.join(",")} ${FRT.join(",")} ${FRB.join(",")} ${FLB.join(",")} ${FLT.join(",")}`} />
+          {/* Längs-Kanten oben */}
+          <line x1={FLT[0]} y1={FLT[1]} x2={BLT[0]} y2={BLT[1]} />
+          <line x1={FRT[0]} y1={FRT[1]} x2={BRT[0]} y2={BRT[1]} />
+          {/* Längs-Kanten unten */}
+          <line x1={FLB[0]} y1={FLB[1]} x2={BLT[0]} y2={BLT[1] + cfg.frontH} opacity="0" />
+          <line x1={FRB[0]} y1={FRB[1]} x2={BRB[0]} y2={BRB[1]} />
+        </g>
+
+        {/* Eckbeschläge */}
+        {[
+          { x: FLT[0] - 1, y: FLT[1] - 1 },
+          { x: FRT[0] - 13, y: FRT[1] - 1 },
+          { x: FLB[0] - 1, y: FLB[1] - 9 },
+          { x: FRB[0] - 13, y: FRB[1] - 9 },
+          { x: BRT[0] - 13, y: BRT[1] - 1 },
+        ].map((c, i) => (
+          <rect key={`corner-${i}`} x={c.x} y={c.y} width="14" height="10" fill={palette.edge} opacity="0.7" />
+        ))}
+
+        {/* Sky-Akzent oben rechts */}
+        <circle cx={BRT[0] - 7} cy={BRT[1] - 1} r="1.4" fill={palette.accent} opacity="0.9" />
+      </svg>
+    );
+  }
 
   // ─── FLAT RACK: eigener Render-Pfad (offen, nur Boden + 2 Stirnwände) ───
   if (isFlatRack) {
