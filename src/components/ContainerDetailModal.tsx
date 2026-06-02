@@ -26,7 +26,9 @@ export type ContainerVariant =
   | "20-opentop"
   | "20-opentop-hc"
   | "40-opentop"
-  | "40-opentop-hc";
+  | "40-opentop-hc"
+  | "20-flatrack"
+  | "40-flatrack";
 
 type Props = {
   open: boolean;

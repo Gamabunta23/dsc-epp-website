@@ -11,7 +11,9 @@ type Variant =
   | "20-opentop"
   | "20-opentop-hc"
   | "40-opentop"
-  | "40-opentop-hc";
+  | "40-opentop-hc"
+  | "20-flatrack"
+  | "40-flatrack";
 
 type Props = {
   variant?: Variant;
@@ -46,6 +48,8 @@ export default function ContainerIllustration({
     "20-opentop-hc":  { frontH: 168, depth: 200 },
     "40-opentop":     { frontH: 150, depth: 320 },
     "40-opentop-hc":  { frontH: 168, depth: 320 },
+    "20-flatrack":    { frontH: 150, depth: 200 },
+    "40-flatrack":    { frontH: 150, depth: 320 },
   }[variant];
 
   const frontW = 120;
@@ -92,6 +96,132 @@ export default function ContainerIllustration({
     variant === "20-opentop-hc" ||
     variant === "40-opentop" ||
     variant === "40-opentop-hc";
+  // Flat Rack: offene Konstruktion, nur Boden + zwei Stirnwände
+  const isFlatRack = variant === "20-flatrack" || variant === "40-flatrack";
+
+  // ─── FLAT RACK: eigener Render-Pfad (offen, nur Boden + 2 Stirnwände) ───
+  if (isFlatRack) {
+    const wallH = 70; // Höhe der Stirnwände
+    const deckH = 16; // Dicke der Bodenplatte
+    const deckTopY = fyBottom - deckH;
+    // Deck-Punkte
+    const dFL = [fx, deckTopY];
+    const dFR = [fx + frontW, deckTopY];
+    const dBR = [dFR[0] + depthDx, dFR[1] + depthDy];
+    const dBL = [dFL[0] + depthDx, dFL[1] + depthDy];
+    // Stirnwand vorne
+    const wFLT = [fx + 4, deckTopY - wallH];
+    const wFRT = [fx + frontW - 4, deckTopY - wallH];
+    // Stirnwand hinten (in Perspektive)
+    const wBLT = [dBL[0] + 4, dBL[1] - wallH];
+    const wBRT = [dBR[0] - 4, dBR[1] - wallH];
+
+    return (
+      <svg viewBox="0 0 480 280" className={className} role="img" aria-label="Flat Rack Container">
+        <defs>
+          <linearGradient id={`shadow-${variant}`} x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor={dark ? "#0ea5e9" : "#0284c7"} stopOpacity="0.18" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        {/* Boden-Schatten */}
+        <ellipse
+          cx={fx + frontW / 2 + depthDx / 2}
+          cy={fyBottom + 12}
+          rx={(frontW + depthDx) / 2 + 12}
+          ry={6}
+          fill={`url(#shadow-${variant})`}
+        />
+
+        {/* Hintere Stirnwand (zuerst zeichnen, damit sie hinten ist) */}
+        <polygon
+          points={`${wBLT.join(",")} ${wBRT.join(",")} ${[dBR[0] - 4, dBR[1]].join(",")} ${[dBL[0] + 4, dBL[1]].join(",")}`}
+          fill={palette.front}
+          stroke={palette.edge}
+          strokeWidth="1"
+          strokeLinejoin="round"
+        />
+        {/* Vertikale Linien hintere Stirnwand */}
+        {[0.33, 0.66].map((t) => {
+          const x1 = wBLT[0] + (wBRT[0] - wBLT[0]) * t;
+          const y1 = wBLT[1] + (wBRT[1] - wBLT[1]) * t;
+          const x2 = dBL[0] + 4 + (dBR[0] - 4 - dBL[0] - 4) * t;
+          const y2 = dBL[1] + (dBR[1] - dBL[1]) * t;
+          return <line key={`back-${t}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={palette.line} strokeWidth="0.7" opacity="0.7" />;
+        })}
+
+        {/* Bodenplatte — Top */}
+        <polygon
+          points={`${dFL.join(",")} ${dFR.join(",")} ${dBR.join(",")} ${dBL.join(",")}`}
+          fill={palette.top}
+          stroke={palette.edge}
+          strokeWidth="1"
+          strokeLinejoin="round"
+        />
+        {/* Holz-Planken-Andeutung auf dem Deck */}
+        {Array.from({ length: variant === "40-flatrack" ? 12 : 8 }).map((_, i, arr) => {
+          const t = (i + 1) / (arr.length + 1);
+          const x1 = dFL[0] + (dFR[0] - dFL[0]) * t;
+          const y1 = dFL[1] + (dFR[1] - dFL[1]) * t;
+          const x2 = dBL[0] + (dBR[0] - dBL[0]) * t;
+          const y2 = dBL[1] + (dBR[1] - dBL[1]) * t;
+          return <line key={`plank-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={palette.line} strokeWidth="0.5" opacity="0.4" />;
+        })}
+
+        {/* Bodenplatte — Vorderkante (Dicke) */}
+        <polygon
+          points={`${dFL.join(",")} ${dFR.join(",")} ${[dFR[0], dFR[1] + deckH].join(",")} ${[dFL[0], dFL[1] + deckH].join(",")}`}
+          fill={palette.side}
+          stroke={palette.edge}
+          strokeWidth="1"
+          strokeLinejoin="round"
+        />
+        {/* Bodenplatte — Seitenkante rechts (Dicke) */}
+        <polygon
+          points={`${dFR.join(",")} ${dBR.join(",")} ${[dBR[0], dBR[1] + deckH].join(",")} ${[dFR[0], dFR[1] + deckH].join(",")}`}
+          fill={palette.side}
+          stroke={palette.edge}
+          strokeWidth="1"
+          strokeLinejoin="round"
+          opacity="0.85"
+        />
+
+        {/* Vordere Stirnwand */}
+        <polygon
+          points={`${wFLT.join(",")} ${wFRT.join(",")} ${[fx + frontW - 4, deckTopY].join(",")} ${[fx + 4, deckTopY].join(",")}`}
+          fill={palette.front}
+          stroke={palette.edge}
+          strokeWidth="1"
+          strokeLinejoin="round"
+        />
+        {/* Vertikale Stäbe Vorderwand */}
+        {[0.25, 0.5, 0.75].map((t) => {
+          const x = fx + 4 + (frontW - 8) * t;
+          return <line key={`front-${t}`} x1={x} y1={wFLT[1] + 4} x2={x} y2={deckTopY - 4} stroke={palette.line} strokeWidth="0.9" opacity="0.7" />;
+        })}
+        {/* Horizontale Verstärkung */}
+        <line
+          x1={fx + 4}
+          y1={wFLT[1] + (deckTopY - wFLT[1]) * 0.5}
+          x2={fx + frontW - 4}
+          y2={wFRT[1] + (deckTopY - wFRT[1]) * 0.5}
+          stroke={palette.line}
+          strokeWidth="0.7"
+          opacity="0.6"
+        />
+
+        {/* Eckbeschläge oben an den Stirnwänden */}
+        <rect x={wFLT[0] - 2} y={wFLT[1] - 4} width="10" height="8" fill={palette.edge} opacity="0.75" />
+        <rect x={wFRT[0] - 8} y={wFRT[1] - 4} width="10" height="8" fill={palette.edge} opacity="0.75" />
+        <rect x={wBLT[0] - 2} y={wBLT[1] - 4} width="10" height="8" fill={palette.edge} opacity="0.6" />
+        <rect x={wBRT[0] - 8} y={wBRT[1] - 4} width="10" height="8" fill={palette.edge} opacity="0.6" />
+
+        {/* Sky-Akzent */}
+        <circle cx={wBRT[0] - 3} cy={wBRT[1] - 1} r="1.4" fill={palette.accent} opacity="0.9" />
+      </svg>
+    );
+  }
 
   return (
     <svg

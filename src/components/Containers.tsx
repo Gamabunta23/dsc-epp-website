@@ -62,6 +62,24 @@ const types: ContainerType[] = [
     },
   },
   {
+    id: "20-flat",
+    size: "20′ FR",
+    name: "Flat Rack",
+    cbm: "—",
+    payload: "~37 t",
+    notes: "Schwerlast-Plattform",
+    illustration: "20-flatrack",
+    description:
+      "20′ Flat Rack mit klappbaren Stirnwänden für Maschinen, Boote, überbreite oder über­hohe Ladungen. Beladung von oben und seitlich möglich, hohe Zuladung bis 37 t.",
+    specs: {
+      exterior: { l: "6,06", b: "2,44", h: "2,59" },
+      interior: { l: "6,03", b: "2,23", h: "2,20" },
+      maxGross: "40.000 kg",
+      tare: "2.940 kg",
+      maxPayload: "37.060 kg",
+    },
+  },
+  {
     id: "2x20",
     size: "2 × 20′",
     name: "DC kombiniert",
@@ -293,7 +311,7 @@ export default function Containers() {
           </h2>
           <div className="mt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 max-w-3xl">
             <p className="text-slate-400 max-w-xl">
-              Zwölf Equipment-Varianten — von 20′ bis 45′, Reefer und Open Top.
+              Dreizehn Equipment-Varianten — von 20′ bis 45′, Reefer, Open Top und Flat Rack.
               Klick auf eine Karte für alle Spezifikationen.
             </p>
             <motion.div
