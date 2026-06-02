@@ -37,7 +37,7 @@ export default function Nav() {
       style={{ background: bg, borderColor: border }}
       className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b"
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center group" aria-label="DSC | EPP Logistik – Startseite">
           <Image
             src="/logo-light.webp"
@@ -45,7 +45,7 @@ export default function Nav() {
             width={500}
             height={168}
             priority
-            className="h-9 w-auto"
+            className="h-12 w-auto"
           />
         </Link>
 
