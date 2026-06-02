@@ -28,105 +28,59 @@ export default function Containers() {
         backgroundSize: "64px 64px",
       }} />
 
-      {/* Containerschiff-Silhouette */}
-      <div className="absolute -bottom-4 inset-x-0 pointer-events-none">
-        {/* Soft glow unter dem Schiff für Tiefe */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-sky-500/10 blur-3xl" />
-
-        <svg
-          aria-hidden
-          viewBox="0 0 1200 240"
-          className="relative w-full"
-          preserveAspectRatio="xMidYMax slice"
-        >
-          <defs>
-            <linearGradient id="hull" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor="#94a3b8" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="#475569" stopOpacity="0.5" />
-            </linearGradient>
-            <linearGradient id="water" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0" />
-              <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0.08" />
-            </linearGradient>
-          </defs>
-
-          {/* Wasser-Verlauf */}
-          <rect x="0" y="220" width="1200" height="20" fill="url(#water)" />
-          {/* Wasserlinie + Wellen */}
-          <path d="M0 220 L1200 220" stroke="#38bdf8" strokeOpacity="0.5" strokeWidth="1" strokeDasharray="6 8" fill="none" />
-          <path d="M0 232 Q30 228 60 232 T120 232 T180 232 T240 232 T300 232 T360 232 T420 232 T480 232 T540 232 T600 232 T660 232 T720 232 T780 232 T840 232 T900 232 T960 232 T1020 232 T1080 232 T1140 232 T1200 232" stroke="#38bdf8" strokeOpacity="0.25" strokeWidth="1" fill="none" />
-
-          {/* Schiff-Rumpf */}
-          <path d="M120 220 L1080 220 L1040 195 L160 195 Z" fill="url(#hull)" stroke="#cbd5e1" strokeOpacity="0.35" strokeWidth="1" />
-          {/* Bullaugen-Reihe entlang des Rumpfs */}
-          <g fill="#0ea5e9" opacity="0.4">
-            <circle cx="220" cy="208" r="2" />
-            <circle cx="280" cy="208" r="2" />
-            <circle cx="340" cy="208" r="2" />
-            <circle cx="400" cy="208" r="2" />
-            <circle cx="460" cy="208" r="2" />
-            <circle cx="520" cy="208" r="2" />
-            <circle cx="580" cy="208" r="2" />
-            <circle cx="640" cy="208" r="2" />
-            <circle cx="700" cy="208" r="2" />
-            <circle cx="760" cy="208" r="2" />
-            <circle cx="820" cy="208" r="2" />
-            <circle cx="880" cy="208" r="2" />
-            <circle cx="940" cy="208" r="2" />
-            <circle cx="1000" cy="208" r="2" />
-          </g>
-
-          {/* Container-Stacks */}
-          {(() => {
-            const cells = [];
-            // Reihe 1 (unten) — 12 Container
-            for (let i = 0; i < 12; i++) cells.push({ x: 210 + i * 65, y: 165, row: 1 });
-            // Reihe 2 — gestaffelt
-            const row2 = [275, 340, 470, 535, 600, 665, 730, 860];
-            row2.forEach((x) => cells.push({ x, y: 132, row: 2 }));
-            // Reihe 3 — Spitze
-            [535, 600, 665].forEach((x) => cells.push({ x, y: 99, row: 3 }));
-
-            // Akzent-Container in Brand-Sky-Blue (markante Streuung)
-            const accentIdx = new Set([2, 5, 9, 13, 16, 20]);
-            const reeferIdx = new Set([7, 18]); // Reefer-Andeutung in Cyan
-
-            return cells.map((c, idx) => {
-              let fill = "#cbd5e1";
-              let fillOpacity = 0.55;
-              if (accentIdx.has(idx)) { fill = "#0284c7"; fillOpacity = 0.85; }
-              else if (reeferIdx.has(idx)) { fill = "#06b6d4"; fillOpacity = 0.8; }
-              return (
-                <g key={idx}>
-                  <rect x={c.x} y={c.y} width="60" height="30" fill={fill} fillOpacity={fillOpacity} />
-                  <rect x={c.x} y={c.y} width="60" height="30" fill="none" stroke="#0f172a" strokeOpacity="0.4" strokeWidth="0.5" />
-                  {/* Container-Türschlitz */}
-                  <line x1={c.x + 56} y1={c.y + 4} x2={c.x + 56} y2={c.y + 26} stroke="#0f172a" strokeOpacity="0.5" strokeWidth="0.5" />
-                </g>
-              );
-            });
-          })()}
-
-          {/* Brücke */}
-          <rect x="170" y="150" width="42" height="50" fill="url(#hull)" stroke="#cbd5e1" strokeOpacity="0.4" strokeWidth="1" />
-          {/* Brücken-Fenster (leuchten leicht) */}
-          <g fill="#38bdf8" opacity="0.55">
-            <rect x="178" y="158" width="6" height="5" />
-            <rect x="188" y="158" width="6" height="5" />
-            <rect x="198" y="158" width="6" height="5" />
-            <rect x="178" y="167" width="6" height="5" />
-            <rect x="188" y="167" width="6" height="5" />
-            <rect x="198" y="167" width="6" height="5" />
-          </g>
-          {/* Schornstein */}
-          <rect x="188" y="115" width="18" height="35" fill="#475569" fillOpacity="0.7" stroke="#cbd5e1" strokeOpacity="0.3" strokeWidth="1" />
-          {/* Schornstein-Akzent */}
-          <rect x="190" y="118" width="14" height="6" fill="#0284c7" fillOpacity="0.7" />
-          {/* Mast */}
-          <line x1="196" y1="115" x2="196" y2="95" stroke="#94a3b8" strokeWidth="1" strokeOpacity="0.6" />
-          <circle cx="196" cy="93" r="2" fill="#38bdf8" opacity="0.8" />
-        </svg>
-      </div>
+      {/* Containerschiff-Silhouette als atmosphärischer Hintergrund */}
+      <svg
+        aria-hidden
+        viewBox="0 0 1200 240"
+        className="absolute -bottom-4 inset-x-0 w-full text-white/[0.04] pointer-events-none"
+        preserveAspectRatio="xMidYMax slice"
+      >
+        <defs>
+          <linearGradient id="ship-fade" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
+            <stop offset="60%" stopColor="currentColor" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+        {/* Wasserlinie */}
+        <path d="M0 220 L1200 220" stroke="currentColor" strokeOpacity="0.6" strokeWidth="1" strokeDasharray="4 6" fill="none" />
+        {/* Schiff-Rumpf */}
+        <path d="M120 220 L1080 220 L1040 200 L160 200 Z" fill="url(#ship-fade)" />
+        {/* Container-Stacks (gestaffelt) */}
+        <g fill="currentColor">
+          {/* Reihe 1 — niedrig */}
+          <rect x="210" y="170" width="60" height="30" />
+          <rect x="275" y="170" width="60" height="30" />
+          <rect x="340" y="170" width="60" height="30" />
+          <rect x="405" y="170" width="60" height="30" />
+          <rect x="470" y="170" width="60" height="30" />
+          <rect x="535" y="170" width="60" height="30" />
+          <rect x="600" y="170" width="60" height="30" />
+          <rect x="665" y="170" width="60" height="30" />
+          <rect x="730" y="170" width="60" height="30" />
+          <rect x="795" y="170" width="60" height="30" />
+          <rect x="860" y="170" width="60" height="30" />
+          <rect x="925" y="170" width="60" height="30" />
+          {/* Reihe 2 — gestapelt */}
+          <rect x="275" y="140" width="60" height="30" />
+          <rect x="340" y="140" width="60" height="30" />
+          <rect x="470" y="140" width="60" height="30" />
+          <rect x="535" y="140" width="60" height="30" />
+          <rect x="600" y="140" width="60" height="30" />
+          <rect x="665" y="140" width="60" height="30" />
+          <rect x="730" y="140" width="60" height="30" />
+          <rect x="860" y="140" width="60" height="30" />
+          {/* Reihe 3 — Spitze */}
+          <rect x="535" y="110" width="60" height="30" />
+          <rect x="600" y="110" width="60" height="30" />
+          <rect x="665" y="110" width="60" height="30" />
+        </g>
+        {/* Brücke */}
+        <path d="M170 200 L170 150 L210 150 L210 200" fill="currentColor" />
+        <rect x="178" y="158" width="6" height="6" fill="currentColor" opacity="0.5" />
+        <rect x="188" y="158" width="6" height="6" fill="currentColor" opacity="0.5" />
+        {/* Schornstein */}
+        <rect x="190" y="120" width="14" height="30" fill="currentColor" />
+      </svg>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
