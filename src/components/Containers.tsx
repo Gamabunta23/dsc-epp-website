@@ -154,14 +154,23 @@ const types: ContainerType[] = [
   },
   {
     id: "40-reefer",
-    size: "40′",
+    size: "40′ HC",
     name: "Reefer",
-    cbm: "~67 m³",
-    payload: "~25 t",
+    cbm: "60,0 m³",
+    payload: "~29,4 t",
     notes: "−25 bis +25 °C",
     illustration: "40-reefer",
     description:
-      "Temperaturgeführter 40′ Container mit Gen-Set-Aggregat. Maximales Kühlvolumen für Langstrecken und Großmengen.",
+      "Temperaturgeführter 40′ High Cube Reefer mit Gen-Set-Aggregat. Maximales Kühlvolumen für Langstrecken und Großmengen — Pharma- und Lebensmittel-tauglich.",
+    specs: {
+      exterior: { l: "12,19", b: "2,43", h: "2,89" },
+      interior: { l: "11,64", b: "2,28", h: "2,49" },
+      door: { b: "2,28", h: "2,18" },
+      maxGross: "34.000 kg",
+      tare: "4.600 kg",
+      maxPayload: "29.400 kg",
+      volume: "60,0 m³",
+    },
   },
   {
     id: "spezial",

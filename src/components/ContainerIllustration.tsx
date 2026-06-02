@@ -37,7 +37,7 @@ export default function ContainerIllustration({
     "40-highcube":  { frontH: 168, depth: 320 },
     "45":           { frontH: 168, depth: 350 },
     "20-reefer":    { frontH: 150, depth: 200 },
-    "40-reefer":    { frontH: 150, depth: 320 },
+    "40-reefer":    { frontH: 168, depth: 320 },
   }[variant];
 
   const frontW = 120;
