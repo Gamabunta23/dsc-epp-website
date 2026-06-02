@@ -8,9 +8,10 @@ export type ContainerSpecs = {
   exterior?: { l: string; b: string; h: string };
   interior?: { l: string; b: string; h: string };
   door?: { b: string; h: string };
-  maxGross?: string;     // Max. Ladegewicht (= Bruttogewicht inkl. Container)
-  tare?: string;         // Leergewicht
-  maxPayload?: string;   // Max. Zuladung
+  roof?: { b: string; l: string };       // Dachöffnung (nur Open Top)
+  maxGross?: string;
+  tare?: string;
+  maxPayload?: string;
   volume?: string;
 };
 
@@ -21,7 +22,9 @@ export type ContainerVariant =
   | "40-highcube"
   | "45"
   | "20-reefer"
-  | "40-reefer";
+  | "40-reefer"
+  | "20-opentop"
+  | "20-opentop-hc";
 
 type Props = {
   open: boolean;
@@ -132,6 +135,12 @@ export default function ContainerDetailModal({
                       <SpecRow
                         label="Türöffnung (B × H)"
                         value={`${specs.door.b} × ${specs.door.h} m`}
+                      />
+                    )}
+                    {specs?.roof && (
+                      <SpecRow
+                        label="Dachöffnung (B × L)"
+                        value={`${specs.roof.b} × ${specs.roof.l} m`}
                       />
                     )}
                     {specs?.maxGross && <SpecRow label="Max. Ladegewicht" value={specs.maxGross} />}

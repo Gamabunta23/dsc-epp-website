@@ -7,7 +7,9 @@ type Variant =
   | "40-highcube"
   | "45"
   | "20-reefer"
-  | "40-reefer";
+  | "40-reefer"
+  | "20-opentop"
+  | "20-opentop-hc";
 
 type Props = {
   variant?: Variant;
@@ -31,13 +33,15 @@ export default function ContainerIllustration({
   // - "frontH" = Höhe (Standard vs HC unterscheiden sich um ~10 %)
   // - "depth"  = visuelle Länge nach hinten (20' kürzer, 40' länger, 45' längste)
   const cfg = {
-    "20-standard":  { frontH: 150, depth: 200 },
-    "20-highcube":  { frontH: 168, depth: 200 },
-    "40-standard":  { frontH: 150, depth: 320 },
-    "40-highcube":  { frontH: 168, depth: 320 },
-    "45":           { frontH: 168, depth: 350 },
-    "20-reefer":    { frontH: 150, depth: 200 },
-    "40-reefer":    { frontH: 168, depth: 320 },
+    "20-standard":    { frontH: 150, depth: 200 },
+    "20-highcube":    { frontH: 168, depth: 200 },
+    "40-standard":    { frontH: 150, depth: 320 },
+    "40-highcube":    { frontH: 168, depth: 320 },
+    "45":             { frontH: 168, depth: 350 },
+    "20-reefer":      { frontH: 150, depth: 200 },
+    "40-reefer":      { frontH: 168, depth: 320 },
+    "20-opentop":     { frontH: 150, depth: 200 },
+    "20-opentop-hc":  { frontH: 168, depth: 200 },
   }[variant];
 
   const frontW = 120;
@@ -78,6 +82,8 @@ export default function ContainerIllustration({
 
   // Reefer hat Aggregat vorne in unserer Ansicht
   const isReefer = variant === "20-reefer" || variant === "40-reefer";
+  // Open Top hat Tarp/Plane statt fester Decke
+  const isOpenTop = variant === "20-opentop" || variant === "20-opentop-hc";
 
   return (
     <svg
@@ -113,24 +119,49 @@ export default function ContainerIllustration({
       {/* Top-Face */}
       <polygon
         points={`${FLT.join(",")} ${FRT.join(",")} ${BRT.join(",")} ${BLT.join(",")}`}
-        fill={`url(#top-${variant})`}
+        fill={isOpenTop ? palette.side : `url(#top-${variant})`}
         stroke={palette.edge}
         strokeWidth="1"
         strokeLinejoin="round"
       />
-      {/* Top-Riffel-Andeutung */}
-      {[0.25, 0.5, 0.75].map((t) => (
-        <line
-          key={`top-${t}`}
-          x1={FLT[0] + (FRT[0] - FLT[0]) * t}
-          y1={FLT[1] + (FRT[1] - FLT[1]) * t}
-          x2={BLT[0] + (BRT[0] - BLT[0]) * t}
-          y2={BLT[1] + (BRT[1] - BLT[1]) * t}
-          stroke={palette.edge}
-          strokeWidth="0.4"
-          opacity="0.5"
-        />
-      ))}
+      {/* Top-Detail */}
+      {isOpenTop ? (
+        // Tarp/Plane: gewellte Linien quer über das Dach
+        Array.from({ length: 6 }).map((_, i) => {
+          const t = (i + 1) / 7;
+          const x1 = FLT[0] + (FRT[0] - FLT[0]) * t;
+          const y1 = FLT[1] + (FRT[1] - FLT[1]) * t;
+          const x2 = BLT[0] + (BRT[0] - BLT[0]) * t;
+          const y2 = BLT[1] + (BRT[1] - BLT[1]) * t;
+          // leichte Wölbung in der Mitte
+          const mx = (x1 + x2) / 2;
+          const my = (y1 + y2) / 2 - 4;
+          return (
+            <path
+              key={`tarp-${i}`}
+              d={`M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`}
+              stroke={palette.line}
+              strokeWidth="0.9"
+              fill="none"
+              opacity="0.75"
+            />
+          );
+        })
+      ) : (
+        // Standard: Riffel-Andeutung
+        [0.25, 0.5, 0.75].map((t) => (
+          <line
+            key={`top-${t}`}
+            x1={FLT[0] + (FRT[0] - FLT[0]) * t}
+            y1={FLT[1] + (FRT[1] - FLT[1]) * t}
+            x2={BLT[0] + (BRT[0] - BLT[0]) * t}
+            y2={BLT[1] + (BRT[1] - BLT[1]) * t}
+            stroke={palette.edge}
+            strokeWidth="0.4"
+            opacity="0.5"
+          />
+        ))
+      )}
 
       {/* Side-Face mit Korrugation */}
       <polygon

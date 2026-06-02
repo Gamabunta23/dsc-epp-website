@@ -173,15 +173,46 @@ const types: ContainerType[] = [
     },
   },
   {
-    id: "spezial",
-    size: "OT / FR",
-    name: "Spezial",
-    cbm: "n. Maß",
-    payload: "n. Vorgabe",
-    notes: "Über­breite / Über­höhe",
-    illustration: "40-standard",
+    id: "20-ot",
+    size: "20′ OT",
+    name: "Open Top",
+    cbm: "32,0 m³",
+    payload: "~28,1 t",
+    notes: "Dach abnehmbar (Plane)",
+    illustration: "20-opentop",
     description:
-      "Open-Top und Flat-Rack für Übermaße, Maschinen und Projektladungen — auf Anfrage.",
+      "20′ Container mit abnehmbarem Dach (Plane). Be- und Entladung von oben — ideal für Maschinen, Stückgut mit Überhöhe und Schwergut.",
+    specs: {
+      exterior: { l: "6,06", b: "2,44", h: "2,59" },
+      interior: { l: "5,89", b: "2,35", h: "2,34" },
+      door: { b: "2,34", h: "2,28" },
+      roof: { b: "2,23", l: "5,33" },
+      maxGross: "30.050 kg",
+      tare: "2.450 kg",
+      maxPayload: "28.130 kg",
+      volume: "32,0 m³",
+    },
+  },
+  {
+    id: "20-ot-hc",
+    size: "20′ OT HC",
+    name: "Open Top High Cube",
+    cbm: "32,0 m³",
+    payload: "~28,0 t",
+    notes: "30 cm mehr Innenhöhe",
+    illustration: "20-opentop-hc",
+    description:
+      "20′ Open Top in High-Cube-Ausführung. Mehr Innenhöhe für sperrige Maschinen und Ladungen mit Überhöhe.",
+    specs: {
+      exterior: { l: "6,06", b: "2,44", h: "2,89" },
+      interior: { l: "5,89", b: "2,35", h: "2,64" },
+      door: { b: "2,34", h: "2,58" },
+      roof: { b: "2,23", l: "5,39" },
+      maxGross: "30.480 kg",
+      tare: "2.510 kg",
+      maxPayload: "27.970 kg",
+      volume: "32,0 m³",
+    },
   },
 ];
 
@@ -220,7 +251,7 @@ export default function Containers() {
           </h2>
           <div className="mt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 max-w-3xl">
             <p className="text-slate-400 max-w-xl">
-              Neun Equipment-Varianten — von 20′ bis 45′, Reefer und Open-Top.
+              Zehn Equipment-Varianten — von 20′ bis 45′, Reefer und Open Top.
               Klick auf eine Karte für alle Spezifikationen.
             </p>
             <motion.div
