@@ -2,16 +2,21 @@
 
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const links = [
-  { href: "#leistungen", label: "Leistungen" },
-  { href: "#container", label: "Container" },
-  { href: "#flotte", label: "Flotte" },
-  { href: "#fahrzeitrechner", label: "Fahrzeitrechner" },
-  { href: "#standorte", label: "Standorte" },
-  { href: "#unternehmen", label: "Unternehmen" },
-  { href: "#kontakt", label: "Kontakt" },
+  { hash: "#leistungen", label: "Leistungen" },
+  { hash: "#container", label: "Container" },
+  { hash: "#flotte", label: "Flotte" },
+  { hash: "#fahrzeitrechner", label: "Fahrzeitrechner" },
+  { hash: "#standorte", label: "Standorte" },
+  { hash: "#unternehmen", label: "Unternehmen" },
+];
+
+const routes = [
+  { href: "/karriere", label: "Karriere" },
 ];
 
 export default function Nav() {
@@ -19,6 +24,13 @@ export default function Nav() {
   const bg = useTransform(scrollY, [0, 80], ["rgba(255,255,255,0)", "rgba(255,255,255,0.72)"]);
   const border = useTransform(scrollY, [0, 80], ["rgba(15,23,42,0)", "rgba(15,23,42,0.08)"]);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+
+  // Anchor-Links: auf Home als reines "#xy" lassen (smooth scroll bleibt),
+  // auf Sub-Routes als "/#xy" damit zurück zur Home navigiert wird.
+  const anchor = (hash: string) => (onHome ? hash : `/${hash}`);
+  const contactHref = onHome ? "#kontakt" : "/#kontakt";
 
   return (
     <motion.header
@@ -26,7 +38,7 @@ export default function Nav() {
       className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b"
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center group" aria-label="DSC | EPP Logistik – Startseite">
+        <Link href="/" className="flex items-center group" aria-label="DSC | EPP Logistik – Startseite">
           <Image
             src="/logo-light.webp"
             alt="DSC | EPP Logistik"
@@ -35,28 +47,40 @@ export default function Nav() {
             priority
             className="h-9 w-auto"
           />
-        </a>
+        </Link>
 
         <ul className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
+            <li key={l.hash}>
+              <Link
+                href={anchor(l.hash)}
                 className="text-sm text-slate-700 hover:text-slate-950 transition-colors duration-200"
               >
                 {l.label}
-              </a>
+              </Link>
+            </li>
+          ))}
+          {routes.map((r) => (
+            <li key={r.href}>
+              <Link
+                href={r.href}
+                className={`text-sm transition-colors duration-200 ${
+                  pathname === r.href ? "text-slate-950 font-medium" : "text-slate-700 hover:text-slate-950"
+                }`}
+              >
+                {r.label}
+              </Link>
             </li>
           ))}
         </ul>
 
         <div className="hidden lg:flex items-center gap-3">
-          <a
-            href="#kontakt"
+          <Link
+            href={contactHref}
             className="text-sm font-medium text-white bg-slate-950 hover:bg-slate-800 transition-colors duration-200 rounded-full px-4 py-2 cursor-pointer"
           >
             Angebot anfragen
-          </a>
+          </Link>
         </div>
 
         <button
@@ -82,24 +106,35 @@ export default function Nav() {
         >
           <ul className="px-6 py-4 space-y-3">
             {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
+              <li key={l.hash}>
+                <Link
+                  href={anchor(l.hash)}
                   onClick={() => setOpen(false)}
                   className="block py-2 text-slate-800 hover:text-slate-950"
                 >
                   {l.label}
-                </a>
+                </Link>
+              </li>
+            ))}
+            {routes.map((r) => (
+              <li key={r.href}>
+                <Link
+                  href={r.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-2 text-slate-800 hover:text-slate-950"
+                >
+                  {r.label}
+                </Link>
               </li>
             ))}
             <li>
-              <a
-                href="#kontakt"
+              <Link
+                href={contactHref}
                 onClick={() => setOpen(false)}
                 className="block text-center font-medium text-white bg-slate-950 rounded-full px-4 py-3 cursor-pointer"
               >
                 Angebot anfragen
-              </a>
+              </Link>
             </li>
           </ul>
         </motion.div>
