@@ -80,6 +80,24 @@ const types: ContainerType[] = [
     },
   },
   {
+    id: "40-flat",
+    size: "40′ FR",
+    name: "Flat Rack",
+    cbm: "—",
+    payload: "~39 t",
+    notes: "Schwerlast-Plattform",
+    illustration: "40-flatrack",
+    description:
+      "40′ Flat Rack — die XL-Schwerlast-Plattform für Großmaschinen, Anlagen, Baufahrzeuge und Projektladungen. Zuladung bis 39 t, Be- und Entladung von oben und seitlich.",
+    specs: {
+      exterior: { l: "12,19", b: "2,44", h: "2,59" },
+      interior: { l: "12,06", b: "2,36", h: "2,20" },
+      maxGross: "45.000 kg",
+      tare: "5.700 kg",
+      maxPayload: "39.300 kg",
+    },
+  },
+  {
     id: "2x20",
     size: "2 × 20′",
     name: "DC kombiniert",
@@ -311,7 +329,7 @@ export default function Containers() {
           </h2>
           <div className="mt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 max-w-3xl">
             <p className="text-slate-400 max-w-xl">
-              Dreizehn Equipment-Varianten — von 20′ bis 45′, Reefer, Open Top und Flat Rack.
+              Vierzehn Equipment-Varianten — von 20′ bis 45′, Reefer, Open Top und Flat Rack.
               Klick auf eine Karte für alle Spezifikationen.
             </p>
             <motion.div
