@@ -36,7 +36,7 @@ export default function Hero() {
             <span className="absolute inline-flex h-full w-full rounded-full bg-sky-500 opacity-75 animate-ping" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-sky-600" />
           </span>
-          Hauptsitz Bakum. Hubs in Hamburg &amp; OWL.
+          Überseecontainer-Spezialist · Hamburg → Bakum → Inland
         </motion.div>
 
         <motion.h1

@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import Journey from "@/components/Journey";
 import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import Containers from "@/components/Containers";
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <Journey />
       <Stats />
       <Services />
       <Containers />

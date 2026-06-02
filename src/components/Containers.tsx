@@ -28,6 +28,60 @@ export default function Containers() {
         backgroundSize: "64px 64px",
       }} />
 
+      {/* Containerschiff-Silhouette als atmosphärischer Hintergrund */}
+      <svg
+        aria-hidden
+        viewBox="0 0 1200 240"
+        className="absolute -bottom-4 inset-x-0 w-full text-white/[0.04] pointer-events-none"
+        preserveAspectRatio="xMidYMax slice"
+      >
+        <defs>
+          <linearGradient id="ship-fade" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
+            <stop offset="60%" stopColor="currentColor" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+        {/* Wasserlinie */}
+        <path d="M0 220 L1200 220" stroke="currentColor" strokeOpacity="0.6" strokeWidth="1" strokeDasharray="4 6" fill="none" />
+        {/* Schiff-Rumpf */}
+        <path d="M120 220 L1080 220 L1040 200 L160 200 Z" fill="url(#ship-fade)" />
+        {/* Container-Stacks (gestaffelt) */}
+        <g fill="currentColor">
+          {/* Reihe 1 — niedrig */}
+          <rect x="210" y="170" width="60" height="30" />
+          <rect x="275" y="170" width="60" height="30" />
+          <rect x="340" y="170" width="60" height="30" />
+          <rect x="405" y="170" width="60" height="30" />
+          <rect x="470" y="170" width="60" height="30" />
+          <rect x="535" y="170" width="60" height="30" />
+          <rect x="600" y="170" width="60" height="30" />
+          <rect x="665" y="170" width="60" height="30" />
+          <rect x="730" y="170" width="60" height="30" />
+          <rect x="795" y="170" width="60" height="30" />
+          <rect x="860" y="170" width="60" height="30" />
+          <rect x="925" y="170" width="60" height="30" />
+          {/* Reihe 2 — gestapelt */}
+          <rect x="275" y="140" width="60" height="30" />
+          <rect x="340" y="140" width="60" height="30" />
+          <rect x="470" y="140" width="60" height="30" />
+          <rect x="535" y="140" width="60" height="30" />
+          <rect x="600" y="140" width="60" height="30" />
+          <rect x="665" y="140" width="60" height="30" />
+          <rect x="730" y="140" width="60" height="30" />
+          <rect x="860" y="140" width="60" height="30" />
+          {/* Reihe 3 — Spitze */}
+          <rect x="535" y="110" width="60" height="30" />
+          <rect x="600" y="110" width="60" height="30" />
+          <rect x="665" y="110" width="60" height="30" />
+        </g>
+        {/* Brücke */}
+        <path d="M170 200 L170 150 L210 150 L210 200" fill="currentColor" />
+        <rect x="178" y="158" width="6" height="6" fill="currentColor" opacity="0.5" />
+        <rect x="188" y="158" width="6" height="6" fill="currentColor" opacity="0.5" />
+        {/* Schornstein */}
+        <rect x="190" y="120" width="14" height="30" fill="currentColor" />
+      </svg>
+
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
