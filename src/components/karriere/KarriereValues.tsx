@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 const values = [
   {
     title: "Moderne Flotte",
-    body: "EURO VI D Zugmaschinen, Live Traffic, beheizte Kabinen. Wer Premium fährt, fährt entspannter — und kommt sauberer an.",
+    body: "EURO VI D Zugmaschinen, Live Traffic, klimatisierte Kabinen. Wer Premium fährt, fährt entspannter — und kommt sauberer an.",
   },
   {
     title: "Planbare Touren",
@@ -21,7 +21,7 @@ const values = [
   },
   {
     title: "Weiterbildung",
-    body: "BKF-Module §5 inhouse, ADR-Lehrgänge, Stapler-Scheine. Wir investieren in Qualifikationen, die Sie behalten.",
+    body: "BKF-Module §5 inhouse und ADR-Lehrgänge. Wir investieren in Qualifikationen, die Sie behalten.",
   },
   {
     title: "Mittelständisch",

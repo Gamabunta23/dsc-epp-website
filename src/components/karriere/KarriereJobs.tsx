@@ -39,15 +39,6 @@ const jobs: Job[] = [
       "Abwicklung von Überseecontainer-Sendungen, Korrespondenz mit Reedereien und Terminals, VGM-Verwiegung, Frachtabrechnung.",
     highlights: ["Ausbildung Spedition/Logistik", "ATLAS / Hafen-Schnittstellen", "Englisch sicher", "Genauigkeit"],
   },
-  {
-    title: "KFZ-Mechatroniker Nutzfahrzeuge (m/w/d)",
-    location: "Bakum",
-    type: "Vollzeit",
-    category: "Werkstatt",
-    description:
-      "Wartung und Reparatur unserer Sattelzugmaschinen, Trailer und Container-Chassis. Eigenständige Diagnose, geregelte Arbeitszeiten.",
-    highlights: ["Ausbildung KFZ-Mechatroniker", "Erfahrung Nutzfahrzeuge", "Führerschein B/CE wünschenswert", "Selbstständig"],
-  },
 ];
 
 export default function KarriereJobs() {
