@@ -16,6 +16,8 @@ type ContainerType = {
   payload: string;
   notes: string;
   illustration: ContainerVariant;
+  /** Optionaler Foto-Pfad (relativ zu /public). Wenn vorhanden, ersetzt das Foto die SVG-Illustration. */
+  photo?: string;
   description?: string;
   specs?: ContainerSpecs;
 };
@@ -29,6 +31,7 @@ const types: ContainerType[] = [
     payload: "~28 t",
     notes: "Heckbündig fahrbar",
     illustration: "20-standard",
+    photo: "/containers/20-standard.jpg",
     description:
       "Der Klassiker für Stückgut, Schwer­ladungen und Stauraum-Anwendungen. Heckbündig auf Chassis fahrbar.",
     specs: {
@@ -400,13 +403,21 @@ export default function Containers() {
               whileHover={{ y: -4 }}
               className="group snap-start-x shrink-0 w-[280px] sm:w-[320px] rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 p-6 text-left hover:border-sky-500/40 transition-colors duration-300 cursor-pointer"
             >
-              {/* Illustration */}
-              <div className="aspect-[16/9] rounded-2xl bg-slate-950/40 border border-white/5 flex items-center justify-center overflow-hidden">
-                <ContainerIllustration
-                  variant={t.illustration}
-                  className="w-full h-full"
-                  dark
-                />
+              {/* Illustration oder Foto — heller Visual-Bereich für einheitliches Design */}
+              <div className="aspect-[16/9] rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center overflow-hidden">
+                {t.photo ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={t.photo}
+                    alt={`${t.size} ${t.name}`}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <ContainerIllustration
+                    variant={t.illustration}
+                    className="w-full h-full"
+                  />
+                )}
               </div>
 
               <div className="mt-5 text-sky-400 text-xs font-mono uppercase tracking-widest">
@@ -544,6 +555,7 @@ export default function Containers() {
         size={active?.size ?? ""}
         name={active?.name ?? ""}
         illustration={active?.illustration ?? "20-standard"}
+        photo={active?.photo}
         specs={active?.specs}
         description={active?.description}
       />

@@ -37,6 +37,7 @@ type Props = {
   size: string;
   name: string;
   illustration: ContainerVariant;
+  photo?: string;
   specs?: ContainerSpecs;
   description?: string;
 };
@@ -47,6 +48,7 @@ export default function ContainerDetailModal({
   size,
   name,
   illustration,
+  photo,
   specs,
   description,
 }: Props) {
@@ -103,9 +105,18 @@ export default function ContainerDetailModal({
             </button>
 
             <div className="grid sm:grid-cols-2 overflow-y-auto">
-              {/* Illustration */}
+              {/* Illustration oder Foto */}
               <div className="bg-gradient-to-br from-slate-50 to-slate-100 px-8 py-10 sm:px-10 sm:py-14 flex items-center justify-center min-h-[240px]">
-                <ContainerIllustration variant={illustration} className="w-full max-w-md" />
+                {photo ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={photo}
+                    alt={`${size} ${name}`}
+                    className="w-full max-w-md object-contain"
+                  />
+                ) : (
+                  <ContainerIllustration variant={illustration} className="w-full max-w-md" />
+                )}
               </div>
 
               {/* Specs */}
