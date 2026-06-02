@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import BewegenAnimation from "./BewegenAnimation";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -45,7 +46,7 @@ export default function Hero() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           className="headline text-[clamp(2.75rem,9vw,8rem)] text-slate-950"
         >
-          Container bewegen.
+          Container <BewegenAnimation />
           <br />
           <span className="bg-gradient-to-br from-slate-900 via-slate-600 to-slate-900 bg-clip-text text-transparent">
             Märkte verbinden.
