@@ -24,7 +24,9 @@ export type ContainerVariant =
   | "20-reefer"
   | "40-reefer"
   | "20-opentop"
-  | "20-opentop-hc";
+  | "20-opentop-hc"
+  | "40-opentop"
+  | "40-opentop-hc";
 
 type Props = {
   open: boolean;

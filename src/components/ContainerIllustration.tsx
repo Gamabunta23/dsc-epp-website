@@ -9,7 +9,9 @@ type Variant =
   | "20-reefer"
   | "40-reefer"
   | "20-opentop"
-  | "20-opentop-hc";
+  | "20-opentop-hc"
+  | "40-opentop"
+  | "40-opentop-hc";
 
 type Props = {
   variant?: Variant;
@@ -42,6 +44,8 @@ export default function ContainerIllustration({
     "40-reefer":      { frontH: 168, depth: 320 },
     "20-opentop":     { frontH: 150, depth: 200 },
     "20-opentop-hc":  { frontH: 168, depth: 200 },
+    "40-opentop":     { frontH: 150, depth: 320 },
+    "40-opentop-hc":  { frontH: 168, depth: 320 },
   }[variant];
 
   const frontW = 120;
@@ -83,7 +87,11 @@ export default function ContainerIllustration({
   // Reefer hat Aggregat vorne in unserer Ansicht
   const isReefer = variant === "20-reefer" || variant === "40-reefer";
   // Open Top hat Tarp/Plane statt fester Decke
-  const isOpenTop = variant === "20-opentop" || variant === "20-opentop-hc";
+  const isOpenTop =
+    variant === "20-opentop" ||
+    variant === "20-opentop-hc" ||
+    variant === "40-opentop" ||
+    variant === "40-opentop-hc";
 
   return (
     <svg

@@ -214,6 +214,48 @@ const types: ContainerType[] = [
       volume: "32,0 m³",
     },
   },
+  {
+    id: "40-ot",
+    size: "40′ OT",
+    name: "Open Top",
+    cbm: "66,8 m³",
+    payload: "~28,5 t",
+    notes: "Dach abnehmbar (Plane)",
+    illustration: "40-opentop",
+    description:
+      "40′ Open Top mit abnehmbarem Dach für Maschinen, Stückgut mit Überhöhe und Schwergut. Volle Be- und Entladung von oben über fast die gesamte Länge.",
+    specs: {
+      exterior: { l: "12,19", b: "2,44", h: "2,59" },
+      interior: { l: "12,03", b: "2,35", h: "2,38" },
+      door: { b: "2,34", h: "2,27" },
+      roof: { b: "2,23", l: "11,55" },
+      maxGross: "32.500 kg",
+      tare: "4.050 kg",
+      maxPayload: "28.450 kg",
+      volume: "66,8 m³",
+    },
+  },
+  {
+    id: "40-ot-hc",
+    size: "40′ OT HC",
+    name: "Open Top High Cube",
+    cbm: "74,9 m³",
+    payload: "~28,3 t",
+    notes: "30 cm mehr Innenhöhe",
+    illustration: "40-opentop-hc",
+    description:
+      "40′ Open Top in High-Cube-Ausführung. Maximales Volumen mit Überladung von oben — ideal für überhohe Maschinen und Anlagen.",
+    specs: {
+      exterior: { l: "12,19", b: "2,44", h: "2,89" },
+      interior: { l: "12,03", b: "2,35", h: "2,65" },
+      door: { b: "2,35", h: "2,68" },
+      roof: { b: "2,19", l: "11,55" },
+      maxGross: "32.500 kg",
+      tare: "4.250 kg",
+      maxPayload: "28.250 kg",
+      volume: "74,9 m³",
+    },
+  },
 ];
 
 export default function Containers() {
@@ -251,7 +293,7 @@ export default function Containers() {
           </h2>
           <div className="mt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 max-w-3xl">
             <p className="text-slate-400 max-w-xl">
-              Zehn Equipment-Varianten — von 20′ bis 45′, Reefer und Open Top.
+              Zwölf Equipment-Varianten — von 20′ bis 45′, Reefer und Open Top.
               Klick auf eine Karte für alle Spezifikationen.
             </p>
             <motion.div
