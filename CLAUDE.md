@@ -10,47 +10,84 @@ Hauptsitz in Bakum (Essener Str. 39, 49456 Bakum).
 generous whitespace, scroll-driven Framer Motion. Single accent color
 (`sky-700` / `#0369A1`) on slate-950 ink. Alternating light/dark sections.
 
-**Key facts to remember:**
+## Routes (Stand)
 
-- The merged company has **3 standorte**, with **Bakum as Hauptsitz** (zentrale
-  Disposition + Verwaltung), Hamburg as Hafen-Hub, OWL als Inland-Hub.
-- Both legacy email domains still work: `info@dsc-logistik.de` (used in Bakum +
-  Hamburg) and `info@epp-logistik.de` (used in OWL).
-- The Bakum card is visually featured (dark slate-950 background with
-  „HAUPTSITZ" badge). The other two cards are light/white.
-- Two logo variants exist in `public/`: `logo.jpg` (white-on-black, used in
-  Footer + Truck SVG) and `logo-light.webp` (grey-on-white, used in Nav).
+- `/` — Landing Page (Hero, Journey, Stats, Services, Containers, Fleet,
+  Fahrzeitrechner, Locations, About, Contact)
+- `/karriere` — Hero, 6 Werte, 3 Job-Listings, Initiativ-CTA
+- `/impressum` `/datenschutz` `/agb` — Legal-Stubs mit LegalShell-Layout
 
-**Open items (do not invent values, ask the user):**
+## Key facts
 
-- Bakum phone + WhatsApp are placeholders (`+49 4446 000000` / `+49 000 0000000`)
-- Kontaktformular is a UI stub — no backend yet
-- 21st.dev API-Key in `.mcp.json` is a placeholder
+- 3 Standorte: **Bakum** (Hauptsitz, A1-Verteil-Hub), **Hamburg** (Hafen-Hub),
+  **OWL** (Inland-Hub). Bakum-Karte ist dunkel-themed mit "HAUPTSITZ"-Badge.
+- Logo-Varianten: `logo.jpg` (white-on-black für Footer/Truck), `logo-light.webp`
+  (grey-on-white für Nav).
+- Email: `info@dsc-logistik.de` (Bakum + Hamburg), `info@epp-logistik.de` (OWL),
+  `bewerbung@dsc-logistik.de` für Karriere-Apply-Buttons.
 
-**Architecture:**
+## 15 Container-Varianten
 
-- Next.js 16 App Router. Read the bundled docs at
-  `node_modules/next/dist/docs/` before using any Next API you're unsure about.
-- All animated components are `"use client"` and import from `motion/react`
-  (the new package name for Framer Motion).
-- Design tokens live in `src/app/globals.css` under `:root`. Never hard-code
-  colors — use Tailwind tokens or the CSS variables.
-- The UI UX Pro Max skill in `.claude/skills/ui-ux-pro-max/` triggers on
-  design-related actions. Run `python3 .claude/skills/ui-ux-pro-max/scripts/search.py`
-  before adding new sections to get palette/typography recommendations.
+Alle haben Detail-Modal mit voller Spec-Tabelle:
+20' Std, 20' HC, 2×20' Kombi, 40' Std, 40' HC, 45' HC, 20' Reefer,
+40' HC Reefer, 20' OT, 20' OT HC, 40' OT, 40' OT HC, 20' Flat Rack,
+40' Flat Rack, Tankcontainer.
 
-**Fahrzeitrechner (`src/components/Fahrzeitrechner.tsx`):**
+Spec-Type unterstützt: `exterior`, `interior`, `door`, `roof`, `maxGross`,
+`tare`, `maxPayload`, `volume` (alle optional, Modal lässt fehlende Felder weg).
 
-- 3 Fahrzeuge: Transporter/Sprinter (95 km/h), LKW 7,5 t (75 km/h), SZM 40 t
-  (75 km/h, Default). Wenn ein vierter Fahrzeugtyp dazu kommt: `regulated`-Flag
-  setzen (true ab > 3,5 t für EU 561).
-- EU-VO 561/2006: 45 min Pause nach 4,5 h Lenkzeit, max 9 h Tageslenkzeit,
-  11 h Tagesruhezeit zwischen mehrtägigen Touren.
-- Stadt-Zuschlag: +15 % Fahrzeit.
-- Startzeit ist datetime-local; Init clientseitig in useEffect (heute 08:00),
-  damit kein Hydration-Mismatch.
+`ContainerIllustration.tsx` rendert pro Variante ein 3/4-Iso-SVG mit
+brand-konsistenten Farben. Spezielle Render-Pfade für Flat-Rack (offen,
+2 Stirnwände + Plattform) und Tank (Wireframe-Frame + Zylinder).
 
-**Dev workflow:**
+`photo?` Type-Feld bleibt als Infrastruktur — falls später eine
+professionelle Bilderserie kommt, ist die Anbindung 1 Zeile pro Container.
+
+## Hero-Animation "bewegen"
+
+Wort "bewegen." wird zyklisch (~10s Cycle) durch einen Premium-Sattelzug
+ersetzt, der nach rechts aus dem Bild fährt. Truck-Komponente in
+`BewegenAnimation.tsx`:
+- 5 Räder (3 Tridem-Trailer + 2 SZM), Alu-Felgen mit 10 Speichen
+- Volvo-FH-Stil Cab mit aero-Dachspoiler, LED-Lichtleiste, geschwungene
+  Windschutzscheibe, Außenspiegel
+- Container mit ISO-Eckbeschlägen, Korrugation, DSC|EPP Brand-Decal
+- `prefers-reduced-motion` greift statisch
+
+## Fahrzeitrechner
+
+3 Fahrzeuge: Transporter (95), LKW 7,5t (75), SZM 40t (75 km/h, Default).
+EU-VO 561/2006 Pausen (45 min nach 4,5 h, max 9 h Tag, 11 h Ruhezeit).
+Stadt-Zuschlag +15 %. Startzeit-Picker → Ankunftszeit live berechnet.
+Hydration-mismatch vermieden via useEffect-Init der Startzeit.
+
+## Open items (do not invent values, ask the user)
+
+- Bakum Telefon + WhatsApp: Platzhalter `+49 4446 000000` / `+49 000 0000000`
+- Kontaktformular: UI-Stub, kein Backend
+- 21st.dev API-Key: Platzhalter in `.mcp.json`
+- Impressum: Geschäftsführer, HRB, USt-IdNr, Versicherung
+- Datenschutz: Hosting-Anbieter
+- AGB: braucht Rechtsprüfung
+
+## Architecture conventions
+
+- Next.js 16 App Router. Read bundled docs at
+  `node_modules/next/dist/docs/` before using unfamiliar Next APIs.
+- All animated components are `"use client"`, import from `motion/react`.
+- Design tokens in `src/app/globals.css` under `:root`. Never hard-code
+  colors — use Tailwind tokens or CSS variables.
+- Nav + Footer leben in `app/layout.tsx` (RootLayout) — alle Sub-Routes
+  erben sie automatisch. Anchor-Links in Nav/Footer nutzen
+  `usePathname()` um `#xy` (auf Home) vs `/#xy` (auf Sub-Route) zu wählen.
+- Container-Section: Scrollbar ausgeblendet via `.no-scrollbar` utility,
+  Scroll-Hint via animierter Sky-Pill + Edge-Fade.
+- UI UX Pro Max skill in `.claude/skills/ui-ux-pro-max/` triggers on
+  design-related actions. Run
+  `python3 .claude/skills/ui-ux-pro-max/scripts/search.py` before adding
+  new sections to get palette/typography recommendations.
+
+## Dev workflow
 
 ```bash
 export NVM_DIR="$HOME/.nvm" && \. "$NVM_DIR/nvm.sh"
@@ -58,5 +95,16 @@ cd "/Users/artur/Claude Code/website-stack"
 npm run dev
 ```
 
-For public sharing during dev: `~/.local/bin/cloudflared tunnel --url http://localhost:3000`.
-The allowed origins are already configured in `next.config.ts`.
+Cloudflare-Tunnel für öffentliche Demo:
+`~/.local/bin/cloudflared tunnel --url http://localhost:3000`.
+Allowed origins in `next.config.ts` (`*.trycloudflare.com`, `*.ngrok.io`).
+
+## Foto-Pipeline (deaktiviert, Infrastruktur liegt aber bereit)
+
+`scripts/process-containers.py` enthält eine PIL-Pipeline zum Vereinheitlichen
+von Container-Fotos (BG entfernen, Slate-Color-Grade, weicher Schatten,
+optional DSC|EPP-Decal-Composite). Aktuell ungenutzt — siehe Commit
+`0115ba2` warum (Quellbild-Qualität + Fremd-Branding-Probleme).
+Bei einer professionellen Bilderserie reaktivieren: Bilder in
+`/Container-Bilder/` ablegen, Pipeline laufen lassen, `photo?`-Field
+in `Containers.tsx` setzen.
