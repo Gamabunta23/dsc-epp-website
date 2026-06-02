@@ -1,6 +1,13 @@
 "use client";
 
-type Variant = "20-standard" | "20-highcube" | "40-standard" | "40-highcube" | "45" | "reefer";
+type Variant =
+  | "20-standard"
+  | "20-highcube"
+  | "40-standard"
+  | "40-highcube"
+  | "45"
+  | "20-reefer"
+  | "40-reefer";
 
 type Props = {
   variant?: Variant;
@@ -29,7 +36,8 @@ export default function ContainerIllustration({
     "40-standard":  { frontH: 150, depth: 320 },
     "40-highcube":  { frontH: 168, depth: 320 },
     "45":           { frontH: 168, depth: 350 },
-    "reefer":       { frontH: 150, depth: 200 },
+    "20-reefer":    { frontH: 150, depth: 200 },
+    "40-reefer":    { frontH: 150, depth: 320 },
   }[variant];
 
   const frontW = 120;
@@ -68,8 +76,8 @@ export default function ContainerIllustration({
   // Tür-Vertikal-Stäbe (Locking Bars)
   const barXs = [fx + 16, fx + 46, fx + 74, fx + 104];
 
-  // Reefer hat Aggregat hinten (vorne in unserer Ansicht) und Power-Anschluss
-  const isReefer = variant === "reefer";
+  // Reefer hat Aggregat vorne in unserer Ansicht
+  const isReefer = variant === "20-reefer" || variant === "40-reefer";
 
   return (
     <svg

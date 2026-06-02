@@ -133,15 +133,35 @@ const types: ContainerType[] = [
     },
   },
   {
-    id: "reefer",
-    size: "20 / 40′",
-    name: "Reefer Gen-Set",
-    cbm: "28–67 m³",
+    id: "20-reefer",
+    size: "20′",
+    name: "Reefer",
+    cbm: "28,3 m³",
+    payload: "~27,3 t",
+    notes: "−25 bis +25 °C",
+    illustration: "20-reefer",
+    description:
+      "Temperaturgeführter 20′ Container mit Gen-Set-Aggregat. Lückenlose Kühlkette von −25 bis +25 °C — Pharma- und Lebensmittel-tauglich.",
+    specs: {
+      exterior: { l: "6,05", b: "2,44", h: "2,59" },
+      interior: { l: "5,47", b: "2,28", h: "2,25" },
+      door: { b: "2,28", h: "2,22" },
+      maxGross: "30.480 kg",
+      tare: "3.160 kg",
+      maxPayload: "27.320 kg",
+      volume: "28,3 m³",
+    },
+  },
+  {
+    id: "40-reefer",
+    size: "40′",
+    name: "Reefer",
+    cbm: "~67 m³",
     payload: "~25 t",
     notes: "−25 bis +25 °C",
-    illustration: "reefer",
+    illustration: "40-reefer",
     description:
-      "Temperaturgeführte Container mit Gen-Set-Aggregat. Lückenlose Kühlkette von −25 bis +25 °C, Pharma- und Lebensmittel-tauglich.",
+      "Temperaturgeführter 40′ Container mit Gen-Set-Aggregat. Maximales Kühlvolumen für Langstrecken und Großmengen.",
   },
   {
     id: "spezial",
@@ -191,7 +211,7 @@ export default function Containers() {
           </h2>
           <div className="mt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 max-w-3xl">
             <p className="text-slate-400 max-w-xl">
-              Acht Equipment-Varianten — von 20′ bis 45′, Reefer und Open-Top.
+              Neun Equipment-Varianten — von 20′ bis 45′, Reefer und Open-Top.
               Klick auf eine Karte für alle Spezifikationen.
             </p>
             <motion.div

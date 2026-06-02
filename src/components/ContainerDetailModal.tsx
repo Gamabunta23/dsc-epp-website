@@ -20,7 +20,8 @@ export type ContainerVariant =
   | "40-standard"
   | "40-highcube"
   | "45"
-  | "reefer";
+  | "20-reefer"
+  | "40-reefer";
 
 type Props = {
   open: boolean;
