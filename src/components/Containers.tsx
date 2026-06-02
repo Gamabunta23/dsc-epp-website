@@ -1,32 +1,150 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useState } from "react";
+import ContainerIllustration from "./ContainerIllustration";
+import ContainerDetailModal, {
+  type ContainerSpecs,
+  type ContainerVariant,
+} from "./ContainerDetailModal";
 
 type ContainerType = {
+  id: string;
   size: string;
   name: string;
   cbm: string;
   payload: string;
   notes: string;
+  illustration: ContainerVariant;
+  description?: string;
+  specs?: ContainerSpecs;
 };
 
 const types: ContainerType[] = [
-  { size: "20′", name: "Standard DC", cbm: "33 m³", payload: "~28 t", notes: "Heckbündig fahrbar" },
-  { size: "2 × 20′", name: "DC kombiniert", cbm: "66 m³", payload: "~50 t", notes: "Ein Chassis, zwei Boxen" },
-  { size: "40′", name: "DC", cbm: "67 m³", payload: "~26 t", notes: "Standard-Volumen-Transport" },
-  { size: "40′ HC", name: "High Cube", cbm: "76 m³", payload: "~26 t", notes: "30 cm mehr Innenhöhe" },
-  { size: "45′", name: "Multi-Gooseneck", cbm: "86 m³", payload: "~28 t", notes: "Maximum-Kapazität" },
-  { size: "20/40′", name: "Reefer Gen-Set", cbm: "28–67 m³", payload: "~25 t", notes: "−25 bis +25 °C" },
-  { size: "OT/FR", name: "Spezial", cbm: "n. Maß", payload: "n. Vorgabe", notes: "Über­breite / Über­höhe" },
+  {
+    id: "20-std",
+    size: "20′",
+    name: "Standard DC",
+    cbm: "33,2 m³",
+    payload: "~28 t",
+    notes: "Heckbündig fahrbar",
+    illustration: "20-standard",
+    description:
+      "Der Klassiker für Stückgut, Schwer­ladungen und Stauraum-Anwendungen. Heckbündig auf Chassis fahrbar.",
+    specs: {
+      exterior: { l: "6,06", b: "2,43", h: "2,59" },
+      interior: { l: "5,89", b: "2,35", h: "2,39" },
+      door: { b: "2,34", h: "2,29" },
+      maxGross: "30.480 kg",
+      tare: "2.250 kg",
+      maxPayload: "28.230 kg",
+      volume: "33,2 m³",
+    },
+  },
+  {
+    id: "20-hc",
+    size: "20′ HC",
+    name: "High Cube",
+    cbm: "37,3 m³",
+    payload: "~28 t",
+    notes: "30 cm mehr Innenhöhe",
+    illustration: "20-highcube",
+    description:
+      "Wie der Standard 20′, aber 30 cm höher — mehr Volumen bei gleicher Stellfläche.",
+    specs: {
+      exterior: { l: "6,06", b: "2,43", h: "2,89" },
+      interior: { l: "5,89", b: "2,35", h: "2,69" },
+      door: { b: "2,34", h: "2,59" },
+      maxGross: "30.480 kg",
+      tare: "2.250 kg",
+      maxPayload: "28.130 kg",
+      volume: "37,3 m³",
+    },
+  },
+  {
+    id: "2x20",
+    size: "2 × 20′",
+    name: "DC kombiniert",
+    cbm: "66 m³",
+    payload: "~50 t",
+    notes: "Ein Chassis, zwei Boxen",
+    illustration: "20-standard",
+    description:
+      "Zwei 20′ Container auf einem Chassis — wirtschaftlich für Doppelumläufe ab Hafen.",
+  },
+  {
+    id: "40-dc",
+    size: "40′",
+    name: "Standard DC",
+    cbm: "67 m³",
+    payload: "~26 t",
+    notes: "Standard-Volumen-Transport",
+    illustration: "40-standard",
+    description:
+      "Standardvolumen für Massengut, Mischladungen und Hafenabholungen.",
+  },
+  {
+    id: "40-hc",
+    size: "40′ HC",
+    name: "High Cube",
+    cbm: "76 m³",
+    payload: "~26 t",
+    notes: "30 cm mehr Innenhöhe",
+    illustration: "40-highcube",
+    description:
+      "40′ High Cube — 30 cm mehr Innenhöhe für voluminöse Ladungen.",
+  },
+  {
+    id: "45",
+    size: "45′",
+    name: "Multi-Gooseneck",
+    cbm: "86 m³",
+    payload: "~28 t",
+    notes: "Maximum-Kapazität",
+    illustration: "45",
+    description:
+      "Der Volumen-König. Multi-Gooseneck-Chassis für maximalen Innenraum bei zulässiger Gesamtlänge.",
+  },
+  {
+    id: "reefer",
+    size: "20 / 40′",
+    name: "Reefer Gen-Set",
+    cbm: "28–67 m³",
+    payload: "~25 t",
+    notes: "−25 bis +25 °C",
+    illustration: "reefer",
+    description:
+      "Temperaturgeführte Container mit Gen-Set-Aggregat. Lückenlose Kühlkette von −25 bis +25 °C, Pharma- und Lebensmittel-tauglich.",
+  },
+  {
+    id: "spezial",
+    size: "OT / FR",
+    name: "Spezial",
+    cbm: "n. Maß",
+    payload: "n. Vorgabe",
+    notes: "Über­breite / Über­höhe",
+    illustration: "40-standard",
+    description:
+      "Open-Top und Flat-Rack für Übermaße, Maschinen und Projektladungen — auf Anfrage.",
+  },
 ];
 
 export default function Containers() {
+  const [active, setActive] = useState<ContainerType | null>(null);
+
   return (
-    <section id="container" className="relative pt-24 lg:pt-40 pb-0 bg-slate-950 text-white overflow-hidden">
-      <div className="absolute top-0 inset-x-0 h-[80%] opacity-[0.04] pointer-events-none" style={{
-        backgroundImage: "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
-        backgroundSize: "64px 64px",
-      }} />
+    <section
+      id="container"
+      className="relative pt-24 lg:pt-40 pb-0 bg-slate-950 text-white overflow-hidden"
+    >
+      <div
+        className="absolute top-0 inset-x-0 h-[80%] opacity-[0.04] pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+        }}
+      />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
@@ -46,7 +164,8 @@ export default function Containers() {
           </h2>
           <div className="mt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 max-w-3xl">
             <p className="text-slate-400 max-w-xl">
-              Sieben Equipment-Varianten — von 20′ bis 45′, Reefer und Open-Top.
+              Acht Equipment-Varianten — von 20′ bis 45′, Reefer und Open-Top.
+              Klick auf eine Karte für alle Spezifikationen.
             </p>
             <motion.div
               initial={{ opacity: 0 }}
@@ -65,7 +184,11 @@ export default function Containers() {
                 animate={{ x: [0, 4, 0] }}
                 transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
               >
-                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </motion.svg>
             </motion.div>
           </div>
@@ -75,19 +198,33 @@ export default function Containers() {
       <div className="relative">
         <div className="flex gap-5 overflow-x-auto snap-x-mandatory px-6 lg:px-10 pb-4 no-scrollbar">
           {types.map((t, i) => (
-            <motion.div
-              key={t.size + t.name}
+            <motion.button
+              key={t.id}
+              type="button"
+              onClick={() => setActive(t)}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.55, delay: i * 0.06 }}
-              className="snap-start-x shrink-0 w-[280px] sm:w-[320px] rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 p-8 hover:border-sky-500/40 transition-colors duration-300"
+              whileHover={{ y: -4 }}
+              className="group snap-start-x shrink-0 w-[280px] sm:w-[320px] rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 p-6 text-left hover:border-sky-500/40 transition-colors duration-300 cursor-pointer"
             >
-              <div className="text-sky-400 text-xs font-mono uppercase tracking-widest">
+              {/* Illustration */}
+              <div className="aspect-[16/9] rounded-2xl bg-slate-950/40 border border-white/5 flex items-center justify-center overflow-hidden">
+                <ContainerIllustration
+                  variant={t.illustration}
+                  className="w-full h-full"
+                  dark
+                />
+              </div>
+
+              <div className="mt-5 text-sky-400 text-xs font-mono uppercase tracking-widest">
                 {t.size}
               </div>
-              <h3 className="mt-3 text-2xl font-semibold tracking-tight">{t.name}</h3>
-              <div className="mt-8 space-y-3 text-sm">
+              <h3 className="mt-1 text-2xl font-semibold tracking-tight">
+                {t.name}
+              </h3>
+              <div className="mt-5 space-y-2.5 text-sm">
                 <div className="flex justify-between border-b border-white/10 pb-2">
                   <span className="text-slate-400">Volumen</span>
                   <span className="font-medium tabular-nums">{t.cbm}</span>
@@ -101,12 +238,28 @@ export default function Containers() {
                   <span className="font-medium text-right">{t.notes}</span>
                 </div>
               </div>
-            </motion.div>
+              <div className="mt-5 inline-flex items-center gap-1.5 text-xs text-sky-400 font-medium">
+                Details ansehen
+                <svg
+                  viewBox="0 0 16 16"
+                  className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </motion.button>
           ))}
           <div className="shrink-0 w-6" />
         </div>
 
-        {/* Edge-Fade rechts: deutet 'da geht's weiter' an */}
+        {/* Edge-Fade rechts */}
         <div className="pointer-events-none absolute top-0 right-0 h-full w-20 sm:w-28 bg-gradient-to-l from-slate-950 to-transparent" />
 
         {/* Mobile-Scroll-Hint */}
@@ -120,7 +273,11 @@ export default function Containers() {
             animate={{ x: [-3, 3, -3] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           >
-            <path d="M3 8h10M9 4l4 4-4 4M7 4l-4 4 4 4" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M3 8h10M9 4l4 4-4 4M7 4l-4 4 4 4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </motion.svg>
           <span>Wischen für mehr Container</span>
         </div>
@@ -141,9 +298,19 @@ export default function Containers() {
             </linearGradient>
           </defs>
           {/* Wasserlinie */}
-          <path d="M0 220 L1200 220" stroke="currentColor" strokeOpacity="0.6" strokeWidth="1" strokeDasharray="4 6" fill="none" />
+          <path
+            d="M0 220 L1200 220"
+            stroke="currentColor"
+            strokeOpacity="0.6"
+            strokeWidth="1"
+            strokeDasharray="4 6"
+            fill="none"
+          />
           {/* Schiff-Rumpf */}
-          <path d="M120 220 L1080 220 L1040 200 L160 200 Z" fill="url(#ship-fade)" />
+          <path
+            d="M120 220 L1080 220 L1040 200 L160 200 Z"
+            fill="url(#ship-fade)"
+          />
           {/* Container-Stacks */}
           <g fill="currentColor">
             <rect x="210" y="170" width="60" height="30" />
@@ -178,6 +345,17 @@ export default function Containers() {
           <rect x="190" y="120" width="14" height="30" fill="currentColor" />
         </svg>
       </div>
+
+      {/* Detail-Modal */}
+      <ContainerDetailModal
+        open={active !== null}
+        onClose={() => setActive(null)}
+        size={active?.size ?? ""}
+        name={active?.name ?? ""}
+        illustration={active?.illustration ?? "20-standard"}
+        specs={active?.specs}
+        description={active?.description}
+      />
     </section>
   );
 }
