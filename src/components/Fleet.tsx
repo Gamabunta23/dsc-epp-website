@@ -38,7 +38,7 @@ export default function Fleet() {
           <div className="absolute inset-0 bg-grid opacity-50" />
           <div className="absolute inset-0 flex items-center justify-center p-4">
             <Image
-              src="/fleet-truck-v10.jpeg"
+              src="/fleet-truck-v11.jpeg"
               alt="LKW der Flotte"
               width={1024}
               height={576}
