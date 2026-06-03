@@ -36,13 +36,20 @@ export default function Fleet() {
           className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-white to-slate-100 border border-slate-200/60"
         >
           <div className="absolute inset-0 bg-grid opacity-50" />
-          <div className="absolute inset-0 flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center p-4">
             <Image
               src="/fleet-truck-mono.jpeg"
               alt="LKW der Flotte"
               width={1024}
               height={576}
-              className="w-full h-auto object-contain rounded-2xl"
+              className="w-full h-auto object-contain"
+              style={{
+                // Weicher Fade an allen Rändern → nahtloser Übergang zur Card
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 88% 80% at center, black 55%, transparent 100%)",
+                maskImage:
+                  "radial-gradient(ellipse 88% 80% at center, black 55%, transparent 100%)",
+              }}
               priority={false}
             />
           </div>
