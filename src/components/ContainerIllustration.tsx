@@ -73,7 +73,7 @@ export default function ContainerIllustration({
   // Farben — heller Modus (auf weißen Karten)
   const palette = dark
     ? { top: "#1e293b", front: "#0f172a", side: "#020617", edge: "#334155", line: "#475569", accent: "#0ea5e9", door: "#0b1220" }
-    : { top: "#f8fafc", front: "#e2e8f0", side: "#cbd5e1", edge: "#94a3b8", line: "#64748b", accent: "#0284c7", door: "#cbd5e1" };
+    : { top: "#e2e8f0", front: "#94a3b8", side: "#64748b", edge: "#334155", line: "#1e293b", accent: "#0284c7", door: "#475569" };
 
   // Korrugation-Linien auf der Seitenwand
   const corrugations = [];
