@@ -92,7 +92,7 @@ function Truck() {
   return (
     <motion.span
       className="inline-block w-full overflow-hidden"
-      style={{ height: "0.88em" }}
+      style={{ height: "1em" }}
       initial={{ opacity: 0, x: "-3%" }}
       animate={{ opacity: 1, x: "0%" }}
       exit={{ opacity: 0, x: "30%" }}
