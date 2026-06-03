@@ -44,11 +44,11 @@ export default function Fleet() {
               height={576}
               className="w-full h-auto object-contain"
               style={{
-                // Weicher Fade an allen Rändern → nahtloser Übergang zur Card
+                // Starker Fade an allen Rändern → nahtloser Übergang zur Card
                 WebkitMaskImage:
-                  "radial-gradient(ellipse 88% 80% at center, black 55%, transparent 100%)",
+                  "radial-gradient(ellipse 70% 65% at center, black 25%, transparent 90%)",
                 maskImage:
-                  "radial-gradient(ellipse 88% 80% at center, black 55%, transparent 100%)",
+                  "radial-gradient(ellipse 70% 65% at center, black 25%, transparent 90%)",
               }}
               priority={false}
             />
