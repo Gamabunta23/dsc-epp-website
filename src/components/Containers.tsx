@@ -402,8 +402,8 @@ export default function Containers() {
               whileHover={{ y: -4 }}
               className="group snap-start-x shrink-0 w-[280px] sm:w-[320px] rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 p-6 text-left hover:border-sky-500/40 transition-colors duration-300 cursor-pointer"
             >
-              {/* Illustration oder Foto — dunkler Visual-Bereich, passt zur Dark-Card */}
-              <div className="aspect-[16/9] rounded-2xl bg-slate-950/40 border border-white/5 flex items-center justify-center overflow-hidden">
+              {/* Illustration oder Foto — etwas hellerer Visual-Bereich als die Karte */}
+              <div className="aspect-[16/9] rounded-2xl bg-slate-700/40 border border-white/10 flex items-center justify-center overflow-hidden">
                 {t.photo ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
