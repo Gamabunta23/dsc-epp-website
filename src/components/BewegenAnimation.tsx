@@ -46,7 +46,7 @@ export default function BewegenAnimation() {
   }, [phase, reduced]);
 
   if (reduced) {
-    return <span className="inline-block">bewegen.</span>;
+    return <span className="inline-block">{" bewegen."}</span>;
   }
 
   return (
@@ -54,8 +54,10 @@ export default function BewegenAnimation() {
       className="relative inline-block align-baseline"
       style={{ minWidth: "0.5em" }}
     >
-      {/* unsichtbare Layout-Stütze damit Zeilenumbruch + Höhe stabil bleiben */}
-      <span aria-hidden className="invisible">bewegen.</span>
+      {/* unsichtbare Layout-Stütze damit Zeilenumbruch + Höhe stabil bleiben.
+          Leading non-breaking space gleicht den optischen Punkt am Ende aus,
+          damit "bewegen" visuell zentriert wirkt. */}
+      <span aria-hidden className="invisible">{" bewegen."}</span>
 
       <span className="absolute inset-0 flex items-baseline justify-center">
         <AnimatePresence mode="wait">
@@ -68,7 +70,7 @@ export default function BewegenAnimation() {
               transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
               className="inline-block"
             >
-              bewegen.
+              {" bewegen."}
             </motion.span>
           ) : (
             <Truck key="truck" />
