@@ -36,41 +36,15 @@ export default function Fleet() {
           className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-white to-slate-100 border border-slate-200/60"
         >
           <div className="absolute inset-0 bg-grid opacity-50" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <svg viewBox="0 0 400 500" className="w-full h-full p-12">
-              <defs>
-                <linearGradient id="truckGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#0F172A" />
-                  <stop offset="100%" stopColor="#334155" />
-                </linearGradient>
-                <clipPath id="trailerClip">
-                  <rect x="40" y="220" width="220" height="100" rx="4" />
-                </clipPath>
-              </defs>
-              <g>
-                <rect x="40" y="220" width="220" height="100" rx="4" fill="#000000" />
-                <image
-                  href="/logo.jpg"
-                  x="50"
-                  y="235"
-                  width="200"
-                  height="70"
-                  preserveAspectRatio="xMidYMid meet"
-                  clipPath="url(#trailerClip)"
-                />
-                <rect x="265" y="240" width="80" height="80" rx="6" fill="url(#truckGrad)" />
-                <rect x="272" y="248" width="40" height="30" rx="2" fill="#38BDF8" opacity="0.85" />
-                <circle cx="80" cy="335" r="14" fill="#020617" />
-                <circle cx="80" cy="335" r="6" fill="#475569" />
-                <circle cx="220" cy="335" r="14" fill="#020617" />
-                <circle cx="220" cy="335" r="6" fill="#475569" />
-                <circle cx="310" cy="335" r="14" fill="#020617" />
-                <circle cx="310" cy="335" r="6" fill="#475569" />
-              </g>
-              <g opacity="0.4">
-                <path d="M20 380 L380 380" stroke="#94a3b8" strokeWidth="2" strokeDasharray="6 8" />
-              </g>
-            </svg>
+          <div className="absolute inset-0 flex items-center justify-center p-6">
+            <Image
+              src="/fleet-truck.jpeg"
+              alt="LKW der Flotte"
+              width={1024}
+              height={576}
+              className="w-full h-auto object-contain rounded-2xl"
+              priority={false}
+            />
           </div>
           <motion.div
             initial={{ opacity: 0 }}
