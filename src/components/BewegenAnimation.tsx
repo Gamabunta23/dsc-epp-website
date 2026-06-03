@@ -57,7 +57,7 @@ export default function BewegenAnimation() {
       {/* unsichtbare Layout-Stütze damit Zeilenumbruch + Höhe stabil bleiben */}
       <span aria-hidden className="invisible">bewegen.</span>
 
-      <span className="absolute inset-0 flex items-baseline">
+      <span className="absolute inset-0 flex items-baseline justify-center">
         <AnimatePresence mode="wait">
           {phase === "word" ? (
             <motion.span
