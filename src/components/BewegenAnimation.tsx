@@ -92,7 +92,7 @@ function Truck() {
   return (
     <motion.span
       className="inline-block w-full overflow-hidden"
-      style={{ height: "1.1em" }}
+      style={{ height: "0.88em" }}
       initial={{ opacity: 0, x: "-3%" }}
       animate={{ opacity: 1, x: "0%" }}
       exit={{ opacity: 0, x: "30%" }}
@@ -107,7 +107,7 @@ function Truck() {
         loop
         playsInline
         preload="auto"
-        className="h-full w-full object-cover -translate-y-[0.02em]"
+        className="h-full w-full object-contain -translate-y-[0.02em]"
         aria-hidden
       >
         <source src="/video/truck.mp4" type="video/mp4" />
