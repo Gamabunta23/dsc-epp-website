@@ -91,18 +91,18 @@ export default function BewegenAnimation() {
  * Fade-in, läuft via Loop, Fade-out wenn das Wort zurückkommt.
  */
 function Truck() {
-  // Trailer-Eckpunkte im Video-Frame (854×320) — Lines genau innerhalb der
-  // Trailer-Decken-/Boden-Kanten (mit Compensation für round-cap-Extension)
+  // Trailer-Eckpunkte im Video-Frame (854×320) — TR/BR weiter nach rechts
+  // damit der ganze sichtbare Trailer abgedeckt wird (bis kurz vor Cab)
   const TL = { x: 12, y: 62 };
-  const TR = { x: 525, y: 54 };
+  const TR = { x: 555, y: 52 };
   const BL = { x: 12, y: 190 };
-  const BR = { x: 525, y: 182 };
+  const BR = { x: 555, y: 180 };
 
-  // Sicken über die GANZE Trailer-Länge, etwas nach rechts geschoben,
-  // 3 zusätzliche Linien auf der rechten Seite
-  const T_START = 0.12;
-  const T_END = 0.98;
-  const N_LINES = 12;
+  // Sicken über die GANZE sichtbare Trailer-Länge (links/Heck bleibt frei,
+  // dann gleichmäßig bis kurz vor die Cab-Vorderwand)
+  const T_START = 0.10;
+  const T_END = 0.99;
+  const N_LINES = 16;
   const lines = Array.from({ length: N_LINES }, (_, i) => {
     const t = T_START + (T_END - T_START) * (i / (N_LINES - 1));
     return {
