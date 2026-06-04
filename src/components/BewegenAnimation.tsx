@@ -112,7 +112,7 @@ function Truck() {
         className="h-full w-full object-contain -translate-y-[0.02em]"
         aria-hidden
       >
-        <source src="/video/truck.mp4" type="video/mp4" />
+        <source src="/video/truck-v2.mp4" type="video/mp4" />
       </video>
     </motion.span>
   );
