@@ -102,7 +102,7 @@ function Truck() {
   // dann gleichmäßig bis kurz vor die Cab-Vorderwand)
   const T_START = 0.10;
   const T_END = 0.99;
-  const N_LINES = 9;
+  const N_LINES = 12;
   const lines = Array.from({ length: N_LINES }, (_, i) => {
     const t = T_START + (T_END - T_START) * (i / (N_LINES - 1));
     return {
