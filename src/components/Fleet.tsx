@@ -53,22 +53,6 @@ export default function Fleet() {
               priority={false}
             />
           </div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/80 backdrop-blur-xl border border-slate-200 p-4 flex items-center justify-between"
-          >
-            <div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500">Aktive Tour</div>
-              <div className="text-sm font-medium text-slate-900">Hamburg → Salzkotten</div>
-            </div>
-            <div className="text-right">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500">ETA</div>
-              <div className="text-sm font-medium text-slate-900 tabular-nums">14:32</div>
-            </div>
-          </motion.div>
         </motion.div>
 
         <div>

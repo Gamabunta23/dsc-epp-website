@@ -14,7 +14,7 @@ type Job = {
 const jobs: Job[] = [
   {
     title: "Berufskraftfahrer C/CE (m/w/d)",
-    location: "Bakum · Hamburg · OWL",
+    location: "Bundesweit",
     type: "Vollzeit",
     category: "Fahrpersonal",
     description:
@@ -23,7 +23,7 @@ const jobs: Job[] = [
   },
   {
     title: "Disponent Container-Verkehre (m/w/d)",
-    location: "Bakum (Hauptsitz)",
+    location: "Hamburg · Bremerhaven",
     type: "Vollzeit",
     category: "Disposition",
     description:
@@ -31,13 +31,13 @@ const jobs: Job[] = [
     highlights: ["Speditionserfahrung", "Container-Know-how", "Englisch B1+", "Hands-on Mentalität"],
   },
   {
-    title: "Speditionskaufmann/-frau (m/w/d)",
+    title: "Disponent im Intermodalverkehr (m/w/d)",
     location: "Hamburg",
-    type: "Voll- oder Teilzeit",
-    category: "Spedition",
+    type: "Vollzeit",
+    category: "Disposition",
     description:
-      "Abwicklung von Überseecontainer-Sendungen, Korrespondenz mit Reedereien und Terminals, VGM-Verwiegung, Frachtabrechnung.",
-    highlights: ["Ausbildung Spedition/Logistik", "ATLAS / Hafen-Schnittstellen", "Englisch sicher", "Genauigkeit"],
+      "Disposition von Containertransporten auf der Schiene. Tour-Planung im kombinierten Verkehr Schiene-Straße, Kommunikation mit Terminals, Operateuren und Reedereien.",
+    highlights: ["Erfahrung im Intermodalverkehr", "Schiene-Straße-Know-how", "Englisch sicher", "Strukturierte Arbeitsweise"],
   },
 ];
 

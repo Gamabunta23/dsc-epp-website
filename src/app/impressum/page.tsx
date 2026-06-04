@@ -20,20 +20,20 @@ export default function ImpressumPage() {
         <dt>Anschrift</dt>
         <dd>Essener Str. 39 · 49456 Bakum</dd>
         <dt>Telefon</dt>
-        <dd>+49 4446 000000 <span className="text-slate-400 text-xs">(noch einzutragen)</span></dd>
+        <dd>+49 40 8090356 - 0</dd>
         <dt>E-Mail</dt>
         <dd><a href="mailto:info@dsc-logistik.de">info@dsc-logistik.de</a></dd>
       </dl>
 
       <h2>Vertretungsberechtigt</h2>
       <p>
-        Geschäftsführer: <span className="text-slate-400">[Name einzutragen]</span>
+        Geschäftsführer: Dimitri Schönfeld, Artur Epp, Eduard Epp
       </p>
 
       <h2>Registereintrag</h2>
       <dl>
         <dt>Registergericht</dt>
-        <dd className="text-slate-400">[Amtsgericht einzutragen]</dd>
+        <dd>Amtsgericht Oldenburg</dd>
         <dt>Registernummer</dt>
         <dd className="text-slate-400">HRB [Nummer einzutragen]</dd>
       </dl>

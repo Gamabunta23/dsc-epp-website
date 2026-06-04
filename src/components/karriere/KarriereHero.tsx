@@ -41,9 +41,11 @@ export default function KarriereHero() {
           transition={{ duration: 0.8, delay: 0.35 }}
           className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 leading-relaxed"
         >
-          Familiengeführter Mittelstand, moderne Flotte, klare Touren. Bei DSC
-          <span className="text-slate-400"> | </span> EPP Logistik werden Sie nicht
-          zur Nummer — Sie werden Teil der Disposition.
+          Familiengeführter Mittelstand, moderne Flotte, klare Touren. Bei{" "}
+          <span className="whitespace-nowrap">
+            DSC<span className="text-slate-400"> | </span>EPP Logistik
+          </span>{" "}
+          werden Sie nicht zur Nummer — Sie werden Teil der Disposition.
         </motion.p>
       </div>
     </section>
