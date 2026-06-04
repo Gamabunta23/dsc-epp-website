@@ -98,10 +98,11 @@ function Truck() {
   const BL = { x: 12, y: 190 };
   const BR = { x: 525, y: 182 };
 
-  // Sicken über die GANZE Trailer-Länge, mit großzügigem Abstand
-  const T_START = 0.04;
-  const T_END = 0.96;
-  const N_LINES = 9;
+  // Sicken über die GANZE Trailer-Länge, etwas nach rechts geschoben,
+  // 3 zusätzliche Linien auf der rechten Seite
+  const T_START = 0.12;
+  const T_END = 0.98;
+  const N_LINES = 12;
   const lines = Array.from({ length: N_LINES }, (_, i) => {
     const t = T_START + (T_END - T_START) * (i / (N_LINES - 1));
     return {
@@ -156,8 +157,10 @@ function Truck() {
               x2={line.x2}
               y2={line.y2}
               stroke="#000000"
-              strokeWidth={4}
+              strokeWidth={3}
               strokeLinecap="butt"
+              strokeOpacity={1}
+              vectorEffect="non-scaling-stroke"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
               transition={{
