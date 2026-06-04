@@ -91,9 +91,27 @@ export default function BewegenAnimation() {
  * Fade-in, läuft via Loop, Fade-out wenn das Wort zurückkommt.
  */
 function Truck() {
+  // Trailer-Eckpunkte im Video-Frame (854×320)
+  const TL = { x: 12, y: 48 };
+  const TR = { x: 525, y: 40 };
+  const BL = { x: 12, y: 198 };
+  const BR = { x: 525, y: 190 };
+  const N_LINES = 14;
+
+  // Sicken-Positionen interpolieren
+  const lines = Array.from({ length: N_LINES - 1 }, (_, i) => {
+    const t = (i + 1) / N_LINES;
+    return {
+      x1: TL.x + (TR.x - TL.x) * t,
+      y1: TL.y + (TR.y - TL.y) * t,
+      x2: BL.x + (BR.x - BL.x) * t,
+      y2: BL.y + (BR.y - BL.y) * t,
+    };
+  });
+
   return (
     <motion.span
-      className="inline-block w-full overflow-hidden"
+      className="inline-block w-full overflow-hidden relative"
       style={{ height: "1em" }}
       initial={{ opacity: 0, x: "-3%" }}
       animate={{ opacity: 1, x: "0%" }}
@@ -112,8 +130,41 @@ function Truck() {
         className="h-full w-full object-contain -translate-y-[0.02em]"
         aria-hidden
       >
-        <source src="/video/truck-v2.mp4" type="video/mp4" />
+        <source src="/video/truck-clean.mp4" type="video/mp4" />
       </video>
+
+      {/* Sicken-Overlay: fallen sequentiell von RECHTS nach LINKS */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none -translate-y-[0.02em]"
+        viewBox="0 0 854 320"
+        preserveAspectRatio="xMidYMid meet"
+        aria-hidden
+      >
+        {lines.map((line, i) => {
+          // i = 0 ist links, i = N-2 ist rechts.
+          // Stagger so dass RECHTS zuerst startet (kürzeste delay) → LINKS zuletzt
+          const reverseIndex = lines.length - 1 - i;
+          const delay = 0.9 + reverseIndex * 0.07;
+          return (
+            <motion.line
+              key={i}
+              x1={line.x1}
+              y1={line.y1}
+              x2={line.x2}
+              y2={line.y2}
+              stroke="#0f172a"
+              strokeWidth={2}
+              strokeLinecap="round"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{
+                pathLength: { duration: 0.45, delay, ease: [0.6, 0, 0.4, 1] },
+                opacity: { duration: 0.15, delay },
+              }}
+            />
+          );
+        })}
+      </svg>
     </motion.span>
   );
 }
