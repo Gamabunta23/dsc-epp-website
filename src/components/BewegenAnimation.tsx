@@ -91,18 +91,17 @@ export default function BewegenAnimation() {
  * Fade-in, läuft via Loop, Fade-out wenn das Wort zurückkommt.
  */
 function Truck() {
-  // Trailer-Eckpunkte im Video-Frame (854×320) — Top etwas tiefer damit
-  // die Sicken nicht über die Trailer-Decke gucken
-  const TL = { x: 12, y: 56 };
-  const TR = { x: 525, y: 48 };
-  const BL = { x: 12, y: 196 };
-  const BR = { x: 525, y: 188 };
+  // Trailer-Eckpunkte im Video-Frame (854×320) — Lines genau innerhalb der
+  // Trailer-Decken-/Boden-Kanten (mit Compensation für round-cap-Extension)
+  const TL = { x: 12, y: 62 };
+  const TR = { x: 525, y: 54 };
+  const BL = { x: 12, y: 190 };
+  const BR = { x: 525, y: 182 };
 
-  // Erstes Viertel des Aufliegers (links/Heck) bleibt leer, Sicken nur
-  // im hinteren 3/4-Bereich
-  const T_START = 0.25;
+  // Sicken über die GANZE Trailer-Länge, mit großzügigem Abstand
+  const T_START = 0.04;
   const T_END = 0.96;
-  const N_LINES = 13;
+  const N_LINES = 9;
   const lines = Array.from({ length: N_LINES }, (_, i) => {
     const t = T_START + (T_END - T_START) * (i / (N_LINES - 1));
     return {
@@ -158,7 +157,7 @@ function Truck() {
               y2={line.y2}
               stroke="#000000"
               strokeWidth={4}
-              strokeLinecap="round"
+              strokeLinecap="butt"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
               transition={{
