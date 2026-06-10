@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContainerIllustration from "./ContainerIllustration";
 import ContainerDetailModal, {
   type ContainerSpecs,
@@ -21,6 +21,9 @@ type ContainerType = {
   description?: string;
   specs?: ContainerSpecs;
 };
+
+export const containerSearchIndex = () =>
+  types.map((t) => ({ id: t.id, size: t.size, name: t.name, notes: t.notes }));
 
 const types: ContainerType[] = [
   {
@@ -324,6 +327,17 @@ const types: ContainerType[] = [
 
 export default function Containers() {
   const [active, setActive] = useState<ContainerType | null>(null);
+
+  // HeroSearch kann per CustomEvent ein Container-Detail öffnen
+  useEffect(() => {
+    const onOpen = (e: Event) => {
+      const id = (e as CustomEvent<string>).detail;
+      const t = types.find((x) => x.id === id);
+      if (t) setActive(t);
+    };
+    window.addEventListener("dscepp:open-container", onOpen);
+    return () => window.removeEventListener("dscepp:open-container", onOpen);
+  }, []);
 
   return (
     <section

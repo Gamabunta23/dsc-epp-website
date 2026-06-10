@@ -64,10 +64,13 @@ Hydration-mismatch vermieden via useEffect-Init der Startzeit.
 ## Open items (do not invent values, ask the user)
 
 - Bakum Telefon + WhatsApp: Platzhalter `+49 4446 000000` / `+49 000 0000000`
-- Kontaktformular: UI-Stub, kein Backend
+- Kontaktformular: API-Route fertig (/api/contact, Resend) — RESEND_API_KEY
+  in .env setzen, bis dahin mailto:-Fallback
 - 21st.dev API-Key: Platzhalter in `.mcp.json`
 - Impressum: Geschäftsführer, HRB, USt-IdNr, Versicherung
 - Datenschutz: Hosting-Anbieter
+- Domain dsc-epp.de: metadataBase in layout.tsx, sitemap.ts + robots.ts
+  müssen bei anderer Domain angepasst werden
 - AGB: braucht Rechtsprüfung
 
 ## Architecture conventions

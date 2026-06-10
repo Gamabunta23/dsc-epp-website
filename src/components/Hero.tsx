@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import BewegenAnimation from "./BewegenAnimation";
+import HeroSearch from "./HeroSearch";
 import HeroTicker from "./HeroTicker";
 
 export default function Hero() {
@@ -98,6 +99,8 @@ export default function Hero() {
             Leistungen entdecken
           </a>
         </motion.div>
+
+        <HeroSearch />
       </motion.div>
 
       <motion.div
