@@ -119,7 +119,7 @@ export default function Fahrzeitrechner() {
   const eu561Applies = vehicle.regulated && eu561;
 
   return (
-    <section id="fahrzeitrechner" className="relative py-24 lg:py-40 bg-slate-50">
+    <section id="fahrzeitrechner" className="relative py-24 lg:py-40 bg-slate-50 dark:bg-slate-900">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -131,12 +131,12 @@ export default function Fahrzeitrechner() {
           <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
             Fahrzeitenrechner
           </p>
-          <h2 className="headline text-4xl md:text-6xl text-slate-950">
+          <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
             Wie lange dauert
             <br />
-            <span className="text-slate-500">Ihre Tour wirklich?</span>
+            <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Ihre Tour wirklich?</span>
           </h2>
-          <p className="mt-6 text-slate-600 max-w-xl leading-relaxed">
+          <p className="mt-6 text-slate-600 dark:text-slate-400 dark:text-slate-500 max-w-xl leading-relaxed">
             Live-Kalkulation mit realistischen Mischgeschwindigkeiten und den
             Pflichtpausen nach EU-VO 561/2006. Ideal für die Disposition vor
             der Anfrage.
@@ -150,11 +150,11 @@ export default function Fahrzeitrechner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-3 rounded-3xl bg-white border border-slate-200/60 p-8 lg:p-10"
+            className="lg:col-span-3 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 p-8 lg:p-10"
           >
             {/* Distanz */}
             <div>
-              <label className="flex items-center justify-between text-xs uppercase tracking-[0.15em] text-slate-500 mb-3">
+              <label className="flex items-center justify-between text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-3">
                 <span>Strecke</span>
                 <span className="text-slate-900 tabular-nums normal-case tracking-normal text-base font-semibold">
                   {km.toLocaleString("de-DE")} km
@@ -170,7 +170,7 @@ export default function Fahrzeitrechner() {
                 className="w-full accent-sky-600 cursor-pointer"
                 aria-label="Strecke in Kilometern"
               />
-              <div className="flex justify-between text-[11px] text-slate-400 mt-1 tabular-nums">
+              <div className="flex justify-between text-[11px] text-slate-400 dark:text-slate-500 mt-1 tabular-nums">
                 <span>10 km</span>
                 <span>500</span>
                 <span>1000</span>
@@ -183,14 +183,14 @@ export default function Fahrzeitrechner() {
                 max={5000}
                 value={km}
                 onChange={(e) => setKm(Math.max(0, Number(e.target.value) || 0))}
-                className="mt-4 w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-slate-950 tabular-nums focus:outline-none focus:border-sky-500 focus:bg-white transition-colors"
+                className="mt-4 w-full bg-slate-50 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 text-slate-950 tabular-nums focus:outline-none focus:border-sky-500 focus:bg-white transition-colors"
                 aria-label="Strecke exakt eingeben"
               />
             </div>
 
             {/* Startzeit */}
             <div className="mt-8">
-              <label htmlFor="startzeit" className="block text-xs uppercase tracking-[0.15em] text-slate-500 mb-3">
+              <label htmlFor="startzeit" className="block text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-3">
                 Startzeit
               </label>
               <input
@@ -198,13 +198,13 @@ export default function Fahrzeitrechner() {
                 type="datetime-local"
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-slate-950 tabular-nums focus:outline-none focus:border-sky-500 focus:bg-white transition-colors"
+                className="w-full bg-slate-50 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 text-slate-950 tabular-nums focus:outline-none focus:border-sky-500 focus:bg-white transition-colors"
               />
             </div>
 
             {/* Fahrzeugtyp */}
             <div className="mt-10">
-              <p className="text-xs uppercase tracking-[0.15em] text-slate-500 mb-3">
+              <p className="text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-3">
                 Fahrzeug
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -218,14 +218,14 @@ export default function Fahrzeitrechner() {
                       className={`text-left rounded-2xl border p-4 transition-all duration-200 cursor-pointer ${
                         active
                           ? "border-slate-950 bg-slate-950 text-white"
-                          : "border-slate-200 bg-white hover:border-slate-400"
+                          : "border-slate-200 dark:border-slate-800 bg-white hover:border-slate-400"
                       }`}
                     >
                       <div className="font-medium text-sm leading-tight">{v.label}</div>
-                      <div className={`mt-2 text-xs tabular-nums ${active ? "text-sky-400" : "text-slate-700"}`}>
+                      <div className={`mt-2 text-xs tabular-nums ${active ? "text-sky-400" : "text-slate-700 dark:text-slate-300"}`}>
                         Ø {v.speed} km/h
                       </div>
-                      <div className={`mt-1 text-[11px] ${active ? "text-slate-400" : "text-slate-500"}`}>
+                      <div className={`mt-1 text-[11px] ${active ? "text-slate-400 dark:text-slate-500" : "text-slate-500 dark:text-slate-400 dark:text-slate-500"}`}>
                         {v.payload}
                       </div>
                       {v.regulated && (
@@ -241,7 +241,7 @@ export default function Fahrzeitrechner() {
 
             {/* Optionen */}
             <div className="mt-10 space-y-3">
-              <p className="text-xs uppercase tracking-[0.15em] text-slate-500 mb-3">
+              <p className="text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-3">
                 Optionen
               </p>
               <Toggle
@@ -287,12 +287,12 @@ export default function Fahrzeitrechner() {
               </AnimatePresence>
 
               {result.days > 1 && (
-                <p className="mt-3 text-sm text-slate-400">
+                <p className="mt-3 text-sm text-slate-400 dark:text-slate-500">
                   {result.days} Tage inkl. {result.days - 1}× 11 h Tagesruhezeit
                 </p>
               )}
               {eu561Applies && result.days === 1 && result.breakTime > 0 && (
-                <p className="mt-3 text-sm text-slate-400">
+                <p className="mt-3 text-sm text-slate-400 dark:text-slate-500">
                   Inkl. {Math.round(result.breakTime * 60)} min Pflichtpause
                 </p>
               )}
@@ -311,7 +311,7 @@ export default function Fahrzeitrechner() {
 
             {arrival && (
               <div className="relative mt-6 pt-6 border-t border-white/10">
-                <p className="text-xs uppercase tracking-[0.15em] text-slate-400 mb-2">
+                <p className="text-xs uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-2">
                   Ankunft
                 </p>
                 <p className="text-lg font-medium tabular-nums">{formatDate(arrival)}</p>
@@ -330,7 +330,7 @@ export default function Fahrzeitrechner() {
           </motion.div>
         </div>
 
-        <p className="mt-8 max-w-3xl text-xs text-slate-500 leading-relaxed">
+        <p className="mt-8 max-w-3xl text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 leading-relaxed">
           Hinweis: Die berechneten Werte sind Richtwerte für die Disposition.
           Tatsächliche Fahrzeiten hängen von Verkehrslage, Beladung,
           Wartezeiten an Rampen und individueller Fahrweise ab. Pflichtpausen
@@ -363,8 +363,8 @@ function Toggle({
       disabled={disabled}
       className={`w-full text-left flex items-start gap-4 rounded-2xl border px-4 py-3 transition-colors ${
         disabled
-          ? "border-slate-200 bg-slate-100/40 cursor-not-allowed opacity-60"
-          : "border-slate-200 bg-white hover:border-slate-400 cursor-pointer"
+          ? "border-slate-200 dark:border-slate-800 bg-slate-100/40 cursor-not-allowed opacity-60"
+          : "border-slate-200 dark:border-slate-800 bg-white hover:border-slate-400 cursor-pointer"
       }`}
     >
       <span
@@ -380,7 +380,7 @@ function Toggle({
       </span>
       <span className="flex-1">
         <span className="text-sm text-slate-900 leading-snug block">{label}</span>
-        {hint && <span className="text-xs text-slate-500 mt-0.5 block">{hint}</span>}
+        {hint && <span className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-0.5 block">{hint}</span>}
       </span>
     </button>
   );
@@ -389,8 +389,8 @@ function Toggle({
 function Cell({ label, value, muted }: { label: string; value: string; muted?: boolean }) {
   return (
     <div className="bg-slate-950 p-5">
-      <div className="text-[10px] uppercase tracking-[0.15em] text-slate-500">{label}</div>
-      <div className={`mt-1 text-lg font-semibold tabular-nums ${muted ? "text-slate-500" : "text-white"}`}>
+      <div className="text-[10px] uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500">{label}</div>
+      <div className={`mt-1 text-lg font-semibold tabular-nums ${muted ? "text-slate-500 dark:text-slate-400 dark:text-slate-500" : "text-white"}`}>
         {value}
       </div>
     </div>

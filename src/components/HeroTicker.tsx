@@ -38,9 +38,9 @@ export default function HeroTicker() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.6 }}
-      className="mt-10 flex items-center justify-center gap-x-6 gap-y-3 flex-wrap text-[13px] font-medium text-slate-500"
+      className="mt-10 flex items-center justify-center gap-x-6 gap-y-3 flex-wrap text-[13px] font-medium text-slate-500 dark:text-slate-400"
     >
-      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-50 border border-sky-100 text-sky-700">
+      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-50 dark:bg-sky-500/10 border border-sky-100 dark:border-sky-500/30 text-sky-700 dark:text-sky-300">
         <span className="relative flex h-1.5 w-1.5">
           <span className="absolute inline-flex h-full w-full rounded-full bg-sky-500 opacity-75 animate-ping" />
           <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-sky-600" />
@@ -52,7 +52,7 @@ export default function HeroTicker() {
       <Separator />
       <span>
         vom Terminal <span className="text-slate-300">→</span>{" "}
-        <span className="text-slate-900 font-semibold">Bundesweit</span>
+        <span className="text-slate-900 dark:text-slate-100 font-semibold">Bundesweit</span>
       </span>
     </motion.div>
   );
@@ -82,7 +82,7 @@ function Metric({ label, value, inView }: { label: string; value: number | null;
 
   return (
     <span className="inline-flex items-baseline gap-1.5">
-      <span className="text-slate-900 font-semibold tabular-nums">{display}</span>
+      <span className="text-slate-900 dark:text-slate-100 font-semibold tabular-nums">{display}</span>
       <span>{label}</span>
     </span>
   );

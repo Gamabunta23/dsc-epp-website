@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -26,11 +27,14 @@ export default function RootLayout({
     <html
       lang="de"
       className={`${jakarta.variable} h-full antialiased scroll-smooth`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full bg-white text-slate-950 selection:bg-slate-900 selection:text-white">
-        <Nav />
-        {children}
-        <Footer />
+      <body className="min-h-full bg-white dark:bg-slate-950 text-slate-950 dark:text-slate-100 selection:bg-slate-900 selection:text-white transition-colors duration-300">
+        <ThemeProvider>
+          <Nav />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Class-based dark mode (gesteuert per next-themes) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Brand palette — Apple-style minimalism with DSC's deep navy heritage */
   --color-ink: #020617;       /* slate-950 — primary text */
@@ -11,10 +14,25 @@
   --color-accent-soft: #38BDF8; /* sky-400 — highlights */
 }
 
+.dark {
+  /* Dark-Mode-Palette — invertierter Tonalität, gleicher Sky-Akzent */
+  --color-ink: #f1f5f9;        /* slate-100 */
+  --color-graphite: #f8fafc;   /* slate-50 */
+  --color-steel: #cbd5e1;      /* slate-300 */
+  --color-fog: #020617;        /* slate-950 */
+  --color-line: #1e293b;       /* slate-800 */
+  --color-accent: #38BDF8;     /* sky-400 — leuchtet auf dunkel */
+  --color-accent-soft: #7DD3FC; /* sky-300 */
+}
+
 @theme inline {
   --color-background: #ffffff;
   --color-foreground: var(--color-ink);
   --font-sans: var(--font-jakarta), "SF Pro Display", system-ui, -apple-system, sans-serif;
+}
+
+.dark {
+  --color-background: #020617;
 }
 
 html {
@@ -71,4 +89,9 @@ body {
     linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
+}
+.dark .bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(226, 232, 240, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.05) 1px, transparent 1px);
 }

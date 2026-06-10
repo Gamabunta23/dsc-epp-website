@@ -11,7 +11,7 @@ const values = [
 
 export default function About() {
   return (
-    <section id="unternehmen" className="relative py-24 lg:py-40 bg-white">
+    <section id="unternehmen" className="relative py-24 lg:py-40 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-12">
           <motion.div
@@ -24,10 +24,10 @@ export default function About() {
             <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
               Unternehmen
             </p>
-            <h2 className="headline text-4xl md:text-5xl text-slate-950">
+            <h2 className="headline text-4xl md:text-5xl text-slate-950 dark:text-white">
               Aus zwei wird eins.
               <br />
-              <span className="text-slate-500">Aus Erfahrung wird Reichweite.</span>
+              <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Aus Erfahrung wird Reichweite.</span>
             </h2>
           </motion.div>
 
@@ -36,10 +36,10 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="lg:col-span-7 lg:pt-4 space-y-6 text-lg text-slate-700 leading-relaxed"
+            className="lg:col-span-7 lg:pt-4 space-y-6 text-lg text-slate-700 dark:text-slate-300 leading-relaxed"
           >
             <p>
-              Die DSC <span className="text-slate-400">|</span> EPP Logistik GmbH
+              Die DSC <span className="text-slate-400 dark:text-slate-500">|</span> EPP Logistik GmbH
               bündelt zwei spezialisierte Mittelständler unter einem Dach: die
               Hafen-Expertise der DSC Logistik aus Hamburg und das Inland-Netzwerk
               der EPP Logistik aus Ostwestfalen-Lippe. Gesteuert vom neuen
@@ -61,13 +61,13 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="bg-white p-8"
+              className="bg-white dark:bg-slate-900 p-8"
             >
               <div className="text-xs text-sky-700 font-mono uppercase tracking-[0.2em] mb-3">
                 0{i + 1}
               </div>
-              <h3 className="text-lg font-semibold text-slate-950 mb-2">{v.label}</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">{v.body}</p>
+              <h3 className="text-lg font-semibold text-slate-950 dark:text-white mb-2">{v.label}</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 dark:text-slate-500 leading-relaxed">{v.body}</p>
             </motion.div>
           ))}
         </div>

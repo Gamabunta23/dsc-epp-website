@@ -29,7 +29,7 @@ export default function Fleet() {
   const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   return (
-    <section ref={ref} id="flotte" className="relative py-24 lg:py-40 bg-white overflow-hidden">
+    <section ref={ref} id="flotte" className="relative py-24 lg:py-40 bg-white dark:bg-slate-950 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <motion.div
           style={{ y }}
@@ -58,7 +58,7 @@ export default function Fleet() {
             <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
               Flotte &amp; Technologie
             </p>
-            <h2 className="headline text-4xl md:text-5xl text-slate-950">
+            <h2 className="headline text-4xl md:text-5xl text-slate-950 dark:text-white">
               Modernes Equipment.
               <br />
               <span className="text-slate-500">Maximale Verfügbarkeit.</span>
@@ -75,7 +75,7 @@ export default function Fleet() {
                 transition={{ duration: 0.6, delay: i * 0.08 }}
                 className="border-t border-slate-200 pt-6"
               >
-                <h3 className="text-lg font-semibold text-slate-950">{f.title}</h3>
+                <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{f.title}</h3>
                 <p className="mt-2 text-slate-600 leading-relaxed">{f.body}</p>
               </motion.li>
             ))}

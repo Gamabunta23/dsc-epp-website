@@ -35,7 +35,7 @@ function Counter({ to, suffix }: { to: number; suffix?: string }) {
 
 export default function Stats() {
   return (
-    <section className="relative py-24 lg:py-32 bg-slate-50 border-y border-slate-200/60">
+    <section className="relative py-24 lg:py-32 bg-slate-50 dark:bg-slate-900 border-y border-slate-200/60 dark:border-slate-800/60 dark:border-slate-800/60">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,10 +47,10 @@ export default function Stats() {
           <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
             Die neue Größenordnung
           </p>
-          <h2 className="headline text-4xl md:text-6xl text-slate-950">
+          <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
             Zwei Spezialisten.
             <br />
-            <span className="text-slate-500">Eine Logistik-Plattform.</span>
+            <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Eine Logistik-Plattform.</span>
           </h2>
         </motion.div>
 
@@ -62,13 +62,13 @@ export default function Stats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="bg-white p-8 lg:p-10"
+              className="bg-white dark:bg-slate-900 p-8 lg:p-10"
             >
-              <div className="text-5xl lg:text-6xl headline text-slate-950">
+              <div className="text-5xl lg:text-6xl headline text-slate-950 dark:text-white">
                 <Counter to={s.value} suffix={s.suffix} />
               </div>
-              <div className="mt-4 text-sm font-semibold text-slate-900">{s.label}</div>
-              {s.sub && <div className="text-xs text-slate-500 mt-1">{s.sub}</div>}
+              <div className="mt-4 text-sm font-semibold text-slate-900 dark:text-slate-100">{s.label}</div>
+              {s.sub && <div className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">{s.sub}</div>}
             </motion.div>
           ))}
         </div>

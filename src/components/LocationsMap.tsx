@@ -49,7 +49,7 @@ export default function LocationsMap() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-      className="relative max-w-4xl mx-auto mb-20"
+      className="relative max-w-4xl mx-auto mb-20 text-slate-950 dark:text-white"
     >
       <svg
         viewBox="0 0 560 340"
@@ -110,7 +110,7 @@ export default function LocationsMap() {
                 textAnchor="middle"
                 fontSize={18}
                 fontWeight={600}
-                fill="rgb(2 6 23)"
+                fill="currentColor"
                 style={{ letterSpacing: "-0.015em" }}
               >
                 {pin.label}

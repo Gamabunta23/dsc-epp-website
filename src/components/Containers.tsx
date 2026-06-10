@@ -353,10 +353,10 @@ export default function Containers() {
           <h2 className="headline text-4xl md:text-6xl">
             Vom Standard-Box
             <br />
-            <span className="text-slate-500">bis zum Spezialmaß.</span>
+            <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">bis zum Spezialmaß.</span>
           </h2>
           <div className="mt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 max-w-3xl">
-            <p className="text-slate-400 max-w-xl">
+            <p className="text-slate-400 dark:text-slate-500 max-w-xl">
               Fünfzehn Equipment-Varianten — von 20′ bis 45′, Reefer, Open Top, Flat Rack und Tank.
               Klick auf eine Karte für alle Spezifikationen.
             </p>
@@ -428,15 +428,15 @@ export default function Containers() {
               </h3>
               <div className="mt-5 space-y-2.5 text-sm">
                 <div className="flex justify-between border-b border-white/10 pb-2">
-                  <span className="text-slate-400">Volumen</span>
+                  <span className="text-slate-400 dark:text-slate-500">Volumen</span>
                   <span className="font-medium tabular-nums">{t.cbm}</span>
                 </div>
                 <div className="flex justify-between border-b border-white/10 pb-2">
-                  <span className="text-slate-400">Zuladung</span>
+                  <span className="text-slate-400 dark:text-slate-500">Zuladung</span>
                   <span className="font-medium tabular-nums">{t.payload}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Hinweis</span>
+                  <span className="text-slate-400 dark:text-slate-500">Hinweis</span>
                   <span className="font-medium text-right">{t.notes}</span>
                 </div>
               </div>

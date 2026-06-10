@@ -89,7 +89,7 @@ const services: Service[] = [
 
 export default function Services() {
   return (
-    <section id="leistungen" className="relative py-24 lg:py-40 bg-white">
+    <section id="leistungen" className="relative py-24 lg:py-40 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -101,10 +101,10 @@ export default function Services() {
           <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
             Leistungen
           </p>
-          <h2 className="headline text-4xl md:text-6xl text-slate-950">
+          <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
             Ein Portfolio, das den Hafen,
             <br />
-            <span className="text-slate-500">die Schiene und die Rampe versteht.</span>
+            <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">die Schiene und die Rampe versteht.</span>
           </h2>
         </motion.div>
 
@@ -116,18 +116,18 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
-              className="group relative bg-white p-8 lg:p-10 hover:bg-slate-50 transition-colors duration-300"
+              className="group relative bg-white dark:bg-slate-900 p-8 lg:p-10 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors duration-300"
             >
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-slate-950 text-white mb-6">
                 {s.icon}
               </div>
-              <h3 className="text-xl font-semibold text-slate-950 tracking-tight">
+              <h3 className="text-xl font-semibold text-slate-950 dark:text-white tracking-tight">
                 {s.title}
               </h3>
-              <p className="mt-3 text-slate-600 leading-relaxed">{s.description}</p>
+              <p className="mt-3 text-slate-600 dark:text-slate-400 dark:text-slate-500 leading-relaxed">{s.description}</p>
               <ul className="mt-6 space-y-2">
                 {s.highlights.map((h) => (
-                  <li key={h} className="flex items-center gap-2 text-sm text-slate-700">
+                  <li key={h} className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
                     <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 text-sky-600 shrink-0" fill="none" strokeWidth="2" stroke="currentColor">
                       <path d="M3 8l3.5 3.5L13 5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>

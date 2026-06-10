@@ -73,7 +73,7 @@ const steps: Step[] = [
 
 export default function Journey() {
   return (
-    <section className="relative bg-white border-y border-slate-200/60 overflow-hidden">
+    <section className="relative bg-white dark:bg-slate-950 border-y border-slate-200/60 dark:border-slate-800/60 dark:border-slate-800/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -85,9 +85,9 @@ export default function Journey() {
           <p className="text-xs font-medium text-sky-700 uppercase tracking-[0.2em] mb-3">
             Vom Schiff bis zur Rampe
           </p>
-          <h2 className="headline text-3xl md:text-4xl text-slate-950">
+          <h2 className="headline text-3xl md:text-4xl text-slate-950 dark:text-white">
             Eine Container-Kette.
-            <span className="text-slate-500"> Vier Etappen.</span>
+            <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500"> Vier Etappen.</span>
           </h2>
         </motion.div>
 
@@ -122,11 +122,11 @@ export default function Journey() {
               <div className="relative z-10 flex items-center justify-center w-14 h-14 rounded-full bg-slate-950 text-white">
                 {step.icon}
               </div>
-              <div className="mt-4 text-sm font-semibold text-slate-950">
+              <div className="mt-4 text-sm font-semibold text-slate-950 dark:text-white">
                 {step.label}
               </div>
               <div
-                className="text-xs text-slate-500 mt-1"
+                className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1"
                 dangerouslySetInnerHTML={{ __html: step.detail }}
               />
               <div className="mt-3 text-[10px] font-mono text-sky-700 uppercase tracking-widest">

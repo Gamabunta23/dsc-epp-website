@@ -49,7 +49,7 @@ const locations: Location[] = [
 
 export default function Locations() {
   return (
-    <section id="standorte" className="relative py-24 lg:py-40 bg-slate-50">
+    <section id="standorte" className="relative py-24 lg:py-40 bg-slate-50 dark:bg-slate-900">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,10 +61,10 @@ export default function Locations() {
           <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
             Standorte
           </p>
-          <h2 className="headline text-4xl md:text-6xl text-slate-950">
+          <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
             Hauptsitz Bakum.
             <br />
-            <span className="text-slate-500">Hafen Hamburg. Inland OWL.</span>
+            <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Hafen Hamburg. Inland OWL.</span>
           </h2>
         </motion.div>
 
@@ -80,8 +80,8 @@ export default function Locations() {
               transition={{ duration: 0.7, delay: i * 0.1 }}
               className={`group relative rounded-3xl p-8 lg:p-10 overflow-hidden ${
                 loc.featured
-                  ? "bg-slate-950 text-white border border-slate-900"
-                  : "bg-white border border-slate-200/60"
+                  ? "bg-slate-950 dark:bg-slate-800 text-white border border-slate-900 dark:border-slate-700"
+                  : "bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60"
               }`}
             >
               <div className={`absolute -top-12 -right-12 w-48 h-48 rounded-full opacity-60 group-hover:scale-110 transition-transform duration-700 ${
@@ -98,22 +98,22 @@ export default function Locations() {
                   </span>
                 )}
                 <div className="flex items-baseline gap-3 flex-wrap">
-                  <h3 className={`text-3xl font-semibold tracking-tight ${loc.featured ? "text-white" : "text-slate-950"}`}>
+                  <h3 className={`text-3xl font-semibold tracking-tight ${loc.featured ? "text-white" : "text-slate-950 dark:text-white"}`}>
                     {loc.name}
                   </h3>
                   <span className={`text-sm font-medium ${loc.featured ? "text-sky-400" : "text-sky-700"}`}>
                     {loc.role}
                   </span>
                 </div>
-                <p className={`mt-4 leading-relaxed ${loc.featured ? "text-slate-300" : "text-slate-600"}`}>
+                <p className={`mt-4 leading-relaxed ${loc.featured ? "text-slate-300" : "text-slate-600 dark:text-slate-400 dark:text-slate-500"}`}>
                   {loc.desc}
                 </p>
                 {loc.address && (
-                  <p className={`mt-4 text-sm font-medium ${loc.featured ? "text-white" : "text-slate-900"}`}>
+                  <p className={`mt-4 text-sm font-medium ${loc.featured ? "text-white" : "text-slate-900 dark:text-slate-100"}`}>
                     {loc.address}
                   </p>
                 )}
-                <p className={`mt-2 text-xs ${loc.featured ? "text-slate-500" : "text-slate-400"}`}>
+                <p className={`mt-2 text-xs ${loc.featured ? "text-slate-500 dark:text-slate-400 dark:text-slate-500" : "text-slate-400 dark:text-slate-500"}`}>
                   {loc.legacy}
                 </p>
 
@@ -126,10 +126,10 @@ export default function Locations() {
                     <div
                       key={row.label}
                       className={`flex items-center justify-between border-t pt-3 ${
-                        loc.featured ? "border-white/10" : "border-slate-200"
+                        loc.featured ? "border-white/10" : "border-slate-200 dark:border-slate-800"
                       }`}
                     >
-                      <dt className={loc.featured ? "text-slate-400" : "text-slate-500"}>
+                      <dt className={loc.featured ? "text-slate-400 dark:text-slate-500" : "text-slate-500 dark:text-slate-400 dark:text-slate-500"}>
                         {row.label}
                       </dt>
                       <dd>

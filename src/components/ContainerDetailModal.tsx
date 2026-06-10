@@ -91,7 +91,7 @@ export default function ContainerDetailModal({
             exit={{ opacity: 0, y: 32, scale: 0.97 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-4xl w-full bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col"
+            className="relative max-w-4xl w-full bg-white dark:bg-slate-900 rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col"
           >
             <button
               type="button"
@@ -124,7 +124,7 @@ export default function ContainerDetailModal({
                 <p className="text-xs font-mono text-sky-700 uppercase tracking-[0.2em] mb-2">
                   {size}
                 </p>
-                <h3 className="text-3xl font-semibold tracking-tight text-slate-950">
+                <h3 className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
                   {name}
                 </h3>
                 {description && (
@@ -194,7 +194,7 @@ function SpecRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-0.5 border-b border-slate-100 pb-3 last:border-0">
       <dt className="text-xs uppercase tracking-[0.1em] text-slate-500">{label}</dt>
-      <dd className="text-base font-semibold text-slate-950 tabular-nums">{value}</dd>
+      <dd className="text-base font-semibold text-slate-950 dark:text-white tabular-nums">{value}</dd>
     </div>
   );
 }

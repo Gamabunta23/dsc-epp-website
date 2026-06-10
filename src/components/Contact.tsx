@@ -25,9 +25,9 @@ export default function Contact() {
           <h2 className="headline text-4xl md:text-6xl">
             Welche Box bewegen
             <br />
-            <span className="text-slate-400">wir für Sie?</span>
+            <span className="text-slate-400 dark:text-slate-500">wir für Sie?</span>
           </h2>
-          <p className="mt-6 text-slate-400">
+          <p className="mt-6 text-slate-400 dark:text-slate-500">
             Beschreiben Sie kurz Ihre Tour — wir melden uns innerhalb eines Werktages
             mit einem konkreten Angebot.
           </p>
@@ -51,18 +51,18 @@ export default function Contact() {
           <Field label="Abholung" name="from" placeholder="Hamburg Terminal Burchardkai" />
           <Field label="Ziel" name="to" placeholder="Salzkotten / Bielefeld / ..." />
           <div className="sm:col-span-2">
-            <label className="block text-xs uppercase tracking-[0.15em] text-slate-400 mb-2">
+            <label className="block text-xs uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-2">
               Container / Anforderung
             </label>
             <textarea
               name="message"
               rows={4}
               placeholder="z.B. 1×40′ HC, Reefer −18 °C, Abholung Mo 06:00"
-              className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-sky-500/60 focus:bg-white/[0.06] transition-colors"
+              className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white placeholder:text-slate-500 dark:text-slate-400 dark:text-slate-500 focus:outline-none focus:border-sky-500/60 focus:bg-white/[0.06] transition-colors"
             />
           </div>
           <div className="sm:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500">
               Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäß
               Datenschutzerklärung zu.
             </p>
@@ -100,7 +100,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="block text-xs uppercase tracking-[0.15em] text-slate-400 mb-2">
+      <label htmlFor={name} className="block text-xs uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-2">
         {label}
         {required && <span className="text-sky-400"> *</span>}
       </label>
@@ -110,7 +110,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-sky-500/60 focus:bg-white/[0.06] transition-colors"
+        className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white placeholder:text-slate-500 dark:text-slate-400 dark:text-slate-500 focus:outline-none focus:border-sky-500/60 focus:bg-white/[0.06] transition-colors"
       />
     </div>
   );
