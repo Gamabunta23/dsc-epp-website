@@ -73,7 +73,7 @@ const steps: Step[] = [
 
 export default function Journey() {
   return (
-    <section className="relative bg-white dark:bg-slate-950 border-y border-slate-200/60 dark:border-slate-800/60 dark:border-slate-800/60 overflow-hidden">
+    <section className="relative z-10 -mt-12 rounded-t-[2.5rem] bg-white dark:bg-slate-950 border-b border-slate-200/60 dark:border-slate-800/60 overflow-hidden shadow-[0_-24px_60px_-30px_rgba(2,6,23,0.25)] dark:shadow-[0_-24px_60px_-30px_rgba(0,0,0,0.8)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

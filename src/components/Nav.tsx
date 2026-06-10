@@ -81,7 +81,7 @@ export default function Nav() {
           <ThemeToggle />
           <Link
             href={contactHref}
-            className="text-sm font-medium text-white dark:text-slate-950 bg-slate-950 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors duration-200 rounded-full px-4 py-2 cursor-pointer"
+            className="text-sm font-medium text-white dark:text-slate-950 bg-slate-950 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 hover:scale-[1.04] active:scale-[0.96] transition-all duration-200 rounded-full px-4 py-2 cursor-pointer"
           >
             Angebot anfragen
           </Link>

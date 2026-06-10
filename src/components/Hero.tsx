@@ -11,9 +11,9 @@ export default function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
 
   return (
     <section
@@ -77,7 +77,7 @@ export default function Hero() {
         >
           <a
             href="#kontakt"
-            className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-slate-950 dark:bg-white text-white dark:text-slate-950 font-medium hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors duration-200 cursor-pointer"
+            className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-slate-950 dark:bg-white text-white dark:text-slate-950 font-medium hover:bg-slate-800 dark:hover:bg-slate-200 hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 cursor-pointer"
           >
             Transport anfragen
             <svg viewBox="0 0 16 16" className="w-4 h-4 transition-transform group-hover:translate-x-0.5">

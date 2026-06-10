@@ -70,7 +70,7 @@ export default function KarriereJobs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.55, delay: i * 0.06 }}
-              className="group rounded-3xl border border-slate-200/60 dark:border-slate-800/60 bg-white dark:bg-slate-950 hover:border-slate-300 hover:shadow-sm transition-all duration-300 overflow-hidden"
+              className="group rounded-3xl border border-slate-200/60 dark:border-slate-800/60 bg-white dark:bg-slate-950 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
               <div className="p-8 lg:p-10 grid lg:grid-cols-3 gap-8 items-start">
                 <div className="lg:col-span-2">
