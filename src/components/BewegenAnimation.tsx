@@ -115,7 +115,7 @@ function Truck() {
 
   return (
     <motion.span
-      className="inline-block w-full overflow-hidden relative dark:invert"
+      className="truck-frame inline-block w-full overflow-hidden relative"
       style={{ height: "1em" }}
       initial={{ opacity: 0, x: "-3%" }}
       animate={{ opacity: 1, x: "0%" }}
@@ -171,6 +171,23 @@ function Truck() {
           );
         })}
       </svg>
+
+      {/* Dark-Mode: invert + Schwarz exakt auf slate-950 mappen,
+          damit das Video-Rechteck mit dem Section-BG verschmilzt */}
+      <svg width="0" height="0" className="absolute" aria-hidden>
+        <filter id="truck-dark-bg" colorInterpolationFilters="sRGB">
+          <feComponentTransfer>
+            <feFuncR type="linear" slope="0.9922" intercept="0.0078" />
+            <feFuncG type="linear" slope="0.9765" intercept="0.0235" />
+            <feFuncB type="linear" slope="0.9098" intercept="0.0902" />
+          </feComponentTransfer>
+        </filter>
+      </svg>
+      <style jsx global>{`
+        .dark .truck-frame {
+          filter: invert(1) url(#truck-dark-bg);
+        }
+      `}</style>
     </motion.span>
   );
 }
