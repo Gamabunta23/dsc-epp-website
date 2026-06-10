@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import LocationsMap from "./LocationsMap";
 
 type Location = {
   name: string;
@@ -66,6 +67,8 @@ export default function Locations() {
             <span className="text-slate-500">Hafen Hamburg. Inland OWL.</span>
           </h2>
         </motion.div>
+
+        <LocationsMap />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {locations.map((loc, i) => (
