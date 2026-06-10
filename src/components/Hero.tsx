@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import BewegenAnimation from "./BewegenAnimation";
+import HeroTicker from "./HeroTicker";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -66,10 +67,12 @@ export default function Hero() {
           Hauptsitz Bakum an der A1, Hubs am Hamburger Hafen und in Ostwestfalen-Lippe.
         </motion.p>
 
+        <HeroTicker />
+
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
