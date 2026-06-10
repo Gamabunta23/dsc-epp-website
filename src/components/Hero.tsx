@@ -107,13 +107,19 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-sky-700 dark:text-sky-400"
       >
-        <span className="text-[11px] uppercase tracking-[0.2em]">Scroll</span>
+        <span
+          className="text-[11px] font-medium uppercase tracking-[0.2em]"
+          style={{ textShadow: "0 0 12px rgba(56, 189, 248, 0.6)" }}
+        >
+          Scroll
+        </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="h-8 w-px bg-gradient-to-b from-slate-400 to-transparent"
+          className="h-8 w-0.5 rounded-full bg-gradient-to-b from-sky-500 dark:from-sky-400 to-transparent"
+          style={{ boxShadow: "0 0 10px rgba(56, 189, 248, 0.55)" }}
         />
       </motion.div>
     </section>
