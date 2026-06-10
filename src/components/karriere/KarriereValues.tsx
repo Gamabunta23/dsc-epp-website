@@ -31,7 +31,7 @@ const values = [
 
 export default function KarriereValues() {
   return (
-    <section className="relative py-24 lg:py-32 bg-slate-50 border-y border-slate-200/60">
+    <section className="relative py-24 lg:py-32 bg-slate-50 dark:bg-slate-900 border-y border-slate-200/60 dark:border-slate-800/60">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,10 +43,10 @@ export default function KarriereValues() {
           <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
             Warum bei uns
           </p>
-          <h2 className="headline text-4xl md:text-5xl text-slate-950">
+          <h2 className="headline text-4xl md:text-5xl text-slate-950 dark:text-white">
             Sechs gute Gründe.
             <br />
-            <span className="text-slate-500">Nicht sechs Marketing-Sprüche.</span>
+            <span className="text-slate-500 dark:text-slate-400">Nicht sechs Marketing-Sprüche.</span>
           </h2>
         </motion.div>
 
@@ -58,13 +58,13 @@ export default function KarriereValues() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
-              className="bg-white p-8 lg:p-10"
+              className="bg-white dark:bg-slate-950 p-8 lg:p-10"
             >
               <div className="text-xs font-mono text-sky-700 uppercase tracking-[0.2em] mb-3">
                 0{i + 1}
               </div>
               <h3 className="text-xl font-semibold text-slate-950 mb-3">{v.title}</h3>
-              <p className="text-slate-600 leading-relaxed text-sm">{v.body}</p>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">{v.body}</p>
             </motion.div>
           ))}
         </div>

@@ -32,7 +32,7 @@ export default function KarriereInitiativ() {
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="mailto:bewerbung@dsc-logistik.de?subject=Initiativbewerbung"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-slate-950 font-medium hover:bg-slate-200 transition-colors duration-200 cursor-pointer"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white dark:bg-slate-950 text-slate-950 font-medium hover:bg-slate-200 transition-colors duration-200 cursor-pointer"
             >
               bewerbung@dsc-logistik.de
               <svg viewBox="0 0 16 16" className="w-4 h-4 transition-transform group-hover:translate-x-0.5">
@@ -47,7 +47,7 @@ export default function KarriereInitiativ() {
             </a>
           </div>
 
-          <p className="mt-8 text-xs text-slate-500">
+          <p className="mt-8 text-xs text-slate-500 dark:text-slate-400">
             Persönlicher Kontakt: Personalabteilung in Bakum (Essener Str. 39, 49456 Bakum)
           </p>
         </motion.div>

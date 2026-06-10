@@ -43,7 +43,7 @@ const jobs: Job[] = [
 
 export default function KarriereJobs() {
   return (
-    <section id="stellen" className="relative py-24 lg:py-40 bg-white">
+    <section id="stellen" className="relative py-24 lg:py-40 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -55,10 +55,10 @@ export default function KarriereJobs() {
           <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
             Offene Stellen
           </p>
-          <h2 className="headline text-4xl md:text-6xl text-slate-950">
+          <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
             Was wir suchen,
             <br />
-            <span className="text-slate-500">und wo.</span>
+            <span className="text-slate-500 dark:text-slate-400">und wo.</span>
           </h2>
         </motion.div>
 
@@ -70,7 +70,7 @@ export default function KarriereJobs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.55, delay: i * 0.06 }}
-              className="group rounded-3xl border border-slate-200/60 bg-white hover:border-slate-300 hover:shadow-sm transition-all duration-300 overflow-hidden"
+              className="group rounded-3xl border border-slate-200/60 dark:border-slate-800/60 bg-white dark:bg-slate-950 hover:border-slate-300 hover:shadow-sm transition-all duration-300 overflow-hidden"
             >
               <div className="p-8 lg:p-10 grid lg:grid-cols-3 gap-8 items-start">
                 <div className="lg:col-span-2">
@@ -79,21 +79,21 @@ export default function KarriereJobs() {
                       {job.category}
                     </span>
                     <span className="text-slate-300">·</span>
-                    <span className="text-xs text-slate-500">{job.type}</span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400">{job.type}</span>
                     <span className="text-slate-300">·</span>
-                    <span className="text-xs text-slate-500">{job.location}</span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400">{job.location}</span>
                   </div>
-                  <h3 className="text-2xl lg:text-3xl font-semibold text-slate-950 tracking-tight">
+                  <h3 className="text-2xl lg:text-3xl font-semibold text-slate-950 dark:text-white tracking-tight">
                     {job.title}
                   </h3>
-                  <p className="mt-4 text-slate-600 leading-relaxed">
+                  <p className="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
                     {job.description}
                   </p>
                   <ul className="mt-6 flex flex-wrap gap-2">
                     {job.highlights.map((h) => (
                       <li
                         key={h}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-xs text-slate-700"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-xs text-slate-700 dark:text-slate-300"
                       >
                         <svg viewBox="0 0 16 16" className="w-3 h-3 text-sky-600" fill="none" strokeWidth="2" stroke="currentColor">
                           <path d="M3 8l3.5 3.5L13 5" strokeLinecap="round" strokeLinejoin="round" />
