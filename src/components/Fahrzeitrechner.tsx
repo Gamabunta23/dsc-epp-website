@@ -183,7 +183,7 @@ export default function Fahrzeitrechner() {
                 max={5000}
                 value={km}
                 onChange={(e) => setKm(Math.max(0, Number(e.target.value) || 0))}
-                className="mt-4 w-full bg-slate-50 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 text-slate-950 tabular-nums focus:outline-none focus:border-sky-500 focus:bg-white transition-colors"
+                className="mt-4 w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 text-slate-950 dark:text-white tabular-nums focus:outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 transition-colors"
                 aria-label="Strecke exakt eingeben"
               />
             </div>
@@ -198,7 +198,7 @@ export default function Fahrzeitrechner() {
                 type="datetime-local"
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 text-slate-950 tabular-nums focus:outline-none focus:border-sky-500 focus:bg-white transition-colors"
+                className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 text-slate-950 dark:text-white tabular-nums focus:outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 transition-colors"
               />
             </div>
 
@@ -217,8 +217,8 @@ export default function Fahrzeitrechner() {
                       onClick={() => setVehicleId(v.id)}
                       className={`text-left rounded-2xl border p-4 transition-all duration-200 cursor-pointer ${
                         active
-                          ? "border-slate-950 bg-slate-950 text-white"
-                          : "border-slate-200 dark:border-slate-800 bg-white hover:border-slate-400"
+                          ? "border-slate-950 bg-slate-950 dark:border-slate-700 dark:bg-slate-800 text-white"
+                          : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600"
                       }`}
                     >
                       <div className="font-medium text-sm leading-tight">{v.label}</div>
@@ -363,8 +363,8 @@ function Toggle({
       disabled={disabled}
       className={`w-full text-left flex items-start gap-4 rounded-2xl border px-4 py-3 transition-colors ${
         disabled
-          ? "border-slate-200 dark:border-slate-800 bg-slate-100/40 cursor-not-allowed opacity-60"
-          : "border-slate-200 dark:border-slate-800 bg-white hover:border-slate-400 cursor-pointer"
+          ? "border-slate-200 dark:border-slate-800 bg-slate-100/40 dark:bg-slate-900/40 cursor-not-allowed opacity-60"
+          : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600 cursor-pointer"
       }`}
     >
       <span
@@ -379,7 +379,7 @@ function Toggle({
         />
       </span>
       <span className="flex-1">
-        <span className="text-sm text-slate-900 leading-snug block">{label}</span>
+        <span className="text-sm text-slate-900 dark:text-slate-100 leading-snug block">{label}</span>
         {hint && <span className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-0.5 block">{hint}</span>}
       </span>
     </button>

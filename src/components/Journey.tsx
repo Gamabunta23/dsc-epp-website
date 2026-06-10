@@ -11,7 +11,7 @@ type Step = {
 const steps: Step[] = [
   {
     label: "Tiefseehafen",
-    detail: "Hamburg",
+    detail: "Terminal",
     icon: (
       // Container-Schiff
       <svg viewBox="0 0 48 48" className="w-7 h-7 stroke-current" fill="none" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">

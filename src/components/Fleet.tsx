@@ -33,7 +33,7 @@ export default function Fleet() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <motion.div
           style={{ y }}
-          className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-white to-slate-100 border border-slate-200/60"
+          className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 border border-slate-200/60 dark:border-slate-800/60"
         >
           <div className="absolute inset-0 bg-grid opacity-50" />
           <div className="absolute inset-0 flex items-center justify-center p-4">
