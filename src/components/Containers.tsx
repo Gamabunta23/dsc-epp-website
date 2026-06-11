@@ -438,7 +438,13 @@ export default function Containers() {
         </motion.div>
       </div>
 
-      <div className="relative">
+      <motion.div
+        className="relative"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+      >
         <div
           ref={scrollerRef}
           onPointerDown={onPointerDown}
@@ -452,15 +458,11 @@ export default function Containers() {
             dragging ? "cursor-grabbing select-none" : "cursor-grab"
           }`}
         >
-          {types.map((t, i) => (
+          {types.map((t) => (
             <motion.button
               key={t.id}
               type="button"
               onClick={() => setActive(t)}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.55, delay: i * 0.06 }}
               whileHover={{ y: -4 }}
               className="group snap-start-x shrink-0 w-[280px] sm:w-[320px] rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 p-6 text-left hover:border-sky-500/40 transition-colors duration-300 cursor-pointer"
             >
@@ -545,7 +547,7 @@ export default function Containers() {
           </motion.svg>
           <span>Wischen für mehr Container</span>
         </div>
-      </div>
+      </motion.div>
 
       {/* Containerschiff-Silhouette als atmosphärische Abrundung */}
       <div className="relative mt-16 lg:mt-24 h-[180px] sm:h-[220px] overflow-hidden">

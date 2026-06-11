@@ -97,7 +97,7 @@ export default function Fleet() {
                       opacity={0.92}
                       initial={{ pathLength: 1 }}
                       whileInView={{ pathLength: 0 }}
-                      viewport={{ once: false, margin: "-120px" }}
+                      viewport={{ once: false, margin: "-120px 0px" }}
                       transition={{ duration: seg.dur, delay: seg.delay, ease: "easeInOut" }}
                     />
                     <motion.path
@@ -109,7 +109,7 @@ export default function Fleet() {
                       strokeLinejoin="round"
                       initial={{ pathLength: 0, opacity: 0 }}
                       whileInView={{ pathLength: 1, opacity: 1 }}
-                      viewport={{ once: false, margin: "-120px" }}
+                      viewport={{ once: false, margin: "-120px 0px" }}
                       transition={{
                         pathLength: { duration: seg.dur, delay: seg.delay, ease: "easeInOut" },
                         opacity: { duration: 0.15, delay: seg.delay },
@@ -135,7 +135,7 @@ export default function Fleet() {
                       fill="rgb(100 116 139)"
                       initial={{ opacity: 0.92 }}
                       whileInView={{ opacity: 0 }}
-                      viewport={{ once: false, margin: "-120px" }}
+                      viewport={{ once: false, margin: "-120px 0px" }}
                       transition={{ duration: 0.35, delay: 2.0 + i * 0.18 }}
                     />
                     <motion.circle
@@ -145,7 +145,7 @@ export default function Fleet() {
                       fill="#f0f9ff"
                       initial={{ opacity: 0, scale: 0.5 }}
                       whileInView={{ opacity: [0, 1, 0.65, 1], scale: 1 }}
-                      viewport={{ once: false, margin: "-120px" }}
+                      viewport={{ once: false, margin: "-120px 0px" }}
                       transition={{ duration: 0.5, delay: 2.0 + i * 0.18 }}
                       style={{
                         transformOrigin: "center",
@@ -165,7 +165,7 @@ export default function Fleet() {
                   fill="rgb(100 116 139)"
                   initial={{ opacity: 0.92 }}
                   whileInView={{ opacity: 0 }}
-                  viewport={{ once: false, margin: "-120px" }}
+                  viewport={{ once: false, margin: "-120px 0px" }}
                   transition={{ duration: 0.35, delay: 2.85 }}
                 />
                 <motion.ellipse
@@ -176,7 +176,7 @@ export default function Fleet() {
                   fill="#f0f9ff"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: [0, 1, 0.65, 1], scale: 1 }}
-                  viewport={{ once: false, margin: "-120px" }}
+                  viewport={{ once: false, margin: "-120px 0px" }}
                   transition={{ duration: 0.5, delay: 2.85 }}
                   style={{
                     transformOrigin: "center",
