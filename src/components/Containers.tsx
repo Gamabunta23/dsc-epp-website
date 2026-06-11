@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ContainerIllustration from "./ContainerIllustration";
 import ContainerDetailModal, {
   type ContainerSpecs,
@@ -327,6 +327,42 @@ const types: ContainerType[] = [
 
 export default function Containers() {
   const [active, setActive] = useState<ContainerType | null>(null);
+  const [dragging, setDragging] = useState(false);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const drag = useRef({ down: false, startX: 0, startScroll: 0, moved: false });
+
+  // Drag-to-Scroll mit der Maus (Touch scrollt nativ)
+  function onPointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    if (e.pointerType !== "mouse" || !scrollerRef.current) return;
+    drag.current = {
+      down: true,
+      startX: e.clientX,
+      startScroll: scrollerRef.current.scrollLeft,
+      moved: false,
+    };
+    setDragging(true);
+  }
+
+  function onPointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (!drag.current.down || !scrollerRef.current) return;
+    const dx = e.clientX - drag.current.startX;
+    if (Math.abs(dx) > 4) drag.current.moved = true;
+    scrollerRef.current.scrollLeft = drag.current.startScroll - dx;
+  }
+
+  function endDrag() {
+    drag.current.down = false;
+    setDragging(false);
+  }
+
+  // Nach echtem Drag den Klick schlucken, damit sich kein Modal öffnet
+  function onClickCapture(e: React.MouseEvent<HTMLDivElement>) {
+    if (drag.current.moved) {
+      e.preventDefault();
+      e.stopPropagation();
+      drag.current.moved = false;
+    }
+  }
 
   // HeroSearch kann per CustomEvent ein Container-Detail öffnen
   useEffect(() => {
@@ -403,7 +439,19 @@ export default function Containers() {
       </div>
 
       <div className="relative">
-        <div className="flex gap-5 overflow-x-auto snap-x-mandatory px-6 lg:px-10 pb-4 no-scrollbar">
+        <div
+          ref={scrollerRef}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerLeave={endDrag}
+          onPointerCancel={endDrag}
+          onClickCapture={onClickCapture}
+          style={{ scrollSnapType: dragging ? "none" : undefined }}
+          className={`flex gap-5 overflow-x-auto snap-x-mandatory px-6 lg:px-10 pb-4 no-scrollbar ${
+            dragging ? "cursor-grabbing select-none" : "cursor-grab"
+          }`}
+        >
           {types.map((t, i) => (
             <motion.button
               key={t.id}
