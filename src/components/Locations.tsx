@@ -87,7 +87,7 @@ export default function Locations() {
               <div className={`absolute -top-12 -right-12 w-48 h-48 rounded-full opacity-60 group-hover:scale-110 transition-transform duration-700 ${
                 loc.featured
                   ? "bg-gradient-to-br from-sky-500/30 to-transparent"
-                  : "bg-gradient-to-br from-sky-100 to-transparent"
+                  : "bg-gradient-to-br from-sky-100 dark:from-sky-500/15 to-transparent"
               }`} />
 
               <div className="relative">
@@ -101,11 +101,11 @@ export default function Locations() {
                   <h3 className={`text-3xl font-semibold tracking-tight ${loc.featured ? "text-white" : "text-slate-950 dark:text-white"}`}>
                     {loc.name}
                   </h3>
-                  <span className={`text-sm font-medium ${loc.featured ? "text-sky-400" : "text-sky-700"}`}>
+                  <span className={`text-sm font-medium ${loc.featured ? "text-sky-400" : "text-sky-700 dark:text-sky-400"}`}>
                     {loc.role}
                   </span>
                 </div>
-                <p className={`mt-4 leading-relaxed ${loc.featured ? "text-slate-300" : "text-slate-600 dark:text-slate-400 dark:text-slate-500"}`}>
+                <p className={`mt-4 leading-relaxed ${loc.featured ? "text-slate-300" : "text-slate-600 dark:text-slate-400"}`}>
                   {loc.desc}
                 </p>
                 {loc.address && (
@@ -113,7 +113,7 @@ export default function Locations() {
                     {loc.address}
                   </p>
                 )}
-                <p className={`mt-2 text-xs ${loc.featured ? "text-slate-500 dark:text-slate-400 dark:text-slate-500" : "text-slate-400 dark:text-slate-500"}`}>
+                <p className={`mt-2 text-xs ${loc.featured ? "text-slate-500" : "text-slate-400 dark:text-slate-500"}`}>
                   {loc.legacy}
                 </p>
 
@@ -129,7 +129,7 @@ export default function Locations() {
                         loc.featured ? "border-white/10" : "border-slate-200 dark:border-slate-800"
                       }`}
                     >
-                      <dt className={loc.featured ? "text-slate-400 dark:text-slate-500" : "text-slate-500 dark:text-slate-400 dark:text-slate-500"}>
+                      <dt className={loc.featured ? "text-slate-400" : "text-slate-500 dark:text-slate-400"}>
                         {row.label}
                       </dt>
                       <dd>
@@ -140,7 +140,7 @@ export default function Locations() {
                           className={`font-medium transition-colors tabular-nums ${
                             loc.featured
                               ? "text-white hover:text-sky-400"
-                              : "text-slate-950 hover:text-sky-700"
+                              : "text-slate-950 dark:text-slate-100 hover:text-sky-700 dark:hover:text-sky-400"
                           }`}
                         >
                           {row.value}
