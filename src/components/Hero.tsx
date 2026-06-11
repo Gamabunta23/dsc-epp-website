@@ -26,7 +26,7 @@ export default function Hero() {
 
       <motion.div
         style={{ y, scale }}
-        className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10 pt-32 pb-24 text-center"
+        className="relative z-20 max-w-6xl mx-auto px-6 lg:px-10 pt-32 pb-24 text-center"
       >
         {/* Scroll-Fade nur auf Text/CTAs — die Suche (unten) bleibt voll
             deckend, damit das offene Dropdown nie transparent wird */}
