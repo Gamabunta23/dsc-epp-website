@@ -37,14 +37,156 @@ export default function Fleet() {
         >
           <div className="absolute inset-0 bg-grid opacity-50" />
           <div className="absolute inset-0 flex items-center justify-center p-4">
-            <Image
-              src="/fleet-truck-v16.jpeg"
-              alt="LKW der Flotte"
-              width={953}
-              height={643}
-              className="w-full h-auto object-contain"
-              priority={false}
-            />
+            <div className="relative w-full">
+              <Image
+                src="/fleet-truck-v16.jpeg"
+                alt="LKW der Flotte"
+                width={953}
+                height={643}
+                className="w-full h-auto object-contain"
+                priority={false}
+              />
+
+              {/* "Licht an"-Overlay: LED-Band zieht sich leuchtend entlang,
+                  danach zünden die 4 LED-Punkte nacheinander */}
+              <svg
+                viewBox="0 0 953 643"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                aria-hidden
+              >
+                {/* Band in 4 Segmenten — exakt auf den weißen Strichen des
+                    Bildes (pixel-getraced), Panel-Trennungen bleiben dunkel.
+                    Cover (grau, dRev) weicht synchron mit dem Licht zurück:
+                    pathLength 1→0 auf dem UMGEKEHRTEN Pfad = Cover verschwindet
+                    genau dort, wo das Licht gerade ankommt. */}
+                {[
+                  {
+                    d: "M 50 198 L 56 197 L 62 197 L 68 197 L 74 197 L 80 197 L 86 197 L 92 197 L 98 196 L 104 196 L 110 196 L 116 196",
+                    dRev: "M 116 196 L 110 196 L 104 196 L 98 196 L 92 197 L 86 197 L 80 197 L 74 197 L 68 197 L 62 197 L 56 197 L 50 198",
+                    delay: 0.3,
+                    dur: 0.16,
+                  },
+                  {
+                    d: "M 155 196 L 161 196 L 167 196 L 173 196 L 179 197 L 185 197 L 191 197 L 197 197 L 203 198 L 209 198 L 215 198 L 221 198 L 227 198 L 233 198 L 239 198 L 245 199 L 251 199",
+                    dRev: "M 251 199 L 245 199 L 239 198 L 233 198 L 227 198 L 221 198 L 215 198 L 209 198 L 203 198 L 197 197 L 191 197 L 185 197 L 179 197 L 173 196 L 167 196 L 161 196 L 155 196",
+                    delay: 0.48,
+                    dur: 0.2,
+                  },
+                  {
+                    d: "M 290 200 L 296 200 L 302 200 L 308 201 L 314 201 L 320 201 L 326 202 L 332 202 L 338 202 L 344 203 L 350 203 L 356 204 L 362 204 L 368 205 L 374 205",
+                    dRev: "M 374 205 L 368 205 L 362 204 L 356 204 L 350 203 L 344 203 L 338 202 L 332 202 L 326 202 L 320 201 L 314 201 L 308 201 L 302 200 L 296 200 L 290 200",
+                    delay: 0.7,
+                    dur: 0.18,
+                  },
+                  {
+                    // Dichte Pixel-Mittellinie (64 Punkte) — liegt exakt auf dem Band
+                    d: "M 386 207 L 392 208 L 398 208 L 404 209 L 410 210 L 416 212 L 422 214 L 428 216 L 434 218 L 440 220 L 446 223 L 452 226 L 458 230 L 476 244 L 481 251 L 486 258 L 490 265 L 493 272 L 495 279 L 496 286 L 498 293 L 498 300 L 500 307 L 500 314 L 502 321 L 502 328 L 502 335 L 502 342 L 503 349 L 504 356 L 504 363 L 504 370 L 504 377 L 504 384 L 504 391 L 504 398 L 503 405 L 503 412 L 503 419 L 502 426 L 502 433 L 499 440 L 496 447 L 484 454 L 478 456 L 472 458 L 466 460 L 460 460 L 454 460 L 448 461 L 442 462 L 436 462 L 430 462 L 424 462 L 418 462 L 412 463 L 406 464 L 400 464 L 394 464 L 388 464 L 382 464 L 376 464 L 370 464 L 364 464 L 358 464 L 352 464 L 346 464",
+                    dRev: "M 346 464 L 352 464 L 358 464 L 364 464 L 370 464 L 376 464 L 382 464 L 388 464 L 394 464 L 400 464 L 406 464 L 412 463 L 418 462 L 424 462 L 430 462 L 436 462 L 442 462 L 448 461 L 454 460 L 460 460 L 466 460 L 472 458 L 478 456 L 484 454 L 496 447 L 499 440 L 502 433 L 502 426 L 503 419 L 503 412 L 503 405 L 504 398 L 504 391 L 504 384 L 504 377 L 504 370 L 504 363 L 504 356 L 503 349 L 502 342 L 502 335 L 502 328 L 502 321 L 500 314 L 500 307 L 498 300 L 498 293 L 496 286 L 495 279 L 493 272 L 490 265 L 486 258 L 481 251 L 476 244 L 458 230 L 452 226 L 446 223 L 440 220 L 434 218 L 428 216 L 422 214 L 416 212 L 410 210 L 404 209 L 398 208 L 392 208 L 386 207",
+                    delay: 0.92,
+                    dur: 1.0,
+                  },
+                ].map((seg, i) => (
+                  <g key={i}>
+                    <motion.path
+                      d={seg.dRev}
+                      fill="none"
+                      stroke="rgb(100 116 139)"
+                      strokeWidth={9}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      opacity={0.92}
+                      initial={{ pathLength: 1 }}
+                      whileInView={{ pathLength: 0 }}
+                      viewport={{ once: false, margin: "-120px" }}
+                      transition={{ duration: seg.dur, delay: seg.delay, ease: "easeInOut" }}
+                    />
+                    <motion.path
+                      d={seg.d}
+                      fill="none"
+                      stroke="#e0f2fe"
+                      strokeWidth={7}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      whileInView={{ pathLength: 1, opacity: 1 }}
+                      viewport={{ once: false, margin: "-120px" }}
+                      transition={{
+                        pathLength: { duration: seg.dur, delay: seg.delay, ease: "easeInOut" },
+                        opacity: { duration: 0.15, delay: seg.delay },
+                      }}
+                      style={{
+                        filter:
+                          "drop-shadow(0 0 4px rgba(240, 249, 255, 1)) drop-shadow(0 0 9px rgba(186, 230, 253, 1)) drop-shadow(0 0 18px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 32px rgba(56, 189, 248, 0.55))",
+                      }}
+                    />
+                  </g>
+                ))}
+                {[
+                  [427, 252],
+                  [395, 286],
+                  [435, 288],
+                  [470, 292],
+                ].map(([cx, cy], i) => (
+                  <g key={i}>
+                    <motion.circle
+                      cx={cx}
+                      cy={cy}
+                      r={14}
+                      fill="rgb(100 116 139)"
+                      initial={{ opacity: 0.92 }}
+                      whileInView={{ opacity: 0 }}
+                      viewport={{ once: false, margin: "-120px" }}
+                      transition={{ duration: 0.35, delay: 2.0 + i * 0.18 }}
+                    />
+                    <motion.circle
+                      cx={cx}
+                      cy={cy}
+                      r={12}
+                      fill="#f0f9ff"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: [0, 1, 0.65, 1], scale: 1 }}
+                      viewport={{ once: false, margin: "-120px" }}
+                      transition={{ duration: 0.5, delay: 2.0 + i * 0.18 }}
+                      style={{
+                        transformOrigin: "center",
+                        transformBox: "fill-box",
+                        filter:
+                          "drop-shadow(0 0 5px rgba(240, 249, 255, 1)) drop-shadow(0 0 11px rgba(186, 230, 253, 1)) drop-shadow(0 0 20px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 34px rgba(56, 189, 248, 0.5))",
+                      }}
+                    />
+                  </g>
+                ))}
+                {/* Untere Leuchte (Nebel-/Tagfahrlicht) — zündet als letztes */}
+                <motion.ellipse
+                  cx={447}
+                  cy={343}
+                  rx={19}
+                  ry={13}
+                  fill="rgb(100 116 139)"
+                  initial={{ opacity: 0.92 }}
+                  whileInView={{ opacity: 0 }}
+                  viewport={{ once: false, margin: "-120px" }}
+                  transition={{ duration: 0.35, delay: 2.85 }}
+                />
+                <motion.ellipse
+                  cx={447}
+                  cy={343}
+                  rx={17}
+                  ry={11}
+                  fill="#f0f9ff"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: [0, 1, 0.65, 1], scale: 1 }}
+                  viewport={{ once: false, margin: "-120px" }}
+                  transition={{ duration: 0.5, delay: 2.85 }}
+                  style={{
+                    transformOrigin: "center",
+                    transformBox: "fill-box",
+                    filter:
+                      "drop-shadow(0 0 7px rgba(186, 230, 253, 1)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.8)) drop-shadow(0 0 28px rgba(56, 189, 248, 0.4))",
+                  }}
+                />
+              </svg>
+            </div>
           </div>
         </motion.div>
 
