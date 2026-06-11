@@ -54,13 +54,22 @@ export default function Nav() {
       />
       <nav className="relative max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center group" aria-label="DSC | EPP Logistik – Startseite">
+          {/* Light: graues Logo auf weiß — Dark: weißes Logo (wie im Footer) */}
           <Image
             src="/logo-light.webp"
             alt="DSC | EPP Logistik"
             width={500}
             height={168}
             priority
-            className="h-12 w-auto"
+            className="h-12 w-auto dark:hidden"
+          />
+          <Image
+            src="/logo.jpg"
+            alt="DSC | EPP Logistik"
+            width={500}
+            height={168}
+            priority
+            className="h-12 w-auto hidden dark:block"
           />
         </Link>
 
