@@ -70,23 +70,53 @@ export default function LocationsMap() {
           const pad = 30;
           const ux = dx / len;
           const uy = dy / len;
+          const x1 = from.x + ux * pad;
+          const y1 = from.y + uy * pad;
+          const x2 = to.x - ux * pad;
+          const y2 = to.y - uy * pad;
           return (
-            <motion.line
-              key={`${route.from}-${route.to}`}
-              x1={from.x + ux * pad}
-              y1={from.y + uy * pad}
-              x2={to.x - ux * pad}
-              y2={to.y - uy * pad}
-              stroke="rgb(3 105 161)"
-              strokeWidth={1.6}
-              strokeLinecap="round"
-              strokeDasharray="6 6"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 0.9 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 + i * 0.15 }}
-              style={{ animation: `route-flow 1.8s linear infinite`, animationDelay: `${i * -0.6}s` }}
-            />
+            <g key={`${route.from}-${route.to}`}>
+              <motion.line
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="rgb(3 105 161)"
+                strokeWidth={1.6}
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.75 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.6 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              />
+              {/* Glow-Punkt fährt in den Pin REIN (fade-out) und kommt wieder
+                  RAUS (fade-in) — kein sichtbares Abprallen an den Enden */}
+              <circle
+                className="route-runner"
+                r={3.5}
+                fill="rgb(125 211 252)"
+                opacity={0}
+                style={{ filter: "drop-shadow(0 0 3px rgba(186, 230, 253, 1)) drop-shadow(0 0 8px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.6))" }}
+              >
+                <animateMotion
+                  dur={`${5 + i * 1.3}s`}
+                  begin={`${i * -2.1}s`}
+                  repeatCount="indefinite"
+                  calcMode="linear"
+                  keyPoints="0;1;0"
+                  keyTimes="0;0.5;1"
+                  path={`M ${x1} ${y1} L ${x2} ${y2}`}
+                />
+                <animate
+                  attributeName="opacity"
+                  values="0;0.95;0;0.95;0"
+                  keyTimes="0;0.25;0.5;0.75;1"
+                  dur={`${5 + i * 1.3}s`}
+                  begin={`${i * -2.1}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
           );
         })}
 
@@ -166,6 +196,9 @@ export default function LocationsMap() {
           svg :global(line),
           svg :global(circle) {
             animation: none !important;
+          }
+          svg :global(.route-runner) {
+            display: none;
           }
         }
       `}</style>
