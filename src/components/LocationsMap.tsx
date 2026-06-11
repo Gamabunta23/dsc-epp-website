@@ -59,17 +59,24 @@ export default function LocationsMap() {
       >
         <DotGrid />
 
-        {/* Routen zwischen Standorten */}
+        {/* Routen zwischen Standorten — mit Abstand zu den Pins,
+            damit Linien nicht durch Labels/Pulse-Ringe laufen */}
         {ROUTES.map((route, i) => {
           const from = pinById(route.from);
           const to = pinById(route.to);
+          const dx = to.x - from.x;
+          const dy = to.y - from.y;
+          const len = Math.hypot(dx, dy);
+          const pad = 30;
+          const ux = dx / len;
+          const uy = dy / len;
           return (
             <motion.line
               key={`${route.from}-${route.to}`}
-              x1={from.x}
-              y1={from.y}
-              x2={to.x}
-              y2={to.y}
+              x1={from.x + ux * pad}
+              y1={from.y + uy * pad}
+              x2={to.x - ux * pad}
+              y2={to.y - uy * pad}
               stroke="rgb(3 105 161)"
               strokeWidth={1.6}
               strokeLinecap="round"
@@ -105,13 +112,18 @@ export default function LocationsMap() {
               />
               <circle r={pin.featured ? 11 : 8} fill="rgb(3 105 161)" />
               {pin.featured && <circle r={4} fill="white" />}
+              {/* Halo (paint-order: stroke) in Section-BG-Farbe stellt die
+                  Labels über kreuzenden Routen-Linien frei */}
               <text
                 y={-30}
                 textAnchor="middle"
                 fontSize={18}
                 fontWeight={600}
                 fill="currentColor"
-                style={{ letterSpacing: "-0.015em" }}
+                strokeWidth={5}
+                strokeLinejoin="round"
+                className="stroke-slate-50 dark:stroke-slate-900"
+                style={{ letterSpacing: "-0.015em", paintOrder: "stroke" }}
               >
                 {pin.label}
               </text>
@@ -121,7 +133,10 @@ export default function LocationsMap() {
                 fontSize={11}
                 fontWeight={500}
                 fill={pin.featured ? "rgb(3 105 161)" : "rgb(100 116 139)"}
-                style={{ letterSpacing: "0.12em", textTransform: "uppercase" }}
+                strokeWidth={4}
+                strokeLinejoin="round"
+                className="stroke-slate-50 dark:stroke-slate-900"
+                style={{ letterSpacing: "0.12em", textTransform: "uppercase", paintOrder: "stroke" }}
               >
                 {pin.sub}
               </text>
