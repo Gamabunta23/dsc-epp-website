@@ -3,9 +3,9 @@
 import { motion } from "motion/react";
 
 const PINS = [
-  { id: "bakum", label: "Bakum", sub: "Hauptsitz · A1", x: 200, y: 140, featured: true },
-  { id: "hamburg", label: "Hamburg", sub: "Hafen-Hub", x: 330, y: 90 },
-  { id: "owl", label: "Ostwestfalen-Lippe", sub: "Inland-Hub", x: 240, y: 220 },
+  { id: "bakum", label: "Bakum", sub: "Hauptsitz · A1", x: 150, y: 150, featured: true },
+  { id: "hamburg", label: "Hamburg", sub: "Hafen-Hub", x: 395, y: 75 },
+  { id: "owl", label: "Ostwestfalen-Lippe", sub: "Inland-Hub", x: 300, y: 265 },
 ];
 
 const ROUTES = [
