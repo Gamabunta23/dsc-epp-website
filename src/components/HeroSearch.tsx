@@ -155,7 +155,7 @@ export default function HeroSearch() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 6, scale: 0.98 }}
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute z-30 mt-2 inset-x-0 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-950/10 dark:shadow-black/40 overflow-hidden text-left"
+            className="absolute z-50 mt-2 inset-x-0 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-950/10 dark:shadow-black/40 overflow-hidden text-left"
             role="listbox"
           >
             {results.map((r, i) => (

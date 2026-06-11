@@ -19,15 +19,18 @@ export default function Hero() {
     <section
       ref={ref}
       id="top"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-slate-950"
+      className="relative min-h-screen flex items-center justify-center overflow-x-clip bg-white dark:bg-slate-950"
     >
       <div className="absolute inset-0 bg-grid opacity-60" />
       <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/40 to-white dark:from-slate-950/0 dark:via-slate-950/40 dark:to-slate-950 pointer-events-none" />
 
       <motion.div
-        style={{ y, opacity, scale }}
+        style={{ y, scale }}
         className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10 pt-32 pb-24 text-center"
       >
+        {/* Scroll-Fade nur auf Text/CTAs — die Suche (unten) bleibt voll
+            deckend, damit das offene Dropdown nie transparent wird */}
+        <motion.div style={{ opacity }}>
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -95,6 +98,7 @@ export default function Hero() {
           >
             Leistungen entdecken
           </a>
+        </motion.div>
         </motion.div>
 
         <HeroSearch />
