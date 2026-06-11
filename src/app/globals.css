@@ -54,6 +54,12 @@ body {
   font-weight: 600;
 }
 
+/* Anker-Ziele nicht unter der fixen Nav (h-20) landen lassen */
+section[id],
+[id="top"] {
+  scroll-margin-top: 5rem;
+}
+
 /* Honor user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,

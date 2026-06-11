@@ -32,6 +32,18 @@ export default function Nav() {
   const anchor = (hash: string) => (onHome ? hash : `/${hash}`);
   const contactHref = onHome ? "#kontakt" : "/#kontakt";
 
+  // Hash-Navigation explizit per scrollIntoView — die native Next-Link-
+  // Hash-Behandlung schlägt browserabhängig fehl (Klick ohne Scroll).
+  function scrollToHash(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    if (!href.startsWith("#")) return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.pushState(null, "", href);
+    setOpen(false);
+  }
+
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       {/* Background-Layer — Opacity per Scroll, Farbe wechselt mit Theme */}
@@ -57,6 +69,7 @@ export default function Nav() {
             <li key={l.hash}>
               <Link
                 href={anchor(l.hash)}
+                onClick={(e) => scrollToHash(e, anchor(l.hash))}
                 className="text-sm text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors duration-200"
               >
                 {l.label}
@@ -81,6 +94,7 @@ export default function Nav() {
           <ThemeToggle />
           <Link
             href={contactHref}
+            onClick={(e) => scrollToHash(e, contactHref)}
             className="text-sm font-medium text-white dark:text-slate-950 bg-slate-950 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 hover:scale-[1.04] active:scale-[0.96] transition-all duration-200 rounded-full px-4 py-2 cursor-pointer"
           >
             Angebot anfragen
@@ -116,7 +130,10 @@ export default function Nav() {
               <li key={l.hash}>
                 <Link
                   href={anchor(l.hash)}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                    scrollToHash(e, anchor(l.hash));
+                    setOpen(false);
+                  }}
                   className="block py-2 text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white"
                 >
                   {l.label}
@@ -137,7 +154,10 @@ export default function Nav() {
             <li>
               <Link
                 href={contactHref}
-                onClick={() => setOpen(false)}
+                onClick={(e) => {
+                  scrollToHash(e, contactHref);
+                  setOpen(false);
+                }}
                 className="block text-center font-medium text-white dark:text-slate-950 bg-slate-950 dark:bg-white rounded-full px-4 py-3 cursor-pointer"
               >
                 Angebot anfragen
