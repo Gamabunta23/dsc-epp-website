@@ -115,9 +115,9 @@ export default function LocationsMap() {
               {/* Halo (paint-order: stroke) in Section-BG-Farbe stellt die
                   Labels über kreuzenden Routen-Linien frei */}
               <text
-                y={-30}
+                y={-28}
                 textAnchor="middle"
-                fontSize={18}
+                fontSize={15}
                 fontWeight={600}
                 fill="currentColor"
                 strokeWidth={5}
@@ -130,7 +130,7 @@ export default function LocationsMap() {
               <text
                 y={-12}
                 textAnchor="middle"
-                fontSize={11}
+                fontSize={9.5}
                 fontWeight={500}
                 fill={pin.featured ? "rgb(3 105 161)" : "rgb(100 116 139)"}
                 strokeWidth={4}
