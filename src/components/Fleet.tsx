@@ -197,7 +197,7 @@ export default function Fleet() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
+            <p className="text-sm font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.15em] mb-4">
               Flotte &amp; Technologie
             </p>
             <h2 className="headline text-4xl md:text-5xl text-slate-950 dark:text-white">
@@ -215,7 +215,7 @@ export default function Fleet() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="border-t border-slate-200 pt-6"
+                className="border-t border-slate-200 dark:border-slate-800 pt-6"
               >
                 <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{f.title}</h3>
                 <p className="mt-2 text-slate-600 leading-relaxed">{f.body}</p>

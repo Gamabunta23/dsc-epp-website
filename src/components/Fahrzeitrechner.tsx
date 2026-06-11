@@ -128,7 +128,7 @@ export default function Fahrzeitrechner() {
           transition={{ duration: 0.7 }}
           className="max-w-3xl mb-16"
         >
-          <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
+          <p className="text-sm font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.15em] mb-4">
             Fahrzeitenrechner
           </p>
           <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
@@ -156,7 +156,7 @@ export default function Fahrzeitrechner() {
             <div>
               <label className="flex items-center justify-between text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-3">
                 <span>Strecke</span>
-                <span className="text-slate-900 tabular-nums normal-case tracking-normal text-base font-semibold">
+                <span className="text-slate-900 dark:text-slate-100 tabular-nums normal-case tracking-normal text-base font-semibold">
                   {km.toLocaleString("de-DE")} km
                 </span>
               </label>
@@ -229,7 +229,7 @@ export default function Fahrzeitrechner() {
                         {v.payload}
                       </div>
                       {v.regulated && (
-                        <div className={`mt-1 text-[10px] uppercase tracking-wider ${active ? "text-sky-400" : "text-sky-700"}`}>
+                        <div className={`mt-1 text-[10px] uppercase tracking-wider ${active ? "text-sky-400" : "text-sky-700 dark:text-sky-400"}`}>
                           EU 561
                         </div>
                       )}

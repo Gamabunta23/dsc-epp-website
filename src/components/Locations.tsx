@@ -58,13 +58,13 @@ export default function Locations() {
           transition={{ duration: 0.7 }}
           className="max-w-3xl mb-16"
         >
-          <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
+          <p className="text-sm font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.15em] mb-4">
             Standorte
           </p>
           <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
             Hauptsitz Bakum.
             <br />
-            <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Hafen Hamburg. Inland OWL.</span>
+            <span className="text-slate-500 dark:text-slate-400">Hafen Hamburg. Inland OWL.</span>
           </h2>
         </motion.div>
 

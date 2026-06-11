@@ -44,7 +44,7 @@ export default function Stats() {
           transition={{ duration: 0.7 }}
           className="max-w-2xl mb-16"
         >
-          <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
+          <p className="text-sm font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.15em] mb-4">
             Die neue Größenordnung
           </p>
           <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">

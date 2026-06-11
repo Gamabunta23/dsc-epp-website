@@ -82,7 +82,7 @@ export default function Journey() {
           transition={{ duration: 0.7 }}
           className="text-center mb-12 lg:mb-14"
         >
-          <p className="text-xs font-medium text-sky-700 uppercase tracking-[0.2em] mb-3">
+          <p className="text-xs font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.2em] mb-3">
             Vom Schiff bis zur Rampe
           </p>
           <h2 className="headline text-3xl md:text-4xl text-slate-950 dark:text-white">
@@ -129,7 +129,7 @@ export default function Journey() {
                 className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1"
                 dangerouslySetInnerHTML={{ __html: step.detail }}
               />
-              <div className="mt-3 text-[10px] font-mono text-sky-700 uppercase tracking-widest">
+              <div className="mt-3 text-[10px] font-mono text-sky-700 dark:text-sky-400 uppercase tracking-widest">
                 0{i + 1}
               </div>
             </motion.div>

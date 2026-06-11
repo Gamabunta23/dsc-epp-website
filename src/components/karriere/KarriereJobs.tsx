@@ -52,7 +52,7 @@ export default function KarriereJobs() {
           transition={{ duration: 0.7 }}
           className="max-w-3xl mb-16"
         >
-          <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
+          <p className="text-sm font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.15em] mb-4">
             Offene Stellen
           </p>
           <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
@@ -75,7 +75,7 @@ export default function KarriereJobs() {
               <div className="p-8 lg:p-10 grid lg:grid-cols-3 gap-8 items-start">
                 <div className="lg:col-span-2">
                   <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-sky-700 uppercase tracking-[0.15em]">
+                    <span className="text-xs font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.15em]">
                       {job.category}
                     </span>
                     <span className="text-slate-300">·</span>
@@ -93,7 +93,7 @@ export default function KarriereJobs() {
                     {job.highlights.map((h) => (
                       <li
                         key={h}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-xs text-slate-700 dark:text-slate-300"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300"
                       >
                         <svg viewBox="0 0 16 16" className="w-3 h-3 text-sky-600" fill="none" strokeWidth="2" stroke="currentColor">
                           <path d="M3 8l3.5 3.5L13 5" strokeLinecap="round" strokeLinejoin="round" />

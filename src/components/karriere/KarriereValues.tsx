@@ -40,7 +40,7 @@ export default function KarriereValues() {
           transition={{ duration: 0.7 }}
           className="max-w-3xl mb-16"
         >
-          <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
+          <p className="text-sm font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.15em] mb-4">
             Warum bei uns
           </p>
           <h2 className="headline text-4xl md:text-5xl text-slate-950 dark:text-white">
@@ -50,7 +50,7 @@ export default function KarriereValues() {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200/60 rounded-3xl overflow-hidden">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200/60 dark:bg-slate-800/60 rounded-3xl overflow-hidden">
           {values.map((v, i) => (
             <motion.div
               key={v.title}
@@ -60,10 +60,10 @@ export default function KarriereValues() {
               transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
               className="bg-white dark:bg-slate-950 p-8 lg:p-10"
             >
-              <div className="text-xs font-mono text-sky-700 uppercase tracking-[0.2em] mb-3">
+              <div className="text-xs font-mono text-sky-700 dark:text-sky-400 uppercase tracking-[0.2em] mb-3">
                 0{i + 1}
               </div>
-              <h3 className="text-xl font-semibold text-slate-950 mb-3">{v.title}</h3>
+              <h3 className="text-xl font-semibold text-slate-950 dark:text-white mb-3">{v.title}</h3>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">{v.body}</p>
             </motion.div>
           ))}

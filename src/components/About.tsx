@@ -21,7 +21,7 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-5"
           >
-            <p className="text-sm font-medium text-sky-700 uppercase tracking-[0.15em] mb-4">
+            <p className="text-sm font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.15em] mb-4">
               Unternehmen
             </p>
             <h2 className="headline text-4xl md:text-5xl text-slate-950 dark:text-white">
@@ -63,7 +63,7 @@ export default function About() {
               transition={{ duration: 0.6, delay: i * 0.08 }}
               className="bg-white dark:bg-slate-900 p-8"
             >
-              <div className="text-xs text-sky-700 font-mono uppercase tracking-[0.2em] mb-3">
+              <div className="text-xs text-sky-700 dark:text-sky-400 font-mono uppercase tracking-[0.2em] mb-3">
                 0{i + 1}
               </div>
               <h3 className="text-lg font-semibold text-slate-950 dark:text-white mb-2">{v.label}</h3>

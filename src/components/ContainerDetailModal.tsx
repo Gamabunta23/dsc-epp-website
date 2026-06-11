@@ -97,7 +97,7 @@ export default function ContainerDetailModal({
               type="button"
               onClick={onClose}
               aria-label="Schließen"
-              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/80 backdrop-blur border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-white hover:text-slate-950 transition-colors cursor-pointer"
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:text-slate-950 dark:hover:text-white transition-colors cursor-pointer"
             >
               <svg viewBox="0 0 16 16" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M4 4l8 8M12 4l-8 8" strokeLinecap="round" />
@@ -121,7 +121,7 @@ export default function ContainerDetailModal({
 
               {/* Specs */}
               <div className="p-8 sm:p-10">
-                <p className="text-xs font-mono text-sky-700 uppercase tracking-[0.2em] mb-2">
+                <p className="text-xs font-mono text-sky-700 dark:text-sky-400 uppercase tracking-[0.2em] mb-2">
                   {size}
                 </p>
                 <h3 className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
