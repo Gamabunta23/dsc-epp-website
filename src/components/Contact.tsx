@@ -106,11 +106,11 @@ export default function Contact() {
               name="message"
               rows={4}
               placeholder="z.B. 1×40′ HC, Reefer −18 °C, Abholung Mo 06:00"
-              className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white placeholder:text-slate-500 dark:text-slate-400 dark:text-slate-500 focus:outline-none focus:border-sky-500/60 focus:bg-white/[0.06] transition-colors"
+              className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-sky-500/60 focus:bg-white/[0.06] transition-colors"
             />
           </div>
           <div className="sm:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-            <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäß
               Datenschutzerklärung zu.
             </p>
@@ -118,7 +118,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === "sending" || status === "sent"}
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-slate-950 font-medium hover:bg-slate-200 hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-default disabled:hover:scale-100"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-slate-950 font-medium shadow-sm hover:bg-slate-200 hover:shadow-lg hover:shadow-sky-500/20 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 disabled:opacity-60 disabled:cursor-default disabled:hover:translate-y-0 disabled:hover:shadow-sm"
               >
                 {status === "sending" && "Wird gesendet …"}
                 {status === "sent" && "Danke — wir melden uns."}
@@ -178,7 +178,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white placeholder:text-slate-500 dark:text-slate-400 dark:text-slate-500 focus:outline-none focus:border-sky-500/60 focus:bg-white/[0.06] transition-colors"
+        className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-sky-500/60 focus:bg-white/[0.06] transition-colors"
       />
     </div>
   );

@@ -104,7 +104,7 @@ export default function Nav() {
           <Link
             href={contactHref}
             onClick={(e) => scrollToHash(e, contactHref)}
-            className="text-sm font-medium text-white dark:text-slate-950 bg-slate-950 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 hover:scale-[1.04] active:scale-[0.96] transition-all duration-200 rounded-full px-4 py-2 cursor-pointer"
+            className="text-sm font-medium text-white dark:text-slate-950 bg-slate-950 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 active:scale-[0.97] transition-all duration-200 rounded-full px-4 py-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950"
           >
             Angebot anfragen
           </Link>
@@ -115,7 +115,8 @@ export default function Nav() {
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Menü"
-            className="p-2 -mr-2 cursor-pointer"
+            aria-expanded={open}
+            className="p-2 -mr-2 cursor-pointer rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
           >
             <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-slate-950 dark:stroke-slate-100" fill="none" strokeWidth="1.5">
               {open ? (

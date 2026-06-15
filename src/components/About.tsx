@@ -27,7 +27,7 @@ export default function About() {
             <h2 className="headline text-4xl md:text-5xl text-slate-950 dark:text-white">
               Aus zwei wird eins.
               <br />
-              <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Aus Erfahrung wird Reichweite.</span>
+              <span className="text-slate-500 dark:text-slate-400">Aus Erfahrung wird Reichweite.</span>
             </h2>
           </motion.div>
 
@@ -53,7 +53,7 @@ export default function About() {
           </motion.div>
         </div>
 
-        <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-px bg-slate-200/60 rounded-2xl overflow-hidden">
+        <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-px bg-slate-200/60 dark:bg-slate-800/60 rounded-2xl overflow-hidden">
           {values.map((v, i) => (
             <motion.div
               key={v.label}
@@ -67,7 +67,7 @@ export default function About() {
                 0{i + 1}
               </div>
               <h3 className="text-lg font-semibold text-slate-950 dark:text-white mb-2">{v.label}</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 dark:text-slate-500 leading-relaxed">{v.body}</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{v.body}</p>
             </motion.div>
           ))}
         </div>

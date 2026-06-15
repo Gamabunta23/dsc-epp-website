@@ -87,13 +87,13 @@ export default function Journey() {
           </p>
           <h2 className="headline text-3xl md:text-4xl text-slate-950 dark:text-white">
             Eine Container-Kette.
-            <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500"> Vier Etappen.</span>
+            <span className="text-slate-500 dark:text-slate-400"> Vier Etappen.</span>
           </h2>
         </motion.div>
 
         <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
           {/* Verbindungslinie (Desktop) */}
-          <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
+          <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-700 to-transparent" />
           {/* Animierter Container-Dot der die Linie entlangläuft */}
           <motion.div
             aria-hidden
@@ -119,14 +119,14 @@ export default function Journey() {
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
               className="relative flex flex-col items-center text-center"
             >
-              <div className="relative z-10 flex items-center justify-center w-14 h-14 rounded-full bg-slate-950 text-white">
+              <div className="relative z-10 flex items-center justify-center w-14 h-14 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950">
                 {step.icon}
               </div>
               <div className="mt-4 text-sm font-semibold text-slate-950 dark:text-white">
                 {step.label}
               </div>
               <div
-                className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1"
+                className="text-xs text-slate-500 dark:text-slate-400 mt-1"
                 dangerouslySetInnerHTML={{ __html: step.detail }}
               />
               <div className="mt-3 text-[10px] font-mono text-sky-700 dark:text-sky-400 uppercase tracking-widest">

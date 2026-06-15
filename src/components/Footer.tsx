@@ -12,7 +12,7 @@ export default function Footer() {
   const anchor = (hash: string) => (onHome ? hash : `/${hash}`);
 
   return (
-    <footer className="bg-slate-950 text-slate-400 dark:text-slate-500 border-t border-white/5">
+    <footer className="bg-slate-950 text-slate-400 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid lg:grid-cols-4 gap-12">
         <div className="lg:col-span-2">
           <Image
@@ -26,7 +26,7 @@ export default function Footer() {
             Container-Logistik aus Bakum, Hamburg &amp; Ostwestfalen-Lippe.
             Multimodal, just in time, EURO VI D.
           </p>
-          <address className="mt-6 text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 not-italic leading-relaxed">
+          <address className="mt-6 text-xs text-slate-500 dark:text-slate-400 not-italic leading-relaxed">
             <span className="block text-slate-300 font-medium">DSC | EPP Logistik GmbH</span>
             Essener Str. 39
             <br />

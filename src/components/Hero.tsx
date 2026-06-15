@@ -78,7 +78,7 @@ export default function Hero() {
         >
           <a
             href="#kontakt"
-            className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-slate-950 dark:bg-white text-white dark:text-slate-950 font-medium hover:bg-slate-800 dark:hover:bg-slate-200 hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 cursor-pointer"
+            className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-slate-950 dark:bg-white text-white dark:text-slate-950 font-medium shadow-sm hover:bg-slate-800 dark:hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-950/15 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 ease-out cursor-pointer"
           >
             Transport anfragen
             <svg viewBox="0 0 16 16" className="w-4 h-4 transition-transform group-hover:translate-x-0.5">

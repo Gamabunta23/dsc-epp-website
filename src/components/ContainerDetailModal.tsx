@@ -97,7 +97,7 @@ export default function ContainerDetailModal({
               type="button"
               onClick={onClose}
               aria-label="Schließen"
-              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:text-slate-950 dark:hover:text-white transition-colors cursor-pointer"
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:text-slate-950 dark:hover:text-white transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900"
             >
               <svg viewBox="0 0 16 16" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M4 4l8 8M12 4l-8 8" strokeLinecap="round" />
@@ -106,7 +106,7 @@ export default function ContainerDetailModal({
 
             <div className="grid sm:grid-cols-2 overflow-y-auto">
               {/* Illustration oder Foto */}
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 px-8 py-10 sm:px-10 sm:py-14 flex items-center justify-center min-h-[240px]">
+              <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-950 px-8 py-10 sm:px-10 sm:py-14 flex items-center justify-center min-h-[240px]">
                 {photo ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -128,7 +128,7 @@ export default function ContainerDetailModal({
                   {name}
                 </h3>
                 {description && (
-                  <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {description}
                   </p>
                 )}
@@ -165,7 +165,7 @@ export default function ContainerDetailModal({
                     {specs?.volume && <SpecRow label="Volumen" value={specs.volume} />}
                   </dl>
                 ) : (
-                  <p className="mt-8 text-sm text-slate-500 italic">
+                  <p className="mt-8 text-sm text-slate-500 dark:text-slate-400 italic">
                     Detaillierte Spezifikationen folgen — kommen Sie gerne auf
                     uns zu.
                   </p>
@@ -174,7 +174,7 @@ export default function ContainerDetailModal({
                 <a
                   href="#kontakt"
                   onClick={onClose}
-                  className="group mt-10 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-950 text-white text-sm font-medium hover:bg-slate-800 transition-colors cursor-pointer"
+                  className="group mt-10 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 text-sm font-medium hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900"
                 >
                   Diesen Container anfragen
                   <svg viewBox="0 0 16 16" className="w-4 h-4 transition-transform group-hover:translate-x-0.5">
@@ -192,8 +192,8 @@ export default function ContainerDetailModal({
 
 function SpecRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col gap-0.5 border-b border-slate-100 pb-3 last:border-0">
-      <dt className="text-xs uppercase tracking-[0.1em] text-slate-500">{label}</dt>
+    <div className="flex flex-col gap-0.5 border-b border-slate-100 dark:border-slate-800 pb-3 last:border-0">
+      <dt className="text-xs uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">{label}</dt>
       <dd className="text-base font-semibold text-slate-950 dark:text-white tabular-nums">{value}</dd>
     </div>
   );

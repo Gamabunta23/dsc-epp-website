@@ -203,7 +203,7 @@ export default function Fleet() {
             <h2 className="headline text-4xl md:text-5xl text-slate-950 dark:text-white">
               Modernes Equipment.
               <br />
-              <span className="text-slate-500">Maximale Verfügbarkeit.</span>
+              <span className="text-slate-500 dark:text-slate-400">Maximale Verfügbarkeit.</span>
             </h2>
           </motion.div>
 
@@ -218,7 +218,7 @@ export default function Fleet() {
                 className="border-t border-slate-200 dark:border-slate-800 pt-6"
               >
                 <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{f.title}</h3>
-                <p className="mt-2 text-slate-600 leading-relaxed">{f.body}</p>
+                <p className="mt-2 text-slate-600 dark:text-slate-400 leading-relaxed">{f.body}</p>
               </motion.li>
             ))}
           </ul>

@@ -35,7 +35,7 @@ function Counter({ to, suffix }: { to: number; suffix?: string }) {
 
 export default function Stats() {
   return (
-    <section className="relative py-24 lg:py-32 bg-slate-50 dark:bg-slate-900 border-y border-slate-200/60 dark:border-slate-800/60 dark:border-slate-800/60">
+    <section className="relative py-24 lg:py-32 bg-slate-50 dark:bg-slate-900 border-y border-slate-200/60 dark:border-slate-800/60">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -50,11 +50,11 @@ export default function Stats() {
           <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
             Zwei Spezialisten.
             <br />
-            <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Eine Logistik-Plattform.</span>
+            <span className="text-slate-500 dark:text-slate-400">Eine Logistik-Plattform.</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-slate-200/60 rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-slate-200/60 dark:bg-slate-800/60 rounded-2xl overflow-hidden">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
@@ -68,7 +68,7 @@ export default function Stats() {
                 <Counter to={s.value} suffix={s.suffix} />
               </div>
               <div className="mt-4 text-sm font-semibold text-slate-900 dark:text-slate-100">{s.label}</div>
-              {s.sub && <div className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">{s.sub}</div>}
+              {s.sub && <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{s.sub}</div>}
             </motion.div>
           ))}
         </div>

@@ -134,9 +134,9 @@ export default function Fahrzeitrechner() {
           <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
             Wie lange dauert
             <br />
-            <span className="text-slate-500 dark:text-slate-400 dark:text-slate-500">Ihre Tour wirklich?</span>
+            <span className="text-slate-500 dark:text-slate-400">Ihre Tour wirklich?</span>
           </h2>
-          <p className="mt-6 text-slate-600 dark:text-slate-400 dark:text-slate-500 max-w-xl leading-relaxed">
+          <p className="mt-6 text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed">
             Live-Kalkulation mit realistischen Mischgeschwindigkeiten und den
             Pflichtpausen nach EU-VO 561/2006. Ideal für die Disposition vor
             der Anfrage.
@@ -154,7 +154,7 @@ export default function Fahrzeitrechner() {
           >
             {/* Distanz */}
             <div>
-              <label className="flex items-center justify-between text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-3">
+              <label className="flex items-center justify-between text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mb-3">
                 <span>Strecke</span>
                 <span className="text-slate-900 dark:text-slate-100 tabular-nums normal-case tracking-normal text-base font-semibold">
                   {km.toLocaleString("de-DE")} km
@@ -190,7 +190,7 @@ export default function Fahrzeitrechner() {
 
             {/* Startzeit */}
             <div className="mt-8">
-              <label htmlFor="startzeit" className="block text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-3">
+              <label htmlFor="startzeit" className="block text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mb-3">
                 Startzeit
               </label>
               <input
@@ -204,7 +204,7 @@ export default function Fahrzeitrechner() {
 
             {/* Fahrzeugtyp */}
             <div className="mt-10">
-              <p className="text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-3">
+              <p className="text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mb-3">
                 Fahrzeug
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -215,7 +215,7 @@ export default function Fahrzeitrechner() {
                       key={v.id}
                       type="button"
                       onClick={() => setVehicleId(v.id)}
-                      className={`text-left rounded-2xl border p-4 transition-all duration-200 cursor-pointer ${
+                      className={`text-left rounded-2xl border p-4 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900 ${
                         active
                           ? "border-slate-950 bg-slate-950 dark:border-slate-700 dark:bg-slate-800 text-white"
                           : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600"
@@ -225,7 +225,7 @@ export default function Fahrzeitrechner() {
                       <div className={`mt-2 text-xs tabular-nums ${active ? "text-sky-400" : "text-slate-700 dark:text-slate-300"}`}>
                         Ø {v.speed} km/h
                       </div>
-                      <div className={`mt-1 text-[11px] ${active ? "text-slate-400 dark:text-slate-500" : "text-slate-500 dark:text-slate-400 dark:text-slate-500"}`}>
+                      <div className={`mt-1 text-[11px] ${active ? "text-slate-400 dark:text-slate-500" : "text-slate-500 dark:text-slate-400"}`}>
                         {v.payload}
                       </div>
                       {v.regulated && (
@@ -241,7 +241,7 @@ export default function Fahrzeitrechner() {
 
             {/* Optionen */}
             <div className="mt-10 space-y-3">
-              <p className="text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-3">
+              <p className="text-xs uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mb-3">
                 Optionen
               </p>
               <Toggle
@@ -330,7 +330,7 @@ export default function Fahrzeitrechner() {
           </motion.div>
         </div>
 
-        <p className="mt-8 max-w-3xl text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 leading-relaxed">
+        <p className="mt-8 max-w-3xl text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
           Hinweis: Die berechneten Werte sind Richtwerte für die Disposition.
           Tatsächliche Fahrzeiten hängen von Verkehrslage, Beladung,
           Wartezeiten an Rampen und individueller Fahrweise ab. Pflichtpausen
@@ -359,9 +359,11 @@ function Toggle({
   return (
     <button
       type="button"
+      role="switch"
+      aria-checked={checked}
       onClick={() => !disabled && onChange(!checked)}
       disabled={disabled}
-      className={`w-full text-left flex items-start gap-4 rounded-2xl border px-4 py-3 transition-colors ${
+      className={`w-full text-left flex items-start gap-4 rounded-2xl border px-4 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900 ${
         disabled
           ? "border-slate-200 dark:border-slate-800 bg-slate-100/40 dark:bg-slate-900/40 cursor-not-allowed opacity-60"
           : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600 cursor-pointer"
@@ -369,7 +371,7 @@ function Toggle({
     >
       <span
         className={`shrink-0 mt-0.5 relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
-          active ? "bg-sky-600" : "bg-slate-300"
+          active ? "bg-sky-600" : "bg-slate-300 dark:bg-slate-700"
         }`}
       >
         <span
@@ -380,7 +382,7 @@ function Toggle({
       </span>
       <span className="flex-1">
         <span className="text-sm text-slate-900 dark:text-slate-100 leading-snug block">{label}</span>
-        {hint && <span className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-0.5 block">{hint}</span>}
+        {hint && <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 block">{hint}</span>}
       </span>
     </button>
   );
@@ -389,8 +391,8 @@ function Toggle({
 function Cell({ label, value, muted }: { label: string; value: string; muted?: boolean }) {
   return (
     <div className="bg-slate-950 p-5">
-      <div className="text-[10px] uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 dark:text-slate-500">{label}</div>
-      <div className={`mt-1 text-lg font-semibold tabular-nums ${muted ? "text-slate-500 dark:text-slate-400 dark:text-slate-500" : "text-white"}`}>
+      <div className="text-[10px] uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400">{label}</div>
+      <div className={`mt-1 text-lg font-semibold tabular-nums ${muted ? "text-slate-500 dark:text-slate-400" : "text-white"}`}>
         {value}
       </div>
     </div>
