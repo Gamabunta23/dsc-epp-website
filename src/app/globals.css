@@ -110,14 +110,9 @@ section[id],
 .fleet-leds .led-bulb {
   opacity: 0;
 }
-/* Weiß-cyaner Schein/Glow — einmal auf die ganze Gruppe (leicht, mobil-tauglich) */
-.fleet-leds {
-  filter:
-    drop-shadow(0 0 4px rgba(255, 255, 255, 1))
-    drop-shadow(0 0 12px rgba(186, 230, 253, 0.95))
-    drop-shadow(0 0 26px rgba(56, 189, 248, 0.65))
-    drop-shadow(0 0 44px rgba(56, 189, 248, 0.4));
-}
+/* Glow läuft jetzt über einen echten SVG-Filter (#fleet-glow in Fleet.tsx),
+   damit der Schein auch auf Mobilgeräten rendert (CSS drop-shadow auf SVG
+   wird dort weggerechnet). */
 svg[data-lit="true"] .led-seg {
   animation: led-stripe-on 0.9s ease-out both;
 }

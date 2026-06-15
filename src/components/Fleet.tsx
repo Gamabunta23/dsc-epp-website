@@ -72,6 +72,17 @@ export default function Fleet() {
                 data-lit={lit ? "true" : "false"}
                 aria-hidden
               >
+                {/* Glow OHNE Filter: weicher Radial-Verlauf (hell innen →
+                    transparent außen) für echtes abstrahlendes Licht. Rendert auf
+                    jedem Gerät, keine drop-shadow-/SVG-Filter-Probleme. */}
+                <defs>
+                  <radialGradient id="ledGlow">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+                    <stop offset="28%" stopColor="#bae6fd" stopOpacity="0.6" />
+                    <stop offset="62%" stopColor="#38bdf8" stopOpacity="0.28" />
+                    <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
                 <g className="fleet-leds">
                 {/* Band in 4 Segmenten — exakt auf den weißen Strichen des
                     Bildes (pixel-getraced), Panel-Trennungen bleiben dunkel.
@@ -104,45 +115,36 @@ export default function Fleet() {
                     delay: 0.92,
                     dur: 1.0,
                   },
-                ].map((seg, i) => (
-                  <path
-                    key={i}
-                    className="led-seg"
-                    style={{ animationDelay: `${i * 0.2}s` }}
-                    d={seg.d}
-                    fill="none"
-                    stroke="#f4fbff"
-                    strokeWidth={9}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                ))}
+                ].map((seg, i) => {
+                  const delay = `${i * 0.2}s`;
+                  return (
+                    <g key={i}>
+                      <path className="led-seg" style={{ animationDelay: delay }} d={seg.d} fill="none" stroke="#38bdf8" strokeOpacity={0.2} strokeWidth={46} strokeLinecap="round" strokeLinejoin="round" />
+                      <path className="led-seg" style={{ animationDelay: delay }} d={seg.d} fill="none" stroke="#7dd3fc" strokeOpacity={0.4} strokeWidth={26} strokeLinecap="round" strokeLinejoin="round" />
+                      <path className="led-seg" style={{ animationDelay: delay }} d={seg.d} fill="none" stroke="#e0f6ff" strokeOpacity={0.7} strokeWidth={15} strokeLinecap="round" strokeLinejoin="round" />
+                      <path className="led-seg" style={{ animationDelay: delay }} d={seg.d} fill="none" stroke="#ffffff" strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" />
+                    </g>
+                  );
+                })}
                 {[
                   [427, 252],
                   [395, 286],
                   [435, 288],
                   [470, 292],
-                ].map(([cx, cy], i) => (
-                  <circle
-                    key={i}
-                    className="led-bulb"
-                    style={{ animationDelay: `${0.9 + i * 0.14}s`, transformBox: "fill-box", transformOrigin: "center" }}
-                    cx={cx}
-                    cy={cy}
-                    r={13}
-                    fill="#ffffff"
-                  />
-                ))}
+                ].map(([cx, cy], i) => {
+                  const s = { animationDelay: `${0.9 + i * 0.14}s`, transformBox: "fill-box" as const, transformOrigin: "center" };
+                  return (
+                    <g key={i}>
+                      <circle className="led-bulb" style={s} cx={cx} cy={cy} r={40} fill="url(#ledGlow)" />
+                      <circle className="led-bulb" style={s} cx={cx} cy={cy} r={12} fill="#ffffff" />
+                    </g>
+                  );
+                })}
                 {/* Untere Leuchte (Nebel-/Tagfahrlicht) — zündet als letztes */}
-                <ellipse
-                  className="led-bulb"
-                  style={{ animationDelay: "1.5s", transformBox: "fill-box", transformOrigin: "center" }}
-                  cx={447}
-                  cy={343}
-                  rx={17}
-                  ry={11}
-                  fill="#ffffff"
-                />
+                <g>
+                  <ellipse className="led-bulb" style={{ animationDelay: "1.5s", transformBox: "fill-box", transformOrigin: "center" }} cx={447} cy={343} rx={48} ry={38} fill="url(#ledGlow)" />
+                  <ellipse className="led-bulb" style={{ animationDelay: "1.5s", transformBox: "fill-box", transformOrigin: "center" }} cx={447} cy={343} rx={16} ry={10} fill="#ffffff" />
+                </g>
                 </g>
               </svg>
             </div>
