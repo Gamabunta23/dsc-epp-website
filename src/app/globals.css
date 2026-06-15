@@ -101,3 +101,41 @@ section[id],
     linear-gradient(to right, rgba(226, 232, 240, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(226, 232, 240, 0.05) 1px, transparent 1px);
 }
+
+/* Fleet-LKW LED "Welcome Light": Grundzustand AUS. Beim Reinscrollen
+   (data-lit per IntersectionObserver) leuchtet die LED-Leiste von links nach
+   rechts auf (Sweep, per-Segment-Delay in Fleet.tsx), danach zünden die
+   Scheinwerfer-Punkte. Reines CSS — laeuft zuverlaessig auf jedem Geraet. */
+.fleet-leds .led-seg,
+.fleet-leds .led-bulb {
+  opacity: 0;
+}
+/* Weiß-cyaner Schein/Glow — einmal auf die ganze Gruppe (leicht, mobil-tauglich) */
+.fleet-leds {
+  filter:
+    drop-shadow(0 0 4px rgba(255, 255, 255, 1))
+    drop-shadow(0 0 12px rgba(186, 230, 253, 0.95))
+    drop-shadow(0 0 26px rgba(56, 189, 248, 0.65))
+    drop-shadow(0 0 44px rgba(56, 189, 248, 0.4));
+}
+svg[data-lit="true"] .led-seg {
+  animation: led-stripe-on 0.9s ease-out both;
+}
+svg[data-lit="true"] .led-bulb {
+  animation: led-bulb-on 0.7s ease-out both;
+}
+@keyframes led-stripe-on {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes led-bulb-on {
+  0% { opacity: 0; transform: scale(0.4); }
+  55% { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  svg[data-lit="true"] .led-seg,
+  svg[data-lit="true"] .led-bulb {
+    animation-duration: 0.01ms;
+  }
+}

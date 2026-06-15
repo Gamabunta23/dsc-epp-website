@@ -144,6 +144,13 @@ export default function HeroSearch() {
           aria-label="Website durchsuchen"
           role="combobox"
           aria-expanded={open}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck={false}
+          data-1p-ignore
+          data-lpignore="true"
+          suppressHydrationWarning
           className="w-full bg-transparent text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none"
         />
       </div>

@@ -172,20 +172,12 @@ function Truck() {
         })}
       </svg>
 
-      {/* Dark-Mode: invert + Schwarz exakt auf slate-950 mappen,
-          damit das Video-Rechteck mit dem Section-BG verschmilzt */}
-      <svg width="0" height="0" className="absolute" aria-hidden>
-        <filter id="truck-dark-bg" colorInterpolationFilters="sRGB">
-          <feComponentTransfer>
-            <feFuncR type="linear" slope="0.9922" intercept="0.0078" />
-            <feFuncG type="linear" slope="0.9765" intercept="0.0235" />
-            <feFuncB type="linear" slope="0.9098" intercept="0.0902" />
-          </feComponentTransfer>
-        </filter>
-      </svg>
+      {/* Dark-Mode: reines invert(1) — weißer Video-BG → ~Schwarz (≈ slate-950),
+          schwarze Sicken → Weiß. Bewusst OHNE url(#filter), da CSS-filter mit
+          SVG-url-Referenz auf iOS Safari unzuverlässig ist (weißer Kasten). */}
       <style jsx global>{`
         .dark .truck-frame {
-          filter: invert(1) url(#truck-dark-bg);
+          filter: invert(1);
         }
       `}</style>
     </motion.span>

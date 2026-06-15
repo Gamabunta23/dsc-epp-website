@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const features = [
   {
@@ -28,6 +28,23 @@ export default function Fleet() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
+  // "Welcome Light": eigener IntersectionObserver (zuverlässig auf jedem Gerät).
+  // lit togglet mit der Sichtbarkeit — bei 50 % im Bild gehen die LEDs an
+  // (Sweep-Animation spielt), beim Wegscrollen wieder aus. So ist der Effekt
+  // beliebig wiederholbar und löst erst aus, wenn der LKW richtig zu sehen ist.
+  const ledRef = useRef<HTMLDivElement>(null);
+  const [lit, setLit] = useState(false);
+  useEffect(() => {
+    const el = ledRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => setLit(entries[0].isIntersecting),
+      { threshold: 0.5 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section ref={ref} id="flotte" className="relative py-24 lg:py-40 bg-white dark:bg-slate-950 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -37,7 +54,7 @@ export default function Fleet() {
         >
           <div className="absolute inset-0 bg-grid opacity-50" />
           <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div className="relative w-full">
+            <div ref={ledRef} className="relative w-full">
               <Image
                 src="/fleet-truck-v16.jpeg"
                 alt="LKW der Flotte"
@@ -52,8 +69,10 @@ export default function Fleet() {
               <svg
                 viewBox="0 0 953 643"
                 className="absolute inset-0 w-full h-full pointer-events-none"
+                data-lit={lit ? "true" : "false"}
                 aria-hidden
               >
+                <g className="fleet-leds">
                 {/* Band in 4 Segmenten — exakt auf den weißen Strichen des
                     Bildes (pixel-getraced), Panel-Trennungen bleiben dunkel.
                     Cover (grau, dRev) weicht synchron mit dem Licht zurück:
@@ -86,40 +105,17 @@ export default function Fleet() {
                     dur: 1.0,
                   },
                 ].map((seg, i) => (
-                  <g key={i}>
-                    <motion.path
-                      d={seg.dRev}
-                      fill="none"
-                      stroke="rgb(100 116 139)"
-                      strokeWidth={9}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      opacity={0.92}
-                      initial={{ pathLength: 1 }}
-                      whileInView={{ pathLength: 0 }}
-                      viewport={{ once: false, margin: "-120px 0px" }}
-                      transition={{ duration: seg.dur, delay: seg.delay, ease: "easeInOut" }}
-                    />
-                    <motion.path
-                      d={seg.d}
-                      fill="none"
-                      stroke="#e0f2fe"
-                      strokeWidth={7}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      whileInView={{ pathLength: 1, opacity: 1 }}
-                      viewport={{ once: false, margin: "-120px 0px" }}
-                      transition={{
-                        pathLength: { duration: seg.dur, delay: seg.delay, ease: "easeInOut" },
-                        opacity: { duration: 0.15, delay: seg.delay },
-                      }}
-                      style={{
-                        filter:
-                          "drop-shadow(0 0 4px rgba(240, 249, 255, 1)) drop-shadow(0 0 9px rgba(186, 230, 253, 1)) drop-shadow(0 0 18px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 32px rgba(56, 189, 248, 0.55))",
-                      }}
-                    />
-                  </g>
+                  <path
+                    key={i}
+                    className="led-seg"
+                    style={{ animationDelay: `${i * 0.2}s` }}
+                    d={seg.d}
+                    fill="none"
+                    stroke="#f4fbff"
+                    strokeWidth={9}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 ))}
                 {[
                   [427, 252],
@@ -127,64 +123,27 @@ export default function Fleet() {
                   [435, 288],
                   [470, 292],
                 ].map(([cx, cy], i) => (
-                  <g key={i}>
-                    <motion.circle
-                      cx={cx}
-                      cy={cy}
-                      r={14}
-                      fill="rgb(100 116 139)"
-                      initial={{ opacity: 0.92 }}
-                      whileInView={{ opacity: 0 }}
-                      viewport={{ once: false, margin: "-120px 0px" }}
-                      transition={{ duration: 0.35, delay: 2.0 + i * 0.18 }}
-                    />
-                    <motion.circle
-                      cx={cx}
-                      cy={cy}
-                      r={12}
-                      fill="#f0f9ff"
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      whileInView={{ opacity: [0, 1, 0.65, 1], scale: 1 }}
-                      viewport={{ once: false, margin: "-120px 0px" }}
-                      transition={{ duration: 0.5, delay: 2.0 + i * 0.18 }}
-                      style={{
-                        transformOrigin: "center",
-                        transformBox: "fill-box",
-                        filter:
-                          "drop-shadow(0 0 5px rgba(240, 249, 255, 1)) drop-shadow(0 0 11px rgba(186, 230, 253, 1)) drop-shadow(0 0 20px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 34px rgba(56, 189, 248, 0.5))",
-                      }}
-                    />
-                  </g>
+                  <circle
+                    key={i}
+                    className="led-bulb"
+                    style={{ animationDelay: `${0.9 + i * 0.14}s`, transformBox: "fill-box", transformOrigin: "center" }}
+                    cx={cx}
+                    cy={cy}
+                    r={13}
+                    fill="#ffffff"
+                  />
                 ))}
                 {/* Untere Leuchte (Nebel-/Tagfahrlicht) — zündet als letztes */}
-                <motion.ellipse
-                  cx={447}
-                  cy={343}
-                  rx={19}
-                  ry={13}
-                  fill="rgb(100 116 139)"
-                  initial={{ opacity: 0.92 }}
-                  whileInView={{ opacity: 0 }}
-                  viewport={{ once: false, margin: "-120px 0px" }}
-                  transition={{ duration: 0.35, delay: 2.85 }}
-                />
-                <motion.ellipse
+                <ellipse
+                  className="led-bulb"
+                  style={{ animationDelay: "1.5s", transformBox: "fill-box", transformOrigin: "center" }}
                   cx={447}
                   cy={343}
                   rx={17}
                   ry={11}
-                  fill="#f0f9ff"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: [0, 1, 0.65, 1], scale: 1 }}
-                  viewport={{ once: false, margin: "-120px 0px" }}
-                  transition={{ duration: 0.5, delay: 2.85 }}
-                  style={{
-                    transformOrigin: "center",
-                    transformBox: "fill-box",
-                    filter:
-                      "drop-shadow(0 0 7px rgba(186, 230, 253, 1)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.8)) drop-shadow(0 0 28px rgba(56, 189, 248, 0.4))",
-                  }}
+                  fill="#ffffff"
                 />
+                </g>
               </svg>
             </div>
           </div>

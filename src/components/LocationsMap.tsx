@@ -49,7 +49,7 @@ export default function LocationsMap() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-      className="relative max-w-4xl mx-auto mb-20 text-slate-950 dark:text-white"
+      className="relative max-w-4xl mx-auto mb-20 text-slate-950 dark:text-white hidden md:block"
     >
       <svg
         viewBox="0 0 560 340"
