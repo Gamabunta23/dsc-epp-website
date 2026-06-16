@@ -17,8 +17,6 @@ export function proxy(request: NextRequest) {
   if (!host.includes("dsc-epp.de")) {
     res.headers.set("X-Robots-Tag", "noindex, nofollow");
   }
-  // TEMP: Auto-Deploy-Test-Markierung (wird gleich wieder entfernt)
-  res.headers.set("X-Deploy-Check", "auto-deploy-test");
   return res;
 }
 
