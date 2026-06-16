@@ -94,20 +94,25 @@ export default function Journey() {
         <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
           {/* Verbindungslinie (Desktop) */}
           <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-700 to-transparent" />
-          {/* Animierter Container-Dot der die Linie entlangläuft */}
+          {/* Animierter Glow-Dot der die Linie von Etappe 1 → 4 entlangläuft.
+              `left` in % ist relativ zur Container-Breite → läuft exakt von
+              12,5% (erste Etappe) bis 87,5% (letzte Etappe), nicht ins Leere. */}
           <motion.div
             aria-hidden
-            className="hidden lg:block absolute top-7 left-[12.5%] w-2 h-2 -mt-1 rounded-sm bg-sky-600 shadow-[0_0_0_4px_rgba(2,132,199,0.15)]"
-            initial={{ x: 0, opacity: 0 }}
-            whileInView={{ x: "calc(75vw - 8px)", opacity: [0, 1, 1, 1, 0] }}
+            className="hidden lg:block absolute top-7 w-3 h-3 -mt-1.5 -ml-1.5 rounded-full bg-sky-400 shadow-[0_0_12px_3px_rgba(56,189,248,0.9),0_0_30px_10px_rgba(56,189,248,0.55)]"
+            initial={{ left: "12.5%", opacity: 0 }}
+            whileInView={{ left: ["12.5%", "87.5%"], opacity: [0, 1, 1, 0] }}
             viewport={{ once: false }}
             transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "linear",
-              repeatDelay: 0.5,
+              left: { duration: 4.8, ease: "linear", repeat: Infinity, repeatDelay: 0.5 },
+              opacity: {
+                duration: 4.8,
+                ease: "linear",
+                times: [0, 0.04, 0.96, 1],
+                repeat: Infinity,
+                repeatDelay: 0.5,
+              },
             }}
-            style={{ maxWidth: "calc((100% - 0px) * 1)" }}
           />
 
           {steps.map((step, i) => (
