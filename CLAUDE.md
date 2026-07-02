@@ -61,6 +61,14 @@ EU-VO 561/2006 Pausen (45 min nach 4,5 h, max 9 h Tag, 11 h Ruhezeit).
 Stadt-Zuschlag +15 %. Startzeit-Picker → Ankunftszeit live berechnet.
 Hydration-mismatch vermieden via useEffect-Init der Startzeit.
 
+## public/signatur/ — NIEMALS löschen
+
+Die Bilder in `public/signatur/` werden von den Outlook-E-Mail-Signaturen
+aller Mitarbeiter per URL referenziert (`https://www.dsc-epp.de/signatur/...`).
+Die Website nutzt sie nicht — sie sind trotzdem KEIN Dead-Asset. Nie löschen,
+nie umbenennen; Austausch nur unter gleichem Dateinamen. Details:
+`public/signatur/README.md`.
+
 ## Open items (do not invent values, ask the user)
 
 - Bakum Telefon + WhatsApp: Platzhalter `+49 4446 000000` / `+49 000 0000000`
