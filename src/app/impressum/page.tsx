@@ -43,13 +43,8 @@ export default function ImpressumPage() {
         Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG: DE815816757
       </p>
 
-      <h2>Berufshaftpflichtversicherung</h2>
-      <p className="text-slate-400">
-        [Name und Sitz der Versicherung, Geltungsraum einzutragen]
-      </p>
-
       <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-      <p className="text-slate-400">[Name und Anschrift einzutragen]</p>
+      <p>Artur Epp, Essener Str. 39, 49456 Bakum</p>
 
       <h2>EU-Streitschlichtung</h2>
       <p>

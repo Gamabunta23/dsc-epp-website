@@ -75,8 +75,9 @@ nie umbenennen; Austausch nur unter gleichem Dateinamen. Details:
 - Kontaktformular: API-Route fertig (/api/contact, Resend) — RESEND_API_KEY
   in .env setzen, bis dahin mailto:-Fallback
 - 21st.dev API-Key: Platzhalter in `.mcp.json`
-- Impressum: fast komplett (GF, Registergericht Oldenburg, HRB 218996,
-  USt-IdNr DE815816757) — offen nur Versicherung + Verantwortlicher § 18 MStV
+- Impressum: KOMPLETT ✓ (GF, Registergericht Oldenburg, HRB 218996,
+  USt-IdNr DE815816757, § 18 MStV: Artur Epp; Versicherungs-Abschnitt
+  bewusst entfernt — für Spedition nicht pflichtig)
 - Datenschutz: inhaltlich komplett (Hetzner, Resend, WhatsApp, Bewerbungen,
   Local Storage) — finale Anwalts-Prüfung vor Go-Live empfohlen; Hetzner-AVV
   in der Cloud Console abschließen
