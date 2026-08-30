@@ -35,13 +35,12 @@ export default function ImpressumPage() {
         <dt>Registergericht</dt>
         <dd>Amtsgericht Oldenburg</dd>
         <dt>Registernummer</dt>
-        <dd className="text-slate-400">HRB [Nummer einzutragen]</dd>
+        <dd>HRB 218996</dd>
       </dl>
 
       <h2>Umsatzsteuer-ID</h2>
       <p>
-        Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG:{" "}
-        <span className="text-slate-400">DE [Nummer einzutragen]</span>
+        Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG: DE815816757
       </p>
 
       <h2>Berufshaftpflichtversicherung</h2>
