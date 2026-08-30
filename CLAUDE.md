@@ -75,8 +75,11 @@ nie umbenennen; Austausch nur unter gleichem Dateinamen. Details:
 - Kontaktformular: API-Route fertig (/api/contact, Resend) — RESEND_API_KEY
   in .env setzen, bis dahin mailto:-Fallback
 - 21st.dev API-Key: Platzhalter in `.mcp.json`
-- Impressum: Geschäftsführer, HRB, USt-IdNr, Versicherung
-- Datenschutz: Hosting-Anbieter
+- Impressum: HRB-Nummer, USt-IdNr, Versicherung, Verantwortlicher § 18 MStV
+  (Geschäftsführer + Registergericht sind drin)
+- Datenschutz: inhaltlich komplett (Hetzner, Resend, WhatsApp, Bewerbungen,
+  Local Storage) — finale Anwalts-Prüfung vor Go-Live empfohlen; Hetzner-AVV
+  in der Cloud Console abschließen
 - Domain dsc-epp.de: metadataBase in layout.tsx, sitemap.ts + robots.ts
   müssen bei anderer Domain angepasst werden
 - AGB: braucht Rechtsprüfung
