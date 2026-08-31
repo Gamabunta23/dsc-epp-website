@@ -71,6 +71,10 @@ nie umbenennen; Austausch nur unter gleichem Dateinamen. Details:
 
 ## Open items (do not invent values, ask the user)
 
+- GO-LIVE-TAG: alle Mailadressen von @dsc-logistik.de auf @dsc-epp.de
+  umstellen (auftrag@, info@, bewerbung@) — erst wenn die Postfächer in
+  M365 existieren (Henning/id-sys fragt man dazu)
+
 - Bakum Telefon + WhatsApp: Platzhalter `+49 4446 000000` / `+49 000 0000000`
 - Kontaktformular: API-Route fertig (/api/contact, Resend) — RESEND_API_KEY
   in .env setzen, bis dahin mailto:-Fallback
