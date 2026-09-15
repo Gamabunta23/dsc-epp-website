@@ -76,8 +76,11 @@ nie umbenennen; Austausch nur unter gleichem Dateinamen. Details:
   Postfächer von Henning/id-sys bestätigt; Website live auf
   https://dsc-epp.de mit Let's-Encrypt-SSL)
 - Bakum Telefon + WhatsApp: Platzhalter `+49 4446 000000` / `+49 000 0000000`
-- Kontaktformular: API-Route fertig (/api/contact, Resend) — RESEND_API_KEY
-  in .env setzen, bis dahin mailto:-Fallback
+- Kontaktformular: FERTIG ✓ (2026-09-15) — versendet via Resend
+  (Domain dsc-epp.de verified, Region eu-west-1) an auftrag@dsc-epp.de;
+  RESEND_API_KEY + CONTACT_FROM ("DSC | EPP Website <website@dsc-epp.de>")
+  liegen als Env-Vars in Coolify (nicht im Repo); mailto:-Fallback bleibt
+  als Netz falls die API mal 503/Fehler liefert
 - 21st.dev API-Key: Platzhalter in `.mcp.json`
 - Impressum: KOMPLETT ✓ (GF, Registergericht Oldenburg, HRB 218996,
   USt-IdNr DE815816757, § 18 MStV: Artur Epp; Versicherungs-Abschnitt
