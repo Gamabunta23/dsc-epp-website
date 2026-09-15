@@ -111,8 +111,15 @@ export default function Contact() {
           </div>
           <div className="sm:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäß
-              Datenschutzerklärung zu.
+              Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer
+              Anfrage verarbeitet — Details in unserer{" "}
+              <a
+                href="/datenschutz"
+                className="text-sky-400 hover:underline"
+              >
+                Datenschutzerklärung
+              </a>
+              .
             </p>
             <div className="flex flex-col items-center sm:items-end gap-2">
               <button

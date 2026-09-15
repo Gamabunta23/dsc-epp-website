@@ -46,16 +46,6 @@ export default function ImpressumPage() {
       <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
       <p>Artur Epp, Essener Str. 39, 49456 Bakum</p>
 
-      <h2>EU-Streitschlichtung</h2>
-      <p>
-        Die Europäische Kommission stellt eine Plattform zur
-        Online-Streitbeilegung (OS) bereit:{" "}
-        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">
-          https://ec.europa.eu/consumers/odr/
-        </a>
-        . Unsere E-Mail-Adresse finden Sie oben im Impressum.
-      </p>
-
       <h2>Verbraucher-Streitbeilegung / Universalschlichtungsstelle</h2>
       <p>
         Wir sind nicht bereit oder verpflichtet, an
