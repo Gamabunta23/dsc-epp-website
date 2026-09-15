@@ -105,7 +105,7 @@ export default function KarriereJobs() {
                 </div>
                 <div className="lg:text-right">
                   <a
-                    href={`mailto:bewerbung@dsc-logistik.de?subject=${encodeURIComponent("Bewerbung: " + job.title)}`}
+                    href={`mailto:bewerbung@dsc-epp.de?subject=${encodeURIComponent("Bewerbung: " + job.title)}`}
                     className="group/btn inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-950 text-white font-medium hover:bg-slate-800 transition-colors duration-200 cursor-pointer"
                   >
                     Jetzt bewerben

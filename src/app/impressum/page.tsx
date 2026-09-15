@@ -22,7 +22,7 @@ export default function ImpressumPage() {
         <dt>Telefon</dt>
         <dd>+49 40 8090356 - 0</dd>
         <dt>E-Mail</dt>
-        <dd><a href="mailto:info@dsc-logistik.de">info@dsc-logistik.de</a></dd>
+        <dd><a href="mailto:info@dsc-epp.de">info@dsc-epp.de</a></dd>
       </dl>
 
       <h2>Vertretungsberechtigt</h2>

@@ -18,7 +18,7 @@ function buildMailto(fields: Record<string, string>): string {
     "",
     fields.message || "",
   ].join("\n");
-  return `mailto:auftrag@dsc-logistik.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return `mailto:auftrag@dsc-epp.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export default function Contact() {
@@ -132,16 +132,16 @@ export default function Contact() {
               {status === "fallback" && (
                 <p className="text-xs text-slate-400">
                   Ihr E-Mail-Programm wurde geöffnet — alternativ direkt an{" "}
-                  <a href="mailto:auftrag@dsc-logistik.de" className="text-sky-400 hover:underline">
-                    auftrag@dsc-logistik.de
+                  <a href="mailto:auftrag@dsc-epp.de" className="text-sky-400 hover:underline">
+                    auftrag@dsc-epp.de
                   </a>
                 </p>
               )}
               {status === "error" && (
                 <p className="text-xs text-red-400">
                   Senden fehlgeschlagen — bitte direkt an{" "}
-                  <a href="mailto:auftrag@dsc-logistik.de" className="text-sky-400 hover:underline">
-                    auftrag@dsc-logistik.de
+                  <a href="mailto:auftrag@dsc-epp.de" className="text-sky-400 hover:underline">
+                    auftrag@dsc-epp.de
                   </a>
                 </p>
               )}

@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
  *
  * Konfiguration über Env-Vars (siehe .env.example):
  *   RESEND_API_KEY  — API-Key aus dem Resend-Dashboard
- *   CONTACT_TO      — Ziel-Postfach (Default: auftrag@dsc-logistik.de)
+ *   CONTACT_TO      — Ziel-Postfach (Default: auftrag@dsc-epp.de)
  *   CONTACT_FROM    — Absender; bis die eigene Domain bei Resend
  *                     verifiziert ist, "onboarding@resend.dev" lassen
  *
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     },
     body: JSON.stringify({
       from: process.env.CONTACT_FROM || "DSC | EPP Website <onboarding@resend.dev>",
-      to: [process.env.CONTACT_TO || "auftrag@dsc-logistik.de"],
+      to: [process.env.CONTACT_TO || "auftrag@dsc-epp.de"],
       reply_to: email,
       subject: `Anfrage über die Website: ${name}${data.company ? ` (${data.company.trim()})` : ""}`,
       text: lines.join("\n"),

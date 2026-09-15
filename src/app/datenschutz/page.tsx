@@ -29,7 +29,7 @@ export default function DatenschutzPage() {
         <dt>Telefon</dt>
         <dd>+49 40 8090356 - 0</dd>
         <dt>E-Mail</dt>
-        <dd><a href="mailto:info@dsc-logistik.de">info@dsc-logistik.de</a></dd>
+        <dd><a href="mailto:info@dsc-epp.de">info@dsc-epp.de</a></dd>
       </dl>
 
       <h2>2. Hosting</h2>
@@ -125,7 +125,7 @@ export default function DatenschutzPage() {
       <h2>7. Bewerbungen</h2>
       <p>
         Wenn Sie sich bei uns bewerben (z.&nbsp;B. per E-Mail an{" "}
-        <a href="mailto:bewerbung@dsc-logistik.de">bewerbung@dsc-logistik.de</a>),
+        <a href="mailto:bewerbung@dsc-epp.de">bewerbung@dsc-epp.de</a>),
         verarbeiten wir Ihre Bewerbungsunterlagen ausschließlich zur
         Durchführung des Bewerbungsverfahrens (Art. 6 Abs. 1 lit. b DSGVO,
         § 26 BDSG). Kommt kein Beschäftigungsverhältnis zustande, werden
@@ -156,7 +156,7 @@ export default function DatenschutzPage() {
       </ul>
       <p>
         Zur Ausübung Ihrer Rechte genügt eine formlose Mitteilung an{" "}
-        <a href="mailto:info@dsc-logistik.de">info@dsc-logistik.de</a>.
+        <a href="mailto:info@dsc-epp.de">info@dsc-epp.de</a>.
       </p>
       <p>
         Außerdem haben Sie das Recht, sich bei einer

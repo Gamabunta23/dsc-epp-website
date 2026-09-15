@@ -31,10 +31,10 @@ export default function KarriereInitiativ() {
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="mailto:bewerbung@dsc-logistik.de?subject=Initiativbewerbung"
+              href="mailto:bewerbung@dsc-epp.de?subject=Initiativbewerbung"
               className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-slate-950 font-medium hover:bg-slate-200 transition-colors duration-200 cursor-pointer"
             >
-              bewerbung@dsc-logistik.de
+              bewerbung@dsc-epp.de
               <svg viewBox="0 0 16 16" className="w-4 h-4 transition-transform group-hover:translate-x-0.5">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

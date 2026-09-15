@@ -61,7 +61,7 @@ const jsonLd = {
     "Container-Logistik: Überseecontainer, multimodale Verkehre und Just-in-Time-Lieferung vom Terminal bundesweit.",
   url: "https://dsc-epp.de",
   telephone: "+49 40 8090356-0",
-  email: "info@dsc-logistik.de",
+  email: "info@dsc-epp.de",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Essener Str. 39",

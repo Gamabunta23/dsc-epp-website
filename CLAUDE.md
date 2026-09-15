@@ -23,8 +23,9 @@ generous whitespace, scroll-driven Framer Motion. Single accent color
   **OWL** (Inland-Hub). Bakum-Karte ist dunkel-themed mit "HAUPTSITZ"-Badge.
 - Logo-Varianten: `logo.jpg` (white-on-black für Footer/Truck), `logo-light.webp`
   (grey-on-white für Nav).
-- Email: `info@dsc-logistik.de` (Bakum + Hamburg), `info@epp-logistik.de` (OWL),
-  `bewerbung@dsc-logistik.de` für Karriere-Apply-Buttons.
+- Email (seit Go-Live 2026-09-15 alle @dsc-epp.de): `auftrag@dsc-epp.de`
+  (Standort-Karten + Kontakt/Formular), `info@dsc-epp.de` (Impressum,
+  Datenschutz, JSON-LD), `bewerbung@dsc-epp.de` (Karriere-Apply-Buttons).
 
 ## 15 Container-Varianten
 
@@ -71,10 +72,9 @@ nie umbenennen; Austausch nur unter gleichem Dateinamen. Details:
 
 ## Open items (do not invent values, ask the user)
 
-- GO-LIVE-TAG: alle Mailadressen von @dsc-logistik.de auf @dsc-epp.de
-  umstellen (auftrag@, info@, bewerbung@) — erst wenn die Postfächer in
-  M365 existieren (Henning/id-sys fragt man dazu)
-
+- ~~GO-LIVE-TAG: Mailadressen auf @dsc-epp.de~~ ERLEDIGT ✓ (2026-09-15,
+  Postfächer von Henning/id-sys bestätigt; Website live auf
+  https://dsc-epp.de mit Let's-Encrypt-SSL)
 - Bakum Telefon + WhatsApp: Platzhalter `+49 4446 000000` / `+49 000 0000000`
 - Kontaktformular: API-Route fertig (/api/contact, Resend) — RESEND_API_KEY
   in .env setzen, bis dahin mailto:-Fallback

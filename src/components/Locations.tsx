@@ -23,7 +23,7 @@ const locations: Location[] = [
     address: "Essener Str. 39 · 49456 Bakum",
     phone: "+49 40 8090356 - 0",
     whatsapp: "+49 151 72822291",
-    email: "auftrag@dsc-logistik.de",
+    email: "auftrag@dsc-epp.de",
     legacy: "Sitz der DSC | EPP Logistik GmbH",
     featured: true,
   },
@@ -33,7 +33,7 @@ const locations: Location[] = [
     desc: "Direkter Zugang zu den Terminals des Hamburger Hafens. Multimodale Anbindung an Bahn und Binnenschiff.",
     phone: "+49 40 8090356 - 0",
     whatsapp: "+49 1520 8657623",
-    email: "auftrag@dsc-logistik.de",
+    email: "auftrag@dsc-epp.de",
     legacy: "Standort der DSC | EPP Logistik GmbH",
   },
   {
@@ -42,7 +42,7 @@ const locations: Location[] = [
     desc: "Zentral im westfälischen Wirtschaftsraum. Just-in-Time-Anlieferung an Industrie und Handel.",
     phone: "+49 40 8090356 - 0",
     whatsapp: "+49 171 10 01 119",
-    email: "auftrag@dsc-logistik.de",
+    email: "auftrag@dsc-epp.de",
     legacy: "Standort der DSC | EPP Logistik GmbH",
   },
 ];
