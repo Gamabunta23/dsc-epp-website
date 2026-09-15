@@ -37,9 +37,21 @@ export default function AgbPage() {
       </p>
 
       <h2>Text der ADSp 2017</h2>
+      <p>Den vollständigen Text der ADSp 2017 können Sie hier abrufen:</p>
+      <ul>
+        <li>
+          <a href="/adsp/ADSp-2017.pdf" target="_blank" rel="noopener noreferrer">
+            ADSp 2017 – Deutsche Fassung (PDF)
+          </a>
+        </li>
+        <li>
+          <a href="/adsp/ADSp-2017-EN.pdf" target="_blank" rel="noopener noreferrer">
+            ADSp 2017 – English Version (PDF)
+          </a>
+        </li>
+      </ul>
       <p>
-        Den vollständigen Text der ADSp 2017 stellen wir Ihnen auf Anfrage
-        gerne zur Verfügung. Wenden Sie sich dazu an{" "}
+        Auf Wunsch senden wir Ihnen den Text gerne per E-Mail zu:{" "}
         <a href="mailto:auftrag@dsc-epp.de">auftrag@dsc-epp.de</a>.
       </p>
 
