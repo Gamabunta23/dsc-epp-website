@@ -71,3 +71,8 @@
 }
 /* Search suggestions must remain visible beyond the hero edge. */
 .hero { overflow-x:clip; overflow-y:visible; }
+.germanyMap { position:absolute; top:105px; right:1%; width:34%; height:470px; background:var(--color-steel); opacity:.09; mask:url('/hero-preview/germany.svg') center / contain no-repeat; pointer-events:none; }
+:global(.dark) .germanyMap { opacity:.12; }
+@media(max-width:640px) { .germanyMap { top:120px; right:-9%; width:58%; height:260px; opacity:.07; } }
+/* Blend sky only, preserving the roof and vehicle edges. */
+.truckScene { mask-image:linear-gradient(to bottom,transparent,black 2%,black 94%,transparent); }

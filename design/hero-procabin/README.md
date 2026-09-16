@@ -12,3 +12,10 @@ Suche unter dem Motiv bleibt erhalten.
 Prüfung: TypeScript und ESLint erfolgreich; Desktop sowie 390px Mobilansicht
 in Hell/Dunkel visuell geprüft, kein horizontaler Überlauf mobil.
 Beide Hero-CTA-Sprunglinks erreichen ihre Abschnitte mit Abstand zur Navigation.
+
+## Korrektur: Karte und Bildqualität
+Deutschland als separate SVG-Maske wieder eingebaut (Geometrie aus datasets/geo-countries,
+Natural Earth, https://github.com/datasets/geo-countries).
+LKW-Szenen v2 neu aus Originalreferenzen IMG_5645 und IMG_4004 erstellt, statt weitere
+Retuschen auf dem bereits mehrfach generierten Mockup aufzubauen. Beide Modi ersetzt.
+Frühere Bilder bleiben für Vergleiche erhalten. Generierte Illustration, kein Originalfoto.
