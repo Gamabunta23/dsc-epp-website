@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
 
 export default function Footer() {
   const pathname = usePathname();
-  const onHome = pathname === "/";
+  const onHome = pathname === "/" || pathname === "/vorschau";
   const anchor = (hash: string) => (onHome ? hash : `/${hash}`);
 
   return (

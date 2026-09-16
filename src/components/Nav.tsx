@@ -25,7 +25,7 @@ export default function Nav() {
   const bgOpacity = useTransform(scrollY, [0, 80], [0, 1]);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const onHome = pathname === "/";
+  const onHome = pathname === "/" || pathname === "/vorschau";
 
   // Anchor-Links: auf Home als reines "#xy" lassen (smooth scroll bleibt),
   // auf Sub-Routes als "/#xy" damit zurück zur Home navigiert wird.

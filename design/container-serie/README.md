@@ -24,3 +24,13 @@ Start: npm run dev -- --hostname 127.0.0.1 --port 3210
 - Filterzählung und Detailfenster im Desktop-Browser geprüft.
 - Mobile Ansicht und Dialog bei 390px geprüft, kein horizontaler Überlauf.
 - 2x20-Seitentür korrigiert; Standard-Bilder ohne gelbe Markierungen.
+
+## Vollständige Homepage-Vorschau
+- Route http://127.0.0.1:3210/vorschau (ebenfalls noindex).
+- Kompakter neuer Einstieg mit bisheriger Bewegen-/LKW-Animation, direkt sichtbaren Anfrage-Buttons und Suche.
+- EquipmentPreview lässt sich eingebettet als horizontales Karussell nutzen; Filter, Pfeile, Mausziehen, natives Touch-Scrolling und Suchereignisse unterstützt.
+- Einzelgalerie /vorschau/container bleibt als Übersicht bestehen.
+- Vorhandene übrige Bereiche übernommen, Abstände und Kontakt-Kontrast nur innerhalb der Vorschau angepasst. Fleet compact verkleinert nur den Bildrahmen.
+- Nav/Footer behandeln /vorschau als eigene Startseite für lokale Abschnittslinks; ursprüngliche Homepage unverändert.
+- Desktop-/390px-Ansicht, Abschnittsnavigation, Pfeile, Filter, Mausziehen und Details geprüft. Produktionsbuild erfolgreich.
+- Kein Push/Live-Deployment.

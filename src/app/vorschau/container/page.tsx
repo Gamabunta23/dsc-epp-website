@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ContainerPreviewPage() {
-  return <EquipmentPreview />;
+  return <main><EquipmentPreview /></main>;
 }

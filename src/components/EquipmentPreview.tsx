@@ -17,10 +17,47 @@ function Arrow({ back = false }: { back?: boolean }) {
   return <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ transform: back ? "rotate(180deg)" : undefined }}><path d="M4 12h15m-6-6 6 6-6 6" /></svg>;
 }
 
-export default function EquipmentPreview() {
+export default function EquipmentPreview({ embedded = false }: { embedded?: boolean }) {
   const [filter, setFilter] = useState<Filter>("Alle");
   const [active, setActive] = useState<Item | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+  const carousel = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ start: true, end: false });
+  const drag = useRef({ down: false, moved: false, x: 0, scroll: 0 });
+  const Title = embedded ? "h2" : "h1";
+  const CardTitle = embedded ? "h3" : "h2";
+
+  function updateEdges() {
+    const el = carousel.current;
+    if (el) setEdges({ start: el.scrollLeft < 2, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 2 });
+  }
+
+  function slide(direction: number) {
+    const el = carousel.current;
+    if (!el) return;
+    const card = el.querySelector("button");
+    const step = card ? card.getBoundingClientRect().width + 22 : el.clientWidth;
+    el.scrollBy({ left: direction * step, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  }
+
+  useEffect(() => {
+    const el = carousel.current;
+    if (!el || !embedded) return;
+    const measure = () => setEdges({ start: el.scrollLeft < 2, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 2 });
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [embedded]);
+
+  useEffect(() => {
+    if (!embedded) return;
+    const open = (event: Event) => {
+      const item = containerTypes.find((entry) => entry.id === (event as CustomEvent<string>).detail);
+      if (item) setActive(item);
+    };
+    window.addEventListener("dscepp:open-container", open);
+    return () => window.removeEventListener("dscepp:open-container", open);
+  }, [embedded]);
   const visible = containerTypes.filter((item) => filter === "Alle" || categoryFor(item) === filter);
 
   useEffect(() => {
@@ -33,27 +70,35 @@ export default function EquipmentPreview() {
   }, [active]);
 
   return (
-    <main className={styles.preview}>
-      <div className={styles.topline}><span>DESIGNVORSCHAU</span><span>DSC | EPP · Container-Serie</span><Link href="/">Zur bisherigen Homepage <span aria-hidden="true">↗</span></Link></div>
+    <div id={embedded ? "container" : undefined} className={`${styles.preview} ${embedded ? styles.embedded : ""}`}>
+      {!embedded && <div className={styles.topline}><span>DESIGNVORSCHAU</span><span>DSC | EPP · Container-Serie</span><Link href="/">Zur bisherigen Homepage <span aria-hidden="true">↗</span></Link></div>}
       <section className={styles.section} aria-labelledby="equipment-title">
         <header className={styles.intro}>
           <p className={styles.eyebrow}>CONTAINER-EQUIPMENT</p>
-          <h1 id="equipment-title">Von der Standardbox<br /><span>bis zum Spezialmaß.</span></h1>
+          <Title id="equipment-title">Von der Standardbox<br /><span>bis zum Spezialmaß.</span></Title>
           <p className={styles.lead}>Für jede Ladung die passende Lösung.<br className={styles.mobileBreak} /> Entdecken Sie unsere 15 Equipment-Varianten.</p>
           <div className={styles.signature}><span className={styles.dot} /> DSEP Serie <span className={styles.divider}>/</span> 20′ bis 45′ <span className={styles.divider}>/</span> Vom Terminal → Bundesweit</div>
         </header>
         <div className={styles.toolbar}>
-          <div className={styles.filters} role="group" aria-label="Container nach Bauart filtern">{filters.map((option) => <button key={option} type="button" aria-pressed={filter === option} onClick={() => setFilter(option)}>{option}</button>)}</div>
-          <p className={styles.count} aria-live="polite">{String(visible.length).padStart(2,"0")} Modelle</p>
+          <div className={styles.filters} role="group" aria-label="Container nach Bauart filtern">{filters.map((option) => <button key={option} type="button" aria-pressed={filter === option} onClick={() => { setFilter(option); if (carousel.current) carousel.current.scrollLeft = 0; requestAnimationFrame(updateEdges); }}>{option}</button>)}</div>
+          <div className={styles.controls}><p className={styles.count} aria-live="polite">{String(visible.length).padStart(2,"0")} Modelle</p>{embedded && <><button type="button" aria-label="Vorherige Container" disabled={edges.start} onClick={() => slide(-1)}><Arrow back /></button><button type="button" aria-label="Weitere Container" disabled={edges.end} onClick={() => slide(1)}><Arrow /></button></>}</div>
         </div>
-        <div className={styles.grid}>
+        <div ref={carousel} className={embedded ? styles.carousel : styles.grid} onScroll={embedded ? updateEdges : undefined}
+          onPointerDown={(event) => { if (!embedded || event.pointerType !== "mouse" || event.button !== 0) return; drag.current = { down: true, moved: false, x: event.clientX, scroll: event.currentTarget.scrollLeft }; }}
+          onPointerMove={(event) => { if (!drag.current.down) return; const dx = event.clientX - drag.current.x; if (Math.abs(dx) > 5) { drag.current.moved = true; event.currentTarget.setPointerCapture(event.pointerId); event.currentTarget.style.scrollSnapType = "none"; event.currentTarget.scrollLeft = drag.current.scroll - dx; } }}
+          onPointerUp={(event) => { drag.current.down = false; event.currentTarget.style.scrollSnapType = ""; }}
+          onPointerCancel={(event) => { drag.current.down = false; event.currentTarget.style.scrollSnapType = ""; }}
+          onPointerLeave={() => { if (!drag.current.moved) drag.current.down = false; }}
+          onClickCapture={(event) => { if (drag.current.moved) { event.preventDefault(); event.stopPropagation(); drag.current.moved = false; } }}
+        >
           {visible.map((item) => <button key={item.id} className={styles.card} type="button" onClick={() => setActive(item)} aria-label={`${item.size} ${item.name} – Details ansehen`}>
             <div className={styles.visual}><Image src={imageFor(item)} alt={`${item.size} ${item.name} mit DSEP-Kennzeichnung`} width={1536} height={1024} sizes="(max-width: 640px) 95vw, (max-width: 1000px) 46vw, 31vw" /><span className={styles.type}>{item.size}</span></div>
-            <div className={styles.content}><h2>{item.size} {item.name}</h2><p className={styles.note}>{item.notes}</p><dl className={styles.specs}><div><dt>Volumen</dt><dd>{item.cbm}</dd></div><div><dt>Zuladung</dt><dd>{item.payload}</dd></div></dl><div className={styles.details}>Details ansehen <Arrow /></div></div>
+            <div className={styles.content}><CardTitle>{item.size} {item.name}</CardTitle><p className={styles.note}>{item.notes}</p><dl className={styles.specs}><div><dt>Volumen</dt><dd>{item.cbm}</dd></div><div><dt>Zuladung</dt><dd>{item.payload}</dd></div></dl><div className={styles.details}>Details ansehen <Arrow /></div></div>
           </button>)}
         </div>
-        <div className={styles.bottom}><div><p className={styles.eyebrow}>DAS PASSENDE EQUIPMENT</p><h2>Ihre Ladung. Unsere Lösung.</h2><p>Alle Maße und Zuladungen finden Sie in den jeweiligen Details.</p></div><Link href="/#kontakt">Transport anfragen <Arrow /></Link></div>
-        <p className={styles.previewNote}>Designvorschau · Generierte Produktvisualisierungen mit individuellen DSEP-Markierungen. Maßangaben und Zuladungen entsprechen dem bestehenden Katalog.</p>
+        {embedded && <div className={styles.galleryLink}><span>Mit der Maus ziehen oder auf dem Handy wischen</span><Link href="/vorschau/container">Alle 15 Varianten im Überblick ↗</Link></div>}
+        {!embedded && <div className={styles.bottom}><div><p className={styles.eyebrow}>DAS PASSENDE EQUIPMENT</p><h2>Ihre Ladung. Unsere Lösung.</h2><p>Alle Maße und Zuladungen finden Sie in den jeweiligen Details.</p></div><Link href="/#kontakt">Transport anfragen <Arrow /></Link></div>}
+        {!embedded && <p className={styles.previewNote}>Designvorschau · Generierte Produktvisualisierungen mit individuellen DSEP-Markierungen. Maßangaben und Zuladungen entsprechen dem bestehenden Katalog.</p>}
       </section>
       {active && <dialog ref={dialog} className={styles.dialog} aria-label={`${active.size} ${active.name} – Spezifikationen`} onCancel={() => setActive(null)} onClose={() => setActive(null)} onClick={(event) => { if (event.target === event.currentTarget) setActive(null); }}>
         <div className={styles.modal}>
@@ -71,6 +116,6 @@ export default function EquipmentPreview() {
           </dl><p className={styles.previewNote}>Illustrative Darstellung. Maßgeblich sind die angegebenen Spezifikationen.</p></div>
         </div>
       </dialog>}
-    </main>
+    </div>
   );
 }
