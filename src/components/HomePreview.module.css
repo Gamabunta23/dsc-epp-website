@@ -125,3 +125,16 @@
 .harborStage .sideNoteRight span { width:40px; height:2px; margin-bottom:15px; background:var(--color-accent-soft); }
 @media(max-width:1000px) { .harborStage .sideNoteLeft,.harborStage .sideNoteRight { font-size:10px; } }
 @media(max-width:640px) { .harborStage .sideNoteLeft,.harborStage .sideNoteRight { font-size:9px; letter-spacing:.16em; } .harborStage .sideNoteRight span { width:32px; margin-bottom:8px; } }
+/* 12s story: ship arrives at 4.8s, then Hamburg distributes inland. */
+.route path.seaLane { opacity:.6; }
+.route path.inlandLane { stroke-width:.8; opacity:.4; }
+.route path.inlandPulse { stroke-width:2.5; stroke-dasharray:.08 .92; stroke-linecap:round; filter:drop-shadow(0 0 3px var(--color-accent-soft)); animation:inlandDispatch 12s linear infinite; }
+.route circle.cityDot { animation:none; stroke-width:1; fill:var(--color-accent-soft); }
+.route circle.hamburgHub { animation:harborArrival 12s ease-in-out infinite; }
+.ship { opacity:0; animation:shipVoyage 12s linear infinite; }
+.route .shipHull { fill:var(--color-accent); stroke:var(--color-background); stroke-width:1.2; }
+.route .shipCargo { fill:var(--color-background); stroke:var(--color-accent); stroke-width:1.4; }
+@keyframes shipVoyage { 0% { opacity:0; } 3%,39% { opacity:1; } 43%,100% { opacity:0; } }
+@keyframes inlandDispatch { 0%,40% { stroke-dashoffset:1; opacity:0; } 42% { opacity:1; } 72% { stroke-dashoffset:0; opacity:1; } 76%,100% { stroke-dashoffset:0; opacity:0; } }
+@keyframes harborArrival { 0%,36%,65%,100% { filter:none; } 42%,50% { filter:drop-shadow(0 0 8px var(--color-accent-soft)); } }
+@media(prefers-reduced-motion:reduce) { .ship,.route path.inlandPulse { display:none; animation:none; } .route circle.hamburgHub { animation:none; } }
