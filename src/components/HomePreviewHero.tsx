@@ -9,12 +9,13 @@ export default function HomePreviewHero() {
     <section id="top" className={styles.hero} aria-labelledby="preview-headline">
       <div className={`bg-grid ${styles.heroGrid}`} aria-hidden="true" />
       <svg className={styles.route} viewBox="0 0 1440 650" fill="none" aria-hidden="true">
-        {/* Map and route share a coordinate system. Hamburg (9.9937°E,
-            53.5511°N) projects to 167.185,97.138 in germany.svg. */}
-        <image className={styles.germanyMap} href="/hero-preview/germany.svg" x="1040" y="50" width="370.18" height="500" />
-        <path d="M-40 560C140 560 150 390 340 410S710 500 940 340 1170 285 1207.185 147.138" />
-        <circle cx="340" cy="410" r="7" /><circle cx="940" cy="340" r="7" />
-        <circle cx="1207.185" cy="147.138" r="9" data-location="hamburg" />
+        {/* Both city markers use the same geographic projection as the map.
+            Scale 0.6: Hamburg 167.185/97.138, Augsburg 203.712/429.475. */}
+        <image className={styles.germanyMap} href="/hero-preview/germany.svg" x="1100" y="20" width="222.108" height="300" />
+        <path d="M-40 470C140 470 170 345 340 365S820 430 1070 340Q1150 315 1222.227 277.685C1260 225 1170 160 1200.311 78.283" />
+        <circle cx="340" cy="365" r="7" />
+        <circle cx="1222.227" cy="277.685" r="7" data-location="augsburg" />
+        <circle cx="1200.311" cy="78.283" r="9" data-location="hamburg" />
       </svg>
       <div className={styles.heroContent}>
         <p className={styles.badge}><span /> Vom Terminal → Bundesweit</p>

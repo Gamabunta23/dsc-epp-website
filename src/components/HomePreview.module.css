@@ -108,3 +108,10 @@
  .harborStage .sideNoteRight { top:-61px; right:5%; text-align:right; }
  .harborStage .sideNoteRight span { margin-left:auto; }
 }
+/* Slightly larger rig with a soft, borderless harbor transition. */
+.harborStage { max-width:1600px; }
+.harborStage .truckScene { overflow:hidden; mask-image:linear-gradient(to right,transparent,black 5%,black 95%,transparent),linear-gradient(to bottom,transparent,black 18%,black 88%,transparent); mask-composite:intersect; }
+.harborStage .truckScene img { transform:scale(1.12); transform-origin:50% 72%; }
+.route { z-index:1; }
+@media(max-width:640px) { .route { top:130px; } }
+@media(max-width:640px) { .route { right:-10px; } }
