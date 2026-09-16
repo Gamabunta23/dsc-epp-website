@@ -9,7 +9,7 @@ import styles from "./EquipmentPreview.module.css";
 type Item = (typeof containerTypes)[number];
 const filters = ["Alle", "Standard", "Kühlcontainer", "Spezialcontainer"] as const;
 type Filter = (typeof filters)[number];
-const imageAliases: Record<string, string> = { "45": "45-hc", "20-flat": "20-fr", "40-flat": "40-fr" };
+const imageAliases: Record<string, string> = { "45": "45-hc", "20-flat": "20-fr", "40-flat": "40-fr", "40-ot-hc": "40-ot-hc-v2" };
 const imageFor = (item: Item) => `/container-preview/${imageAliases[item.id] ?? item.id}.png`;
 const categoryFor = (item: Item): Filter => item.id.includes("reefer") ? "Kühlcontainer" : /ot|flat|tank/.test(item.id) ? "Spezialcontainer" : "Standard";
 
