@@ -4,18 +4,20 @@ import Image from "next/image";
 import HeroSearch from "./HeroSearch";
 import styles from "./HomePreview.module.css";
 
+const heroRoute = "M-40 470C140 470 170 345 340 365S820 430 1070 340Q1160 325 1228.725 288.072C1280 225 1170 155 1193.748 77.710";
+
 export default function HomePreviewHero() {
   return (
     <section id="top" className={styles.hero} aria-labelledby="preview-headline">
       <div className={`bg-grid ${styles.heroGrid}`} aria-hidden="true" />
       <svg className={styles.route} viewBox="0 0 1440 650" fill="none" aria-hidden="true">
-        {/* Both city markers use the same geographic projection as the map.
-            Scale 0.6: Hamburg 167.185/97.138, Augsburg 203.712/429.475. */}
-        <image className={styles.germanyMap} href="/hero-preview/germany.svg" x="1100" y="20" width="222.108" height="300" />
-        <path d="M-40 470C140 470 170 345 340 365S820 430 1070 340Q1150 315 1222.227 277.685C1260 225 1170 160 1200.311 78.283" />
+        {/* Cities and map share a projection and scale (0.8). */}
+        <image className={styles.germanyMap} href="/hero-preview/germany.svg" x="1060" y="0" width="296.144" height="400" />
+        <path d={heroRoute} />
+        <path className={styles.routePulse} d={heroRoute} pathLength="1" />
         <circle cx="340" cy="365" r="7" />
-        <circle cx="1222.227" cy="277.685" r="7" data-location="augsburg" />
-        <circle cx="1200.311" cy="78.283" r="9" data-location="hamburg" />
+        <circle cx="1228.725" cy="288.072" r="7" data-location="nuernberg" />
+        <circle cx="1193.748" cy="77.710" r="9" data-location="hamburg" />
       </svg>
       <div className={styles.heroContent}>
         <p className={styles.badge}><span /> Vom Terminal → Bundesweit</p>

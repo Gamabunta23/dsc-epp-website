@@ -115,3 +115,6 @@
 .route { z-index:1; }
 @media(max-width:640px) { .route { top:130px; } }
 @media(max-width:640px) { .route { right:-10px; } }
+.route path.routePulse { stroke:var(--color-accent-soft); stroke-width:4; stroke-linecap:round; stroke-dasharray:.035 .965; filter:drop-shadow(0 0 4px var(--color-accent-soft)) drop-shadow(0 0 9px var(--color-accent-soft)); animation:heroRouteTravel 6s linear infinite; }
+@keyframes heroRouteTravel { 0% { stroke-dashoffset:1; opacity:0; } 4% { opacity:1; } 92% { opacity:1; } 100% { stroke-dashoffset:0; opacity:0; } }
+@media(prefers-reduced-motion:reduce) { .route path.routePulse { animation:none; display:none; } }
