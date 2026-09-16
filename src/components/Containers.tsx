@@ -325,6 +325,9 @@ const types: ContainerType[] = [
   },
 ];
 
+// Shared, unchanged specifications for the separate local design preview.
+export { types as containerTypes };
+
 export default function Containers() {
   const [active, setActive] = useState<ContainerType | null>(null);
   const [dragging, setDragging] = useState(false);
