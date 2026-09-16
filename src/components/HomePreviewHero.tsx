@@ -23,11 +23,13 @@ export default function HomePreviewHero() {
         <p className={styles.company}>DSC | EPP Logistik GmbH</p>
         <div className={styles.actions}><a href="#kontakt">Transport anfragen <span aria-hidden="true">→</span></a><a href="#leistungen">Leistungen entdecken</a></div>
       </div>
-      <p className={styles.sideNoteLeft}>Container<br />Logistics<br />for a connected<br />tomorrow</p>
-      <p className={styles.sideNoteRight}><span />Zuverlässig.<br />Flexibel.<br />Bundesweit.</p>
-      <div className={styles.truckScene}>
-        <Image className={styles.lightTruck} src="/hero-preview/procabin-light-v2.png" width={2164} height={727} sizes="100vw" loading="eager" alt="Silberner DSC | EPP Actros ProCabin mit dunkelgrauem Container und Firmenlogo am Terminal" />
-        <Image className={styles.darkTruck} src="/hero-preview/procabin-dark-v2.png" width={2164} height={727} sizes="100vw" loading="eager" alt="Silberner DSC | EPP Actros ProCabin mit dunkelgrauem Container und Firmenlogo am Terminal" />
+      <div className={styles.harborStage}>
+        <p className={styles.sideNoteLeft}>Container<br />Logistics<br />for a connected<br />tomorrow</p>
+        <p className={styles.sideNoteRight}><span />Zuverlässig.<br />Flexibel.<br />Bundesweit.</p>
+        <div className={styles.truckScene}>
+        <Image className={styles.lightTruck} src="/hero-preview/procabin-light-v3.png" width={2164} height={727} sizes="100vw" loading="eager" alt="Silberner DSC | EPP Actros ProCabin mit dunkelgrauem Container und Firmenlogo am Terminal" />
+        <Image className={styles.darkTruck} src="/hero-preview/procabin-dark-v3.png" width={2164} height={727} sizes="100vw" loading="eager" alt="Silberner DSC | EPP Actros ProCabin mit dunkelgrauem Container und Firmenlogo am Terminal" />
+      </div>
       </div>
       <div className={styles.heroTools}>
         <div className={styles.search}><HeroSearch /></div>
