@@ -8,10 +8,13 @@ export default function HomePreviewHero() {
   return (
     <section id="top" className={styles.hero} aria-labelledby="preview-headline">
       <div className={`bg-grid ${styles.heroGrid}`} aria-hidden="true" />
-      <div className={styles.germanyMap} aria-hidden="true" />
-      <svg className={styles.route} viewBox="0 0 1440 800" fill="none" aria-hidden="true">
-        <path d="M-40 720C140 720 150 510 340 530S710 620 940 460 1200 400 1300 190" />
-        <circle cx="340" cy="530" r="7" /><circle cx="940" cy="460" r="7" /><circle cx="1300" cy="190" r="9" />
+      <svg className={styles.route} viewBox="0 0 1440 650" fill="none" aria-hidden="true">
+        {/* Map and route share a coordinate system. Hamburg (9.9937°E,
+            53.5511°N) projects to 167.185,97.138 in germany.svg. */}
+        <image className={styles.germanyMap} href="/hero-preview/germany.svg" x="1040" y="50" width="370.18" height="500" />
+        <path d="M-40 560C140 560 150 390 340 410S710 500 940 340 1170 285 1207.185 147.138" />
+        <circle cx="340" cy="410" r="7" /><circle cx="940" cy="340" r="7" />
+        <circle cx="1207.185" cy="147.138" r="9" data-location="hamburg" />
       </svg>
       <div className={styles.heroContent}>
         <p className={styles.badge}><span /> Vom Terminal → Bundesweit</p>

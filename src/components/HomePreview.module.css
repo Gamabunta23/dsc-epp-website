@@ -56,7 +56,7 @@
   .heroContent { padding-inline:14px; }
   .subtitle { font-size:13px; margin-top:18px; }
   .truckScene { margin-top:30px; }
-  .route { top:85px; height:410px; width:160%; left:-30%; opacity:.35; }
+  .route { opacity:.45; }
   .heroTools { margin-top:15px; }
 }
 @media(prefers-reduced-motion:reduce) { .route circle { animation:none; } }
@@ -67,12 +67,14 @@
   .company { margin-top:6px; }
   .actions { margin-top:17px; }
   .truckScene { max-width:1100px; margin-top:10px; }
-  .route { top:0; height:600px; }
+  
 }
 /* Search suggestions must remain visible beyond the hero edge. */
 .hero { overflow-x:clip; overflow-y:visible; }
-.germanyMap { position:absolute; top:105px; right:1%; width:34%; height:470px; background:var(--color-steel); opacity:.09; mask:url('/hero-preview/germany.svg') center / contain no-repeat; pointer-events:none; }
-:global(.dark) .germanyMap { opacity:.12; }
-@media(max-width:640px) { .germanyMap { top:120px; right:-9%; width:58%; height:260px; opacity:.07; } }
+.germanyMap { opacity:.17; }
+:global(.dark) .germanyMap { opacity:.23; }
+/* A single SVG scales the map, Hamburg marker and route together. */
+.route { inset:80px auto auto 50%; width:min(100%,1600px); height:auto; aspect-ratio:1440 / 650; transform:translateX(-50%); }
+@media(max-width:640px) { .route { top:125px; width:760px; left:auto; right:-65px; transform:none; } }
 /* Blend sky only, preserving the roof and vehicle edges. */
 .truckScene { mask-image:linear-gradient(to bottom,transparent,black 2%,black 94%,transparent); }
