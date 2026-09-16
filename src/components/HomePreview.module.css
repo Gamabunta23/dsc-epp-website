@@ -118,3 +118,10 @@
 .route path.routePulse { stroke:var(--color-accent-soft); stroke-width:4; stroke-linecap:round; stroke-dasharray:.035 .965; filter:drop-shadow(0 0 4px var(--color-accent-soft)) drop-shadow(0 0 9px var(--color-accent-soft)); animation:heroRouteTravel 6s linear infinite; }
 @keyframes heroRouteTravel { 0% { stroke-dashoffset:1; opacity:0; } 4% { opacity:1; } 92% { opacity:1; } 100% { stroke-dashoffset:0; opacity:0; } }
 @media(prefers-reduced-motion:reduce) { .route path.routePulse { animation:none; display:none; } }
+/* Side captions match the reference's airy blue-violet typography. */
+.harborStage { --caption-color:#727eb8; }
+:global(.dark) .harborStage { --caption-color:#a5b4e3; }
+.harborStage .sideNoteLeft,.harborStage .sideNoteRight { color:var(--caption-color); font-size:12px; font-weight:500; line-height:1.75; letter-spacing:.18em; }
+.harborStage .sideNoteRight span { width:40px; height:2px; margin-bottom:15px; background:var(--color-accent-soft); }
+@media(max-width:1000px) { .harborStage .sideNoteLeft,.harborStage .sideNoteRight { font-size:10px; } }
+@media(max-width:640px) { .harborStage .sideNoteLeft,.harborStage .sideNoteRight { font-size:9px; letter-spacing:.16em; } .harborStage .sideNoteRight span { width:32px; margin-bottom:8px; } }
