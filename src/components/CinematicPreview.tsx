@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useId } from "react";
+import Image from "next/image";
 import styles from "./CinematicPreview.module.css";
 
 const chapters = [
@@ -15,6 +16,7 @@ export default function CinematicPreview() {
   const gradeId = useId().replace(/:/g, "");
   const [playing, setPlaying] = useState(false);
   const [active, setActive] = useState(0);
+  const [outro, setOutro] = useState(false);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -40,7 +42,10 @@ export default function CinematicPreview() {
   function play() {
     const el = video.current;
     if (!el) return;
-    if (el.paused) void el.play().catch(() => {});
+    if (el.paused) {
+      if (el.ended) { el.currentTime = 0; setOutro(false); }
+      void el.play().catch(() => {});
+    }
     else el.pause();
   }
 
@@ -54,9 +59,11 @@ export default function CinematicPreview() {
       <video ref={video} className={styles.film} muted playsInline preload="metadata"
         poster="/media/home/transport-poster-v1.jpg"
         onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
-        onEnded={() => setPlaying(false)} onError={() => setFailed(true)}
+        onEnded={() => { setPlaying(false); setOutro(true); }} onError={() => setFailed(true)}
         onTimeUpdate={() => {
           const time = video.current?.currentTime ?? 0;
+          const duration = video.current?.duration ?? 0;
+          setOutro(Number.isFinite(duration) && duration > 0 && time >= duration - 1.25);
           setActive(chapters.reduce((index, chapter, i) => time >= chapter.time ? i : index, 0));
         }}
         aria-label="Containerschiff im Hafen, Entladung vom Schiff, Verladung auf unseren LKW und Abfahrt mit nachrückendem DAF">
@@ -64,11 +71,25 @@ export default function CinematicPreview() {
         <source src="/media/home/transport-film-v3.mp4" type="video/mp4" />
         Ihr Browser unterstützt dieses Video nicht.
       </video>
+      <div className={`${styles.outro} ${outro ? styles.outroVisible : ""}`} aria-hidden={!outro}>
+        <svg className={styles.outroLines} viewBox="0 0 1440 600" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M-100 150 Q300 -40 740 180 T1540 130" />
+          <path d="M-100 330 Q360 190 840 370 T1540 310" />
+          <path d="M-100 520 Q420 340 950 540 T1540 490" />
+        </svg>
+        <div className={styles.outroBrand}>
+          <Image src="/logo-light.webp" alt="DSC | EPP Logistik" width={500} height={168} className={styles.outroLogoLight} />
+          <Image src="/logo.jpg" alt="DSC | EPP Logistik" width={500} height={168} className={styles.outroLogoDark} />
+          <p>Über See. Bis zu Ihnen.</p>
+          <span>CONTAINER. MULTIMODAL. JUST IN TIME.</span>
+        </div>
+      </div>
     </div>
     <div className={styles.controls}>
       <div className={styles.chapters} role="group" aria-label="Filmkapitel">
         {chapters.map((chapter, index) => <button key={chapter.label} aria-pressed={active === index} disabled={failed} onClick={() => {
           if (video.current && video.current.readyState >= 1) {
+            setOutro(false);
             video.current.currentTime = chapter.time;
             setActive(index);
             void video.current.play().catch(() => {});

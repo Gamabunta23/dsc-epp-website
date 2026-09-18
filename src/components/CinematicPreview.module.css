@@ -39,3 +39,21 @@
 .gradeDefinition{position:absolute;pointer-events:none;overflow:hidden}
 .film{filter:var(--film-light-grade,none)}
 :global(.dark) .film{filter:none}
+
+/* Final brand frame follows the film's fade and stays until replay. */
+.cinema{position:relative}
+.outro{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;pointer-events:none;opacity:0;visibility:hidden;background:radial-gradient(ellipse at 20% 40%,#00b9e516,transparent 55%),radial-gradient(ellipse at 85% 65%,#8bbed820,transparent 55%),var(--design-bg,#fff);transition:opacity 1.4s ease,visibility 1.4s;color:var(--design-text,#0a263c)}
+.outroVisible{opacity:1;visibility:visible}
+.outro::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#6488a10a 1px,transparent 1px),linear-gradient(90deg,#6488a10a 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse,#000,transparent 75%)}
+.outroLines{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:#00aeda;stroke-width:1;opacity:.2}
+.outroBrand{position:relative;text-align:center;padding:24px;opacity:0;transform:translateY(14px) scale(.97);transition:opacity 1.5s ease .3s,transform 2s ease .3s}
+.outroVisible .outroBrand{opacity:1;transform:none}
+.outroBrand img{width:clamp(180px,32vw,460px);height:auto;margin:0 auto 32px}
+.outroLogoDark{display:none}
+.outroBrand p{font-size:clamp(18px,2.4vw,32px);font-weight:500;letter-spacing:-.025em}
+.outroBrand span{display:block;font-size:clamp(8px,.8vw,11px);letter-spacing:.22em;color:var(--design-muted,#526b80);margin-top:18px}
+:global(.dark) .outro{background:radial-gradient(ellipse at 20% 40%,#007faa35,transparent 55%),radial-gradient(ellipse at 85% 65%,#30446130,transparent 55%),var(--design-bg,#050f1b)}
+:global(.dark) .outroLogoLight{display:none}
+:global(.dark) .outroLogoDark{display:block;mix-blend-mode:screen}
+@media(max-width:640px){.outroBrand img{margin-bottom:14px;width:180px}.outroBrand span{margin-top:10px}}
+@media(prefers-reduced-motion:reduce){.outro,.outroBrand{transition:none}.outroBrand{transform:none}}
