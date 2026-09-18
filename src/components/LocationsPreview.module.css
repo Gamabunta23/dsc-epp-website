@@ -1,0 +1,40 @@
+.section{padding:110px 24px;background:#f3f7fa;color:#080f21;scroll-margin-top:90px}.inner{max-width:1200px;margin:auto}.eyebrow{font-size:11px;letter-spacing:.18em;color:#0077ac;font-weight:600}.inner h2{font-size:clamp(36px,4.8vw,64px);line-height:1.08;letter-spacing:-.055em;margin:20px 0 54px}.inner h2 span{color:#647990}.layout{display:grid;grid-template-columns:1fr 1.15fr;gap:70px;align-items:center}.map{position:relative;aspect-ratio:400/520;max-width:440px;width:100%;margin:auto}.map svg{width:100%;height:100%}.route{fill:none;stroke:#2591bb;stroke-width:1.5;opacity:.45}.pulse{fill:none;stroke:#08bdea;stroke-width:3;stroke-dasharray:14 230;animation:travel 5s linear infinite}.pin{position:absolute;transform:translate(-50%,-50%);background:none;border:0;padding:14px;cursor:pointer;color:inherit}.pin i{display:block;width:12px;height:12px;background:#0984ad;border:3px solid #f3f7fa;border-radius:50%;box-shadow:0 0 0 5px #109bcc15}.pin span{position:absolute;left:36px;top:8px;white-space:nowrap;text-align:left;font-size:16px;font-weight:600}.pin small{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#648093;font-weight:400}.pin.active i{background:#00c5ee;box-shadow:0 0 0 9px #00bbed20,0 0 25px #00bbed55}.pin:first-of-type span{left:auto;right:36px;text-align:right}.mapNote{position:absolute;bottom:5px;left:10px;font-size:9px;letter-spacing:.2em;line-height:1.8;color:#748799}.tabs{display:flex;border-bottom:1px solid #8095aa30;margin-bottom:20px;gap:24px}.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:12px 0;color:#708194;cursor:pointer;font-size:14px}.tabs button[aria-pressed=true]{color:#0087b8;border-color:#00a9d8}.story{animation:appear .45s ease}.photo{height:230px;background-size:cover;background-position:center;position:relative;border-radius:3px;overflow:hidden}.photo span{position:absolute;bottom:0;left:0;right:0;padding:25px 18px 12px;background:linear-gradient(transparent,#07101fcc);color:white;font-size:10px;letter-spacing:.04em}.text{padding:25px 0 0}.text h3{font-size:30px;letter-spacing:-.04em;line-height:1.15;margin:10px 0 14px}.text>p:not(.eyebrow){color:#65758a;line-height:1.7;font-size:14px;max-width:460px}.links{display:flex;flex-wrap:wrap;gap:12px 24px;padding-top:18px;margin-top:20px;border-top:1px solid #8095aa30}.links a{font-size:12px;color:#057ba7;text-decoration:none}.links a:hover{text-decoration:underline}.pin:focus-visible,.tabs button:focus-visible,.links a:focus-visible{outline:2px solid #08acd5;outline-offset:5px}:global(.dark) .section{background:#0b1422;color:#eef6ff}:global(.dark) .inner h2 span{color:#8da1b9}:global(.dark) .photo{filter:brightness(.8) saturate(.8)}:global(.dark) .text>p:not(.eyebrow){color:#9baabc}:global(.dark) .pin i{border-color:#0b1422}:global(.dark) .links a,:global(.dark) .eyebrow{color:#51c3e9}@keyframes travel{to{stroke-dashoffset:-244}}@keyframes appear{from{opacity:.2;transform:translateY(5px)}to{opacity:1;transform:none}}@media(max-width:750px){.section{padding:75px 24px}.layout{grid-template-columns:1fr;gap:30px}.map{max-width:330px}.inner h2{margin-bottom:25px}.photo{height:210px}.text h3{font-size:27px}.tabs{justify-content:space-between}}@media(prefers-reduced-motion:reduce){.pulse,.story{animation:none}}
+.section,:global(.dark) .section{background:var(--design-surface,#f1f7fb);color:var(--design-text,#0a263c)}
+.inner h2 span,:global(.dark) .inner h2 span,.text>p:not(.eyebrow),:global(.dark) .text>p:not(.eyebrow){color:var(--design-muted,#526b80)}
+.eyebrow,:global(.dark) .eyebrow,.links a,:global(.dark) .links a,.tabs button[aria-pressed=true]{color:var(--design-accent,#007fa3)}
+.photo{border-radius:16px}.pin i,:global(.dark) .pin i{border-color:var(--design-surface,#f1f7fb)}
+.inner h2{font-size:var(--design-title,clamp(34px,4.5vw,60px));letter-spacing:-.045em;line-height:1.12}
+/* Keep the caption clear of the map silhouette. */
+.map{margin-bottom:48px}
+.mapNote{top:100%;bottom:auto;margin-top:20px;color:var(--design-muted,#526b80)}
+.links{gap:14px}
+.links .contactIcon{display:grid;place-items:center;width:48px;height:48px;border:1px solid var(--design-line,#d5e3ed);border-radius:50%;background:var(--design-card,#fff);color:var(--design-accent,#007fa3);transition:background .2s,box-shadow .2s,transform .2s}
+.contactIcon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.links .contactIcon:hover,.links .contactIcon:focus-visible{background:color-mix(in srgb,var(--design-glow,#00b9e5) 12%,var(--design-card,#fff));box-shadow:0 0 18px #00b9e525;transform:translateY(-2px)}
+.contactIcon:hover svg,.contactIcon:focus-visible svg{animation:contactLift .6s ease-in-out}
+.contactIcon:first-child:hover svg,.contactIcon:first-child:focus-visible svg{animation:contactRing .5s ease-in-out}
+@keyframes contactLift{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes contactRing{0%,100%{transform:rotate(0)}25%{transform:rotate(-13deg)}75%{transform:rotate(13deg)}}
+@media(prefers-reduced-motion:reduce){.links .contactIcon{transition:none}.links .contactIcon:hover,.links .contactIcon:focus-visible{transform:none}.contactIcon:hover svg,.contactIcon:focus-visible svg{animation:none}}
+
+.photo{background-image:var(--location-day)}
+:global(.dark) .photo{background-image:var(--location-night);filter:none}
+:global(.dark) .photo[data-location="0"]{filter:brightness(.68) saturate(.65)}
+:global(.dark) .photo[data-location="0"]:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#08395055,#06172c44);mix-blend-mode:multiply;pointer-events:none}
+.headlights{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ledOff,.ledSweep{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:8}
+.ledOff{stroke:#626e79}.ledSweep{stroke:#f4fdff;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px #79d9ff)}
+.bulbOff{fill:#697580}.bulbOn{fill:#fff;opacity:0;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 12px #7bdcff)}
+.headlights[data-lit=true] .ledSweep{animation:headlightSweep var(--led-duration) linear var(--led-delay) forwards}
+.headlights[data-lit=true] .bulbOn{animation:headlightBulb .35s ease-out var(--led-delay) forwards}
+@keyframes headlightSweep{to{stroke-dashoffset:0}}@keyframes headlightBulb{to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.headlights .ledSweep{stroke-dashoffset:0;animation:none!important}.headlights .bulbOn{opacity:1;animation:none!important}}
+/* Let the xenon overlay shine above the darkened photo. */
+:global(.dark) .photo[data-location="0"]{filter:none}
+:global(.dark) .photo[data-location="0"]:before{background:linear-gradient(120deg,#061c3290,#04122485);mix-blend-mode:normal}
+:global(.dark) .headlights .ledSweep{stroke:#edf7ff;filter:drop-shadow(0 0 2px #f7fbff) drop-shadow(0 0 6px #a1ceff) drop-shadow(0 0 11px #639fff99)}
+:global(.dark) .headlights .bulbOn{fill:#f1f7ff;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px #a7d0ff) drop-shadow(0 0 15px #709fff99)}
+
+/* Keep the bottom LED above the caption's shading layer. */
+.headlights{z-index:1}
+.photo>span{z-index:2;right:auto;max-width:100%;padding:6px 10px;background:#061321b3;border-radius:0 6px 0 0;font-size:10px}

@@ -131,10 +131,53 @@
 .route path.inlandPulse { stroke-width:2.5; stroke-dasharray:.08 .92; stroke-linecap:round; filter:drop-shadow(0 0 3px var(--color-accent-soft)); animation:inlandDispatch 12s linear infinite; }
 .route circle.cityDot { animation:none; stroke-width:1; fill:var(--color-accent-soft); }
 .route circle.hamburgHub { animation:harborArrival 12s ease-in-out infinite; }
-.ship { opacity:0; animation:shipVoyage 12s linear infinite; }
+.ship { opacity:1; filter:drop-shadow(0 0 5px #00b9e5); }
 .route .shipHull { fill:var(--color-accent); stroke:var(--color-background); stroke-width:1.2; }
 .route .shipCargo { fill:var(--color-background); stroke:var(--color-accent); stroke-width:1.4; }
 @keyframes shipVoyage { 0% { opacity:0; } 3%,39% { opacity:1; } 43%,100% { opacity:0; } }
 @keyframes inlandDispatch { 0%,40% { stroke-dashoffset:1; opacity:0; } 42% { opacity:1; } 72% { stroke-dashoffset:0; opacity:1; } 76%,100% { stroke-dashoffset:0; opacity:0; } }
 @keyframes harborArrival { 0%,36%,65%,100% { filter:none; } 42%,50% { filter:drop-shadow(0 0 8px var(--color-accent-soft)); } }
 @media(prefers-reduced-motion:reduce) { .ship,.route path.inlandPulse { display:none; animation:none; } .route circle.hamburgHub { animation:none; } }
+
+/* Existing harbor composition, relocated to the fleet preview. */
+.fleetHero { padding-top:100px; scroll-margin-top:80px; }
+.fleetTitle { font-size:clamp(30px,4.3vw,60px); font-weight:600; line-height:1.12; letter-spacing:-.045em; color:var(--color-ink); margin-top:24px; }
+.fleetTitle span { display:block; color:var(--color-steel); }
+.fleetHero .harborStage { margin-top:110px; }
+.fleetHero .route { top:48px; }
+.fleetFeatures { position:relative; z-index:2; display:grid; grid-template-columns:repeat(4,1fr); gap:30px; max-width:1250px; margin:44px auto 24px; padding:0 32px; text-align:left; }
+.fleetFeatures article { border-top:1px solid var(--color-line); padding-top:20px; }
+.fleetFeatures article > span { color:var(--color-accent); font-size:10px; letter-spacing:.1em; }
+.fleetFeatures h3 { font-size:15px; color:var(--color-ink); font-weight:600; margin:12px 0 8px; }
+.fleetFeatures p { font-size:13px; color:var(--color-steel); line-height:1.8; }
+@media(max-width:640px) { .fleetHero { padding-top:75px; } .fleetFeatures { grid-template-columns:repeat(2,1fr); padding-inline:22px; gap:24px; margin-top:30px; } .fleetFeatures h3 { font-size:13px; } .fleetFeatures p { font-size:11px; } }
+
+/* Preserve visible vessel at the port between arrivals. */
+:global(.dark) .route .shipHull { fill:#48d5ff; stroke:#061321; }
+:global(.dark) .route .shipCargo { fill:#0a3650; stroke:#8de9ff; }
+@media(prefers-reduced-motion:reduce) { .ship { display:block; animation:none; transform:translate(1193.748px,77.710px); } .ship animateMotion { display:none; } }
+/* One arrival in Hamburg, then dispatch to all other state capitals. */
+.route .cometTail{stroke:none}.route .cometHead{fill:#ecfcff;stroke:#00b9e5;stroke-width:1;animation:none;filter:drop-shadow(0 0 4px #00b9e5)}
+.seaComet{animation:seaCometVisibility 12s linear infinite}.inlandComet{animation:inlandCometVisibility 12s linear infinite}
+@keyframes seaCometVisibility{0%{opacity:0}2%,39%{opacity:1}42%,100%{opacity:0}}
+@keyframes inlandCometVisibility{0%,39%{opacity:0}41%,82%{opacity:1}86%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.seaComet,.inlandComet{display:none;animation:none}}
+
+/* Soft luminous pulses rather than sharp meteor silhouettes. */
+.route .cometTail{stroke:none;filter:blur(2.2px) drop-shadow(0 0 5px #00c8ff);opacity:.95}
+.route .cometHalo{fill:#00c8ff;stroke:none;opacity:.55;filter:blur(5px);animation:none}
+.route .cometHead{fill:#f1feff;stroke:#8befff;stroke-width:1;animation:none;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px #00c8ff) drop-shadow(0 0 13px #00aaff)}
+.route .hamburgHub{filter:drop-shadow(0 0 6px #00c8ff)}
+/* Shared visual tokens for the design preview only. */
+.page{--design-bg:#fff;--design-surface:#f1f7fb;--design-card:#fff;--design-text:#0a263c;--design-muted:#526b80;--design-line:#d5e3ed;--design-accent:#007fa3;--design-glow:#00b9e5;--design-title:clamp(34px,4.5vw,60px);--color-ink:var(--design-text);--color-steel:var(--design-muted);--color-line:var(--design-line);--color-accent:var(--design-accent);--color-accent-soft:var(--design-glow);--color-fog:var(--design-surface);--color-background:var(--design-bg)}
+:global(.dark) .page{--design-bg:#050f1b;--design-surface:#0b1929;--design-card:#102134;--design-text:#edf6fc;--design-muted:#a0b5c5;--design-line:#233c50;--design-accent:#51ccec;--design-glow:#00b9e5}
+.page h2{font-size:var(--design-title);font-weight:600;line-height:1.12;letter-spacing:-.045em}
+.page button,.page input,.page textarea,.page select{font-family:inherit}
+.page :global(.font-mono){font-family:inherit;font-variant-numeric:tabular-nums}
+.page>section:global(.bg-white){background:var(--design-bg)}
+.page>section:global(.bg-slate-50){background:var(--design-surface)}
+.page section:not(:global(#kontakt)) :global(.text-slate-950),.page section:not(:global(#kontakt)) h2:global(.text-white){color:var(--design-text)}
+.page section:not(:global(#kontakt)) :global(.text-slate-500),.page section:not(:global(#kontakt)) :global(.text-slate-600),.page section:not(:global(#kontakt)) :global(.text-slate-700){color:var(--design-muted)}
+.page section:not(:global(#kontakt)) :global(.text-sky-700),.page section:not(:global(#kontakt)) :global(.text-sky-600){color:var(--design-accent)}
+.page section:not(:global(#kontakt)) p:global(.uppercase){font-size:11px;font-weight:500;letter-spacing:.18em}
+.page :global(#leistungen) article,.page :global(#unternehmen) :global(.bg-white){background:var(--design-card)}

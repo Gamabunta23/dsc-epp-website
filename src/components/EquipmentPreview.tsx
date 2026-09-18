@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { containerTypes } from "./Containers";
 import styles from "./EquipmentPreview.module.css";
@@ -10,7 +11,7 @@ type Item = (typeof containerTypes)[number];
 const filters = ["Alle", "Standard", "Kühlcontainer", "Spezialcontainer"] as const;
 type Filter = (typeof filters)[number];
 const imageAliases: Record<string, string> = { "45": "45-hc", "20-flat": "20-fr", "40-flat": "40-fr", "40-ot-hc": "40-ot-hc-v2" };
-const imageFor = (item: Item) => `/container-preview/${imageAliases[item.id] ?? item.id}.png`;
+const imageFor = (item: Item, light = false) => `/container-preview/${light ? "light/" : ""}${imageAliases[item.id] ?? item.id}.png`;
 const categoryFor = (item: Item): Filter => item.id.includes("reefer") ? "Kühlcontainer" : /ot|flat|tank/.test(item.id) ? "Spezialcontainer" : "Standard";
 
 function Arrow({ back = false }: { back?: boolean }) {
@@ -18,6 +19,8 @@ function Arrow({ back = false }: { back?: boolean }) {
 }
 
 export default function EquipmentPreview({ embedded = false }: { embedded?: boolean }) {
+  const { resolvedTheme } = useTheme();
+  const lightImages = embedded && resolvedTheme === "light";
   const [filter, setFilter] = useState<Filter>("Alle");
   const [active, setActive] = useState<Item | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -92,18 +95,18 @@ export default function EquipmentPreview({ embedded = false }: { embedded?: bool
           onClickCapture={(event) => { if (drag.current.moved) { event.preventDefault(); event.stopPropagation(); drag.current.moved = false; } }}
         >
           {visible.map((item) => <button key={item.id} className={styles.card} type="button" onClick={() => setActive(item)} aria-label={`${item.size} ${item.name} – Details ansehen`}>
-            <div className={styles.visual}><Image src={imageFor(item)} alt={`${item.size} ${item.name} mit DSEP-Kennzeichnung`} width={1536} height={1024} sizes="(max-width: 640px) 95vw, (max-width: 1000px) 46vw, 31vw" /><span className={styles.type}>{item.size}</span></div>
+            <div className={styles.visual}><Image src={imageFor(item, lightImages)} alt={`${item.size} ${item.name} mit DSEP-Kennzeichnung`} width={1536} height={1024} sizes="(max-width: 640px) 95vw, (max-width: 1000px) 46vw, 31vw" /><span className={styles.type}>{item.size}</span></div>
             <div className={styles.content}><CardTitle>{item.size} {item.name}</CardTitle><p className={styles.note}>{item.notes}</p><dl className={styles.specs}><div><dt>Volumen</dt><dd>{item.cbm}</dd></div><div><dt>Zuladung</dt><dd>{item.payload}</dd></div></dl><div className={styles.details}>Details ansehen <Arrow /></div></div>
           </button>)}
         </div>
-        {embedded && <div className={styles.galleryLink}><span>Mit der Maus ziehen oder auf dem Handy wischen</span><Link href="/vorschau/container">Alle 15 Varianten im Überblick ↗</Link></div>}
+        {embedded && <div className={styles.galleryLink}><span>Mit der Maus ziehen oder auf dem Handy wischen</span><Link href="/container">Alle 15 Varianten im Überblick ↗</Link></div>}
         {!embedded && <div className={styles.bottom}><div><p className={styles.eyebrow}>DAS PASSENDE EQUIPMENT</p><h2>Ihre Ladung. Unsere Lösung.</h2><p>Alle Maße und Zuladungen finden Sie in den jeweiligen Details.</p></div><Link href="/#kontakt">Transport anfragen <Arrow /></Link></div>}
         {!embedded && <p className={styles.previewNote}>Designvorschau · Generierte Produktvisualisierungen mit individuellen DSEP-Markierungen. Maßangaben und Zuladungen entsprechen dem bestehenden Katalog.</p>}
       </section>
       {active && <dialog ref={dialog} className={styles.dialog} aria-label={`${active.size} ${active.name} – Spezifikationen`} onCancel={() => setActive(null)} onClose={() => setActive(null)} onClick={(event) => { if (event.target === event.currentTarget) setActive(null); }}>
         <div className={styles.modal}>
           <button type="button" className={styles.close} onClick={() => setActive(null)} aria-label="Details schließen" autoFocus>×</button>
-          <div className={styles.modalImage}><Image src={imageFor(active)} alt={`${active.size} ${active.name}`} width={1536} height={1024} sizes="(max-width: 700px) 95vw, 540px" /></div>
+          <div className={styles.modalImage}><Image src={imageFor(active, lightImages)} alt={`${active.size} ${active.name}`} width={1536} height={1024} sizes="(max-width: 700px) 95vw, 540px" /></div>
           <div className={styles.modalContent}><p className={styles.eyebrow}>DSEP · {active.size}</p><h2>{active.name}</h2><p className={styles.description}>{active.description}</p><dl className={styles.table}>
             {active.specs?.exterior && <div><dt>Außenmaße (L × B × H)</dt><dd>{active.specs.exterior.l} × {active.specs.exterior.b} × {active.specs.exterior.h} m</dd></div>}
             {active.specs?.interior && <div><dt>Innenmaße (L × B × H)</dt><dd>{active.specs.interior.l} × {active.specs.interior.b} × {active.specs.interior.h} m</dd></div>}

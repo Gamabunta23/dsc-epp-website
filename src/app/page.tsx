@@ -1,27 +1,27 @@
-import Hero from "@/components/Hero";
-import Journey from "@/components/Journey";
+import HomePreviewHero from "@/components/HomePreviewHero";
+import CinematicPreview from "@/components/CinematicPreview";
+import EquipmentPreview from "@/components/EquipmentPreview";
+import GlobeSection from "@/components/GlobeSection";
 import Stats from "@/components/Stats";
 import Services from "@/components/Services";
-import Containers from "@/components/Containers";
-import Fleet from "@/components/Fleet";
 import Fahrzeitrechner from "@/components/Fahrzeitrechner";
-import Locations from "@/components/Locations";
+import Locations from "@/components/LocationsPreview";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
+import styles from "@/components/HomePreview.module.css";
+
 
 export default function Home() {
-  return (
-    <main>
-      <Hero />
-      <Journey />
-      <Stats />
-      <Services />
-      <Containers />
-      <Fleet />
-      <Fahrzeitrechner />
-      <Locations />
-      <About />
-      <Contact />
-    </main>
-  );
+  return <main className={styles.page}>
+    <CinematicPreview />
+    <GlobeSection />
+    <Stats />
+    <Services />
+    <EquipmentPreview embedded />
+    <HomePreviewHero fleet />
+    <Fahrzeitrechner />
+    <Locations />
+    <About />
+    <Contact />
+  </main>;
 }

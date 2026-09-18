@@ -43,3 +43,11 @@ next-env.d.ts
 # python
 __pycache__/
 *.pyc
+
+# lokale Design-Rohdaten und Experimente (groß, teils fremd-gebrandet) — nie ins öffentliche Repo
+/public/cinematic-lab/
+/public/cinematic-preview/
+/public/animation-lab/
+/design/cinematic-storyboard/videos/
+/design/cinematic-storyboard/keyframes/
+/design/sequenz/assets-src/

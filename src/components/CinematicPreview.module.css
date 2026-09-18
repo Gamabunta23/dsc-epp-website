@@ -1,0 +1,41 @@
+.stage { position:relative; background:#06111f; color:#f5f8fb; padding:126px 0 32px; overflow:hidden; scroll-margin-top:0; }
+.heading { position:relative; z-index:1; text-align:center; padding:0 20px 28px; }
+.eyebrow { color:#8ebad1; font-size:10px; letter-spacing:.22em; margin-bottom:16px; }
+.heading h1 { font-size:clamp(38px,5vw,72px); line-height:1.04; letter-spacing:-.045em; font-weight:600; }
+.heading h1 span { color:#b3cfdf; margin-left:.22em; }
+.heading > p:last-child { color:#b3c5d5; font-size:14px; margin-top:18px; }
+.cinema { width:100%; background:#07121f; }
+.film { display:block; width:100%; max-height:65svh; object-fit:contain; aspect-ratio:16/9; }
+.controls { width:min(940px,calc(100% - 40px)); margin:22px auto 0; display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center; }
+.chapters { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.chapters button { color:#9cb2c5; cursor:pointer; text-align:left; font-size:12px; min-height:44px; border-bottom:2px solid #314356; padding:8px 0; }
+.chapters button span { opacity:.65; margin-right:10px; font-size:10px; }
+.chapters button[aria-pressed=true] { color:white; border-color:#38bdf8; }
+.play { border:1px solid #607487; border-radius:24px; padding:12px 17px; min-height:44px; font-size:12px; cursor:pointer; }
+.play span { margin-left:14px; }
+.links { grid-column:1/-1; display:flex; justify-content:space-between; gap:20px; color:#c8dfeb; font-size:12px; }
+.links a { padding:10px 0; }
+.stage button:focus-visible,.stage a:focus-visible { outline:2px solid #50c8ff; outline-offset:5px; }
+.stage button:disabled { opacity:.5; cursor:default; }
+@media(max-width:640px) {
+ .stage { padding-top:122px; }
+ .heading h1 span { display:block; margin:0; }
+ .heading { padding-bottom:30px; }
+ .film { max-height:none; }
+ .controls { gap:18px; grid-template-columns:1fr; }
+ .chapters { gap:15px; }
+ .chapters button { font-size:11px; }
+ .play { justify-self:center; }
+ .links { font-size:11px; }
+}
+.stage{background:var(--design-bg,#06111f);color:var(--design-text,#f5f8fb)}
+.eyebrow{font-size:11px;letter-spacing:.18em;color:var(--design-accent,#8ebad1)}
+.heading h1 span,.heading>p:last-child,.chapters button,.links{color:var(--design-muted,#b3c5d5)}
+.chapters button{border-color:var(--design-line,#314356)}
+.chapters button[aria-pressed=true]{color:var(--design-text,#fff);border-color:var(--design-glow,#38bdf8)}
+.play{border-color:var(--design-line,#607487);font-weight:500}
+
+/* Approved maximum light grade, identical to the comparison slider at 100%. */
+.gradeDefinition{position:absolute;pointer-events:none;overflow:hidden}
+.film{filter:var(--film-light-grade,none)}
+:global(.dark) .film{filter:none}
