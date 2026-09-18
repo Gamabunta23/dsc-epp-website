@@ -16,6 +16,7 @@ export default function CinematicPreview() {
   const gradeId = useId().replace(/:/g, "");
   const [playing, setPlaying] = useState(false);
   const [active, setActive] = useState(0);
+  const [timeline, setTimeline] = useState({ time: 0, duration: 0 });
   const [outro, setOutro] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -62,6 +63,7 @@ export default function CinematicPreview() {
         onTimeUpdate={() => {
           const time = video.current?.currentTime ?? 0;
           const duration = video.current?.duration ?? 0;
+          setTimeline({ time, duration: Number.isFinite(duration) ? duration : 0 });
           setOutro(Number.isFinite(duration) && duration > 0 && time >= duration - 1.25);
           setActive(chapters.reduce((index, chapter, i) => time >= chapter.time ? i : index, 0));
         }}
@@ -87,7 +89,7 @@ export default function CinematicPreview() {
     </div>
     <div className={styles.controls}>
       <div className={styles.chapters} role="group" aria-label="Filmkapitel">
-        {chapters.map((chapter, index) => <button key={chapter.label} aria-pressed={active === index} disabled={failed} onClick={() => {
+        {chapters.map((chapter, index) => <button key={chapter.label} style={{ "--chapter-progress": Math.max(0, Math.min(1, (timeline.time - chapter.time) / Math.max(.01, (chapters[index + 1]?.time ?? timeline.duration) - chapter.time))) } as React.CSSProperties} aria-pressed={active === index} disabled={failed} onClick={() => {
           if (video.current && video.current.readyState >= 1) {
             setOutro(false);
             video.current.currentTime = chapter.time;

@@ -81,3 +81,8 @@
 @keyframes outroWaveB{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
 @keyframes outroWaveC{0%,100%{transform:translateY(-6px)}50%{transform:translateY(10px)}}
 @media(prefers-reduced-motion:reduce){.outroLines path,.outroOrb{animation:none}}
+
+.chapters button{position:relative}
+.chapters button[aria-pressed=true]{border-color:var(--design-line,#314356)}
+.chapters button::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--design-glow,#38bdf8);transform:scaleX(var(--chapter-progress,0));transform-origin:left;transition:transform .2s linear}
+@media(prefers-reduced-motion:reduce){.chapters button::after{transition:none}}
