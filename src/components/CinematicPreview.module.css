@@ -54,6 +54,14 @@
 .outroBrand span{display:block;font-size:clamp(8px,.8vw,11px);letter-spacing:.22em;color:var(--design-muted,#526b80);margin-top:18px}
 :global(.dark) .outro{background:radial-gradient(ellipse at 20% 40%,#007faa35,transparent 55%),radial-gradient(ellipse at 85% 65%,#30446130,transparent 55%),var(--design-bg,#050f1b)}
 :global(.dark) .outroLogoLight{display:none}
-:global(.dark) .outroLogoDark{display:block;filter:contrast(1.2);mix-blend-mode:screen}
+:global(.dark) .outroLogoDark{display:block;}
 @media(max-width:640px){.outroBrand img{margin-bottom:14px;width:180px}.outroBrand span{margin-top:10px}}
 @media(prefers-reduced-motion:reduce){.outro,.outroBrand{transition:none}.outroBrand{transform:none}}
+
+.outroLines{overflow:visible}
+.outroLines path{transform-origin:center;animation:outroWave 14s ease-in-out infinite alternate;animation-play-state:paused}
+.outroLines path:nth-child(2){animation-duration:18s;animation-delay:-7s}
+.outroLines path:nth-child(3){animation-duration:22s;animation-delay:-12s}
+.outroVisible .outroLines path{animation-play-state:running}
+@keyframes outroWave{0%{transform:translate(-2%,-18px) scaleY(.88) rotate(-1deg)}100%{transform:translate(2%,22px) scaleY(1.12) rotate(1deg)}}
+@media(prefers-reduced-motion:reduce){.outroLines path{animation:none}}
