@@ -51,7 +51,7 @@ export default function CinematicPreview() {
 
   return <section id="top" className={styles.stage} aria-label="Vom Schiff auf die Straße">
     <div className={styles.heading}>
-      <h1>Über See.<span>Bis zu Ihnen.</span></h1>
+      <h1>Vom Seehafen.<span>Bis zu Ihnen.</span></h1>
       <p>Vom Terminal. Bundesweit.</p>
     </div>
     <svg width="0" height="0" aria-hidden="true" className={styles.gradeDefinition}><defs><filter id={gradeId} colorInterpolationFilters="sRGB"><feComponentTransfer><feFuncR type="gamma" amplitude="1.077" exponent=".54" offset=".038"/><feFuncG type="gamma" amplitude="1.062" exponent=".57" offset=".046"/><feFuncB type="gamma" amplitude="1.015" exponent=".66" offset=".054"/></feComponentTransfer><feColorMatrix type="saturate" values=".87"/></filter></defs></svg>
@@ -80,7 +80,7 @@ export default function CinematicPreview() {
         <div className={styles.outroBrand}>
           <Image src="/logo-light.webp" alt="DSC | EPP Logistik" width={500} height={168} className={styles.outroLogoLight} />
           <Image src="/logo.jpg" alt="DSC | EPP Logistik" width={500} height={168} className={styles.outroLogoDark} />
-          <p>Über See. Bis zu Ihnen.</p>
+          <p>Vom Seehafen. Bis zu Ihnen.</p>
           <span>CONTAINER. MULTIMODAL. JUST IN TIME.</span>
         </div>
       </div>
