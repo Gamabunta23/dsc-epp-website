@@ -55,7 +55,7 @@ export default function CinematicPreview() {
     </div>
     <svg width="0" height="0" aria-hidden="true" className={styles.gradeDefinition}><defs><filter id={gradeId} colorInterpolationFilters="sRGB"><feComponentTransfer><feFuncR type="gamma" amplitude="1.077" exponent=".54" offset=".038"/><feFuncG type="gamma" amplitude="1.062" exponent=".57" offset=".046"/><feFuncB type="gamma" amplitude="1.015" exponent=".66" offset=".054"/></feComponentTransfer><feColorMatrix type="saturate" values=".87"/></filter><filter id={`${gradeId}-logo`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  5 5 5 0 -0.9"/></filter></defs></svg>
     <div className={styles.cinema} style={{ "--film-light-grade": `url(#${gradeId})` } as React.CSSProperties}>
-      <video ref={video} className={styles.film} muted playsInline preload="metadata"
+      <video ref={video} className={styles.film} muted playsInline disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" preload="metadata"
         poster="/media/home/transport-poster-v1.jpg"
         onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
         onEnded={() => { setPlaying(false); setOutro(true); }} onError={() => setFailed(true)}
