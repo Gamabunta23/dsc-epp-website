@@ -72,6 +72,7 @@ export default function CinematicPreview() {
         Ihr Browser unterstützt dieses Video nicht.
       </video>
       <div className={`${styles.outro} ${outro ? styles.outroVisible : ""}`} aria-hidden={!outro}>
+        <div className={styles.outroOrb} aria-hidden="true" /><div className={styles.outroOrb} aria-hidden="true" /><div className={styles.outroOrb} aria-hidden="true" />
         <svg className={styles.outroLines} viewBox="0 0 1440 600" preserveAspectRatio="none" aria-hidden="true">
           <path d="M-100 150 Q300 -40 740 180 T1540 130" />
           <path d="M-100 330 Q360 190 840 370 T1540 310" />

@@ -58,10 +58,26 @@
 @media(max-width:640px){.outroBrand img{margin-bottom:14px;width:180px}.outroBrand span{margin-top:10px}}
 @media(prefers-reduced-motion:reduce){.outro,.outroBrand{transition:none}.outroBrand{transform:none}}
 
-.outroLines{overflow:visible}
-.outroLines path{transform-origin:center;animation:outroWave 14s ease-in-out infinite alternate;animation-play-state:paused}
-.outroLines path:nth-child(2){animation-duration:18s;animation-delay:-7s}
-.outroLines path:nth-child(3){animation-duration:22s;animation-delay:-12s}
-.outroVisible .outroLines path{animation-play-state:running}
-@keyframes outroWave{0%{transform:translate(-2%,-18px) scaleY(.88) rotate(-1deg)}100%{transform:translate(2%,22px) scaleY(1.12) rotate(1deg)}}
-@media(prefers-reduced-motion:reduce){.outroLines path{animation:none}}
+
+/* Match the career hero's ambient colors and wave cadence. */
+.outro,:global(.dark) .outro{background:var(--design-bg,#fff)}
+.outroOrb{position:absolute;width:480px;height:480px;max-width:65vw;max-height:65vw;top:10%;left:-6%;border-radius:50%;background:rgb(125 211 252 / .6);filter:blur(64px);animation:outroAmbientA 9s ease-in-out infinite;animation-play-state:paused}
+.outroOrb:nth-child(2){width:560px;height:560px;top:20%;left:auto;right:-9%;background:rgb(148 163 184 / .5);animation:outroAmbientB 11s ease-in-out infinite 1.2s;animation-play-state:paused}
+.outroOrb:nth-child(3){width:420px;height:420px;top:auto;bottom:8%;left:33%;background:rgb(186 230 253 / .6);animation:outroAmbientC 10s ease-in-out infinite 2.5s;animation-play-state:paused}
+:global(.dark) .outroOrb{background:rgb(14 165 233 / .3)}
+:global(.dark) .outroOrb:nth-child(2){background:rgb(71 85 105 / .4)}
+:global(.dark) .outroOrb:nth-child(3){background:rgb(56 189 248 / .2)}
+.outroLines{overflow:visible;opacity:1;stroke:#0ea5e9}
+.outroLines path{transform-box:view-box;transform-origin:center;stroke-width:1.4;opacity:.35;filter:drop-shadow(0 0 4px #0ea5e966) drop-shadow(0 0 10px #0ea5e92e);animation:outroWaveA 9s ease-in-out infinite;animation-play-state:paused}
+.outroLines path:nth-child(2){opacity:.22;animation-name:outroWaveB;animation-duration:11s}
+.outroLines path:nth-child(3){opacity:.18;animation-name:outroWaveC;animation-duration:10s}
+:global(.dark) .outroLines{stroke:#38bdf8}
+:global(.dark) .outroLines path{filter:drop-shadow(0 0 6px #38bdf88c) drop-shadow(0 0 14px #38bdf84d)}
+.outroVisible .outroLines path,.outroVisible .outroOrb{animation-play-state:running}
+@keyframes outroAmbientA{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.08);opacity:.85}}
+@keyframes outroAmbientB{0%,100%{transform:scale(1.05);opacity:.4}50%{transform:scale(1);opacity:.7}}
+@keyframes outroAmbientC{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.1);opacity:.8}}
+@keyframes outroWaveA{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes outroWaveB{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
+@keyframes outroWaveC{0%,100%{transform:translateY(-6px)}50%{transform:translateY(10px)}}
+@media(prefers-reduced-motion:reduce){.outroLines path,.outroOrb{animation:none}}
