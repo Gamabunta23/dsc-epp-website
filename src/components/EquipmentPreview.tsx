@@ -1,11 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { containerTypes } from "./Containers";
 import styles from "./EquipmentPreview.module.css";
+
+const subscribeToHydration = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
 
 type Item = (typeof containerTypes)[number];
 const filters = ["Alle", "Standard", "Kühlcontainer", "Spezialcontainer"] as const;
@@ -20,7 +24,9 @@ function Arrow({ back = false }: { back?: boolean }) {
 
 export default function EquipmentPreview({ embedded = false }: { embedded?: boolean }) {
   const { resolvedTheme } = useTheme();
-  const lightImages = embedded && resolvedTheme === "light";
+  // Keep server markup and the first client render identical; apply saved theme after hydration.
+  const hydrated = useSyncExternalStore(subscribeToHydration, clientSnapshot, serverSnapshot);
+  const lightImages = embedded && (!hydrated || resolvedTheme !== "dark");
   const [filter, setFilter] = useState<Filter>("Alle");
   const [active, setActive] = useState<Item | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
