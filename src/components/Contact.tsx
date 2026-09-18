@@ -92,6 +92,7 @@ export default function Contact() {
           onSubmit={handleSubmit}
           className="rounded-3xl bg-white/[0.04] backdrop-blur-xl border border-white/10 p-8 lg:p-12 grid sm:grid-cols-2 gap-6"
         >
+          <div hidden aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
           <Field label="Name" name="name" required />
           <Field label="Firma" name="company" />
           <Field label="E-Mail" name="email" type="email" required />
