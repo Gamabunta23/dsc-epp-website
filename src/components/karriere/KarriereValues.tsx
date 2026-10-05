@@ -38,12 +38,12 @@ export default function KarriereValues() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-16"
+          className="w-full mb-16"
         >
           <p className="text-sm font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.15em] mb-4">
             Warum bei uns
           </p>
-          <h2 className="headline text-4xl md:text-5xl text-slate-950 dark:text-white">
+          <h2 className="headline text-4xl md:text-5xl lg:text-[clamp(32px,3.5vw,48px)] lg:whitespace-nowrap text-slate-950 dark:text-white">
             Sechs gute Gründe,{" "}
             <span className="text-slate-500 dark:text-slate-400">nicht sechs Marketing-Sprüche.</span>
           </h2>
