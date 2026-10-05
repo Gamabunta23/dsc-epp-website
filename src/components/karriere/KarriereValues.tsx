@@ -44,9 +44,8 @@ export default function KarriereValues() {
             Warum bei uns
           </p>
           <h2 className="headline text-4xl md:text-5xl text-slate-950 dark:text-white">
-            Sechs gute Gründe,
-            <br />
-            <span className="text-slate-500 dark:text-slate-400">bei uns zu arbeiten.</span>
+            Sechs gute Gründe,{" "}
+            <span className="text-slate-500 dark:text-slate-400">nicht sechs Marketing-Sprüche.</span>
           </h2>
         </motion.div>
 
