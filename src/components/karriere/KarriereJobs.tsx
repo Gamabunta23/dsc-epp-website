@@ -50,14 +50,13 @@ export default function KarriereJobs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-16"
+          className="w-full mb-16"
         >
           <p className="text-sm font-medium text-sky-700 dark:text-sky-400 uppercase tracking-[0.15em] mb-4">
             Offene Stellen
           </p>
-          <h2 className="headline text-4xl md:text-6xl text-slate-950 dark:text-white">
-            Was wir suchen,
-            <br />
+          <h2 className="headline text-4xl md:text-6xl lg:whitespace-nowrap text-slate-950 dark:text-white">
+            Was wir suchen,{" "}
             <span className="text-slate-500 dark:text-slate-400">und wo.</span>
           </h2>
         </motion.div>
