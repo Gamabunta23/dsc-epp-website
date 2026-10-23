@@ -82,7 +82,10 @@ function calc(km: number, vehicle: Vehicle, eu561: boolean, stadtZuschlag: boole
 }
 
 export default function Fahrzeitrechner() {
-  const [km, setKm] = useState<number>(620);
+  // Beim Bearbeiten darf das Feld leer bleiben, ohne eine führende 0 einzusetzen.
+  const [kmInput, setKmInput] = useState("620");
+  const parsedKm = Number(kmInput);
+  const km = Number.isFinite(parsedKm) ? Math.max(0, parsedKm) : 0;
   const [vehicleId, setVehicleId] = useState<string>("szm40");
   const [eu561, setEu561] = useState<boolean>(true);
   const [stadt, setStadt] = useState<boolean>(false);
@@ -166,7 +169,7 @@ export default function Fahrzeitrechner() {
                 max={2000}
                 step={10}
                 value={km}
-                onChange={(e) => setKm(Number(e.target.value))}
+                onChange={(e) => setKmInput(e.target.value)}
                 className="w-full accent-sky-600 cursor-pointer"
                 aria-label="Strecke in Kilometern"
               />
@@ -181,8 +184,12 @@ export default function Fahrzeitrechner() {
                 type="number"
                 min={1}
                 max={5000}
-                value={km}
-                onChange={(e) => setKm(Math.max(0, Number(e.target.value) || 0))}
+                value={kmInput}
+                onChange={(e) => setKmInput(e.target.value)}
+                onBlur={() => setKmInput(String(km))}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") setKmInput(String(km));
+                }}
                 className="mt-4 w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 text-slate-950 dark:text-white tabular-nums focus:outline-none focus:border-sky-500 focus:bg-white dark:focus:bg-slate-900 transition-colors"
                 aria-label="Strecke exakt eingeben"
               />
