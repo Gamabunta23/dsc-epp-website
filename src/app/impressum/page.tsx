@@ -35,7 +35,7 @@ export default function ImpressumPage() {
         <dt>Registergericht</dt>
         <dd>Amtsgericht Oldenburg</dd>
         <dt>Registernummer</dt>
-        <dd>HRB 218996</dd>
+        <dd>HRB 214086</dd>
       </dl>
 
       <h2>Umsatzsteuer-ID</h2>
